@@ -1,0 +1,140 @@
+
+
+/* Header */
+
+#header {
+    padding-top: 20px;
+    padding-left: 120px;
+    height: 100px;
+    color: #fff;
+    margin-left:0px;
+    margin-right: 0px;
+       
+}
+
+/* Nav */
+
+#nav {
+    position: relative;
+    text-align: left;
+}
+
+#nav a {
+    margin: 0 1em 0 1em;
+}
+
+
+#rightPanel {
+
+    background: #f6f6f6;
+}
+
+.listviewSector{margin-top: 20px}
+
+.tabs{
+    margin-top: 10px
+}
+
+/* Footer */
+
+#footer {
+    margin: 3em 0 3em 0;
+}
+
+
+
+
+#miMapa{
+    width: 65%; 
+    margin-left: 160px !important;
+    height:350px; 
+    margin-top: 50px !important;;
+}
+
+
+
+
+.infoTerritorial{
+    font-size: 15px;
+}
+
+
+.infoTerritorial img{
+    width: 100%;
+    height: 4px;
+}
+
+#container1{
+    margin-bottom: 100px;
+}
+
+#rightPanel table{
+
+    border-collapse: separate;
+    border-spacing: 20px;
+}
+#rightPanel select{
+
+    font-size: 15px;
+    width: 200px !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    height: 60px;
+    background: #f6f6f6;
+    margin-top: 30px;
+}
+
+#leftPanelButton .toggle {
+    text-align: left;
+    padding-left: 23px;
+    height: 100px;
+    background:rgba(0,28,54,0.2) url('images/menu.png') no-repeat;
+    background-position: 10px;
+
+}
+
+#rightPanelButton .toggle {
+
+    height: 100px;
+
+}
+
+.icon-myshare{
+    background:rgba(0,28,54,0.2) url(images/icon-share.png) no-repeat !important;
+    background-position: 40px !important;
+
+}
+
+.icon-mysearch{
+    background:rgba(0,28,54,0.2) url(images/icon-search.png) no-repeat  !important;
+    background-position: 40px !important;
+}
+
+.loadingPag{
+
+    top:70px;
+    left: 500px;
+}
+
+#mapaSitio{
+
+
+    background: transparent;
+    color: #fff
+
+}
+
+#btnWhatsApp{
+    display: none !important;
+}
+
+/* Title */
+
+#title {
+    padding-left: 20px;
+    padding-top: 5px;
+    margin: 0 0 1.5em 0;        
+    color: #fff;
+
+}

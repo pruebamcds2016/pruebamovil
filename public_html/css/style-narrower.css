@@ -1,0 +1,191 @@
+/*Tablet Vertical*/
+/* Header */
+
+
+#content{
+    margin-top:30px;
+}
+
+
+
+#leftPanelButton .toggle {
+    text-align: left;
+    padding-left: 23px;
+    height: 100px;
+    background:rgba(0,28,54,0.2) url('images/menu.png') no-repeat;
+    background-position: 15px;
+
+}
+.icon-myshare{
+    background:rgba(0,28,54,0.2) url(images/icon-share.png) no-repeat !important;
+    background-position: 40px !important;
+
+}
+
+.icon-mysearch{
+    background:rgba(0,28,54,0.2) url(images/icon-search.png) no-repeat  !important;
+    background-position: 40px !important;
+}
+
+#rightPanelButton .toggle {
+
+    height: 100px;
+
+}
+
+.icon-myshare{
+
+    background-position: 23px !important;
+
+}
+
+.icon-mysearch{
+
+    background-position: 23px !important;
+   
+}
+
+
+
+/* Title */
+
+#title {
+    padding-left: 135px;
+    padding-top: 27px;
+    margin: 0 0 1.5em 0;
+    height: 100px;
+
+}
+
+#header {
+    margin-top: 0em;
+    color: white;
+    font-size:16px;
+    background: #001C36;
+   
+    height: 100px;
+}
+
+/* Nav */
+
+#nav {
+    position: relative;
+    text-align: left;
+}
+
+#nav a {
+    margin: 0 1em 0 1em;
+}
+
+/**********************************************************/
+/*Estilo para las listas                                  */
+/**********************************************************/
+
+/*Listas en sectores y subsectores*/
+/*Este es el UL*/
+.listviewSector{
+
+    font-size:18px;
+
+}
+
+.listviewSector li a{
+
+    padding: 25px;
+}
+
+
+@media (min-width: 760px) and (max-width: 979px) { 
+    .loadingPag{
+        top:80px;
+        left: 350px;
+    }
+
+
+}
+
+@media screen and (min-width: 979px)  {
+    .loadingPag{
+
+        top:60px;
+        left: 500px;
+    }
+
+}
+
+
+
+.tab-links a {
+    padding:6px 100px;
+    font-size:17px;
+    width: 100%
+
+}
+
+#results{
+
+
+    font-size: 15px;
+}
+
+#results thead{
+
+
+    font-size: 17px;
+
+}
+
+
+
+#divFuente{
+    font-size: 13px;
+
+    line-height:20px;
+}
+
+#container{
+    height: 500px !important;
+}
+
+.tab-links a {
+    padding:6px 80px;
+
+}
+
+#miMapa{
+    width: 65%; 
+    margin-left: 160px !important;
+    height:350px; 
+}
+
+
+
+.infoTerritorial img{
+    width: 100%;
+    height: 4px;
+}
+
+#container1{
+    margin-bottom: 100px;
+}
+
+#rightPanel table{
+
+    border-collapse: separate;
+    border-spacing: 20px;
+}
+#rightPanel select{
+
+    font-size: 15px;
+    width: 200px;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    height: 60px;
+    background: #f6f6f6;
+    margin-top: 30px;
+}
+
+#btnWhatsApp{
+    display: none !important;
+}

@@ -1,0 +1,172 @@
+body{
+    font-size: 12.5pt;
+    line-height: 1.5em;
+}
+
+
+
+.container {
+    margin-top: -35px;
+    padding: 0em 1.2em 1.7em 1.2em;
+    text-align: justify;
+}
+
+
+/* Header */
+
+#header {
+    margin-top: 4.5em;
+    font-family: hbold;
+}
+
+
+
+/* Title */
+
+#title {
+    display: none;
+}
+
+
+/* Nav */
+
+#nav a {
+    margin: 0 0.5em 0 0.5em;
+}
+
+
+
+
+/* Footer */
+
+#footer {
+    margin-bottom: 3em;
+}
+
+#leftPanel,
+#rightPanel {
+
+    background: #f6f6f6;
+}
+
+/* Overlays */
+
+#leftPanelButton .toggle,
+#rightPanelButton .toggle {
+    display: block;
+    background: none;
+    height: 50px;
+    line-height: 44px;
+
+}
+
+#leftPanelButton .toggle {
+    text-align: left;
+    background: url('images/menu.png') no-repeat ;
+    background-position: 0px;
+    margin-top: 5px
+}
+
+#rightPanelButton .toggle {
+    text-align: right;
+     margin-top: 5px
+}
+
+
+
+#titleBar {
+
+    padding-top: 10px;
+    font-size: 13px;
+    margin: 0px auto;
+    color: #fff;
+    padding-left:75px;
+}
+
+
+#nav a {
+    margin: 0 0.5em 0 0.5em;
+}
+
+.loadingPag{
+
+    top:10px;
+    left: 65px;
+}
+#container{
+    height: 340px
+}
+#container1{
+    height: 340px
+}
+.mapaSitio{
+        font-size: 11px;
+        color:#fff;
+        width: 82%;
+    }
+
+
+#miMapa{
+    width: 100%; 
+    height:220px; 
+}
+
+@media  screen and (min-width : 321px) {
+    .loadingPag{
+
+        top:0px;
+        left: 130px;
+    }
+
+    #miMapa{ 
+        height:180px; 
+    }
+}
+
+
+#rightPanel table{
+
+    border-collapse: separate;
+    border-spacing: 20px;
+}
+#rightPanel select{
+
+    font-size: 15px;
+    width: 200px;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    height: 50px;
+    background: #f6f6f6;
+}
+
+
+
+.infoTerritorial table{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 3px;
+}
+
+
+
+.infoTerritorial img{
+    width: 100%;
+    height: 2px;
+}
+
+#bntConsultaT{
+
+    margin-left: 120px;
+}
+
+#codigoDistrito{
+    font-size: 12px;
+    font-family: hbold;
+}
+
+
+
+#labelUbicacion{
+    margin-top: 13px;
+}

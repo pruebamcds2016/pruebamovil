@@ -1,0 +1,182 @@
+/* Tablet Horizontal*/
+/* Header */
+
+#content{
+    margin-top:20px;
+}
+
+
+
+#leftPanelButton .toggle {
+    text-align: left;
+    padding-left: 1px;
+    height: 100px;
+    background: rgba(0,28,54,0.2) url('images/menu.png') no-repeat;
+    background-position: 10px;
+    width: 80px;
+
+}
+.icon-myshare{
+    background:rgba(0,28,54,0.2) url(images/icon-share.png) no-repeat !important;
+    background-position: 10px !important;
+
+}
+
+.icon-mysearch{
+    background: rgba(0,28,54,0.2) url(images/icon-search.png) no-repeat  !important;
+    background-position: 10px !important;
+}
+
+#rightPanelButton .toggle {
+
+    height: 100px;
+    width: 80px;
+    padding-left: 1px;
+
+}
+
+.icon-myshare{
+
+    background-position: 25px !important;
+
+}
+
+.icon-mysearch{
+
+    background-position: 25px !important;
+}
+
+
+
+/* Title */
+
+#title {
+    padding-left: 135px;
+    padding-top: 25px;
+    margin: 0 0 1.5em 0;        
+    color: #fff;
+
+}
+
+#header {
+    margin-top: 0em;
+    text-align: left;
+    font-family: hbold;
+    color: #fff;
+    height: 100px;
+    margin-left:0px;
+    margin-right: 0px;
+    font-size:16px;
+
+}
+
+/* Nav */
+
+#nav {
+    position: relative;
+    text-align: left;
+}
+
+#nav a {
+    margin: 0 1em 0 1em;
+}
+
+/**********************************************************/
+/*Estilo para las listas                                  */
+/**********************************************************/
+
+/*Listas en sectores y subsectores*/
+/*Este es el UL*/
+.listviewSector{
+    margin-top: 30px;
+    font-size:17px;
+
+}
+
+.listviewSector li a{
+
+    padding: 25px;
+}
+
+ .loadingPag{
+
+        top:100px;
+        left: 400px;
+    }
+
+
+
+.tab-links li {
+    margin:0px 0px;
+    float:left;
+    list-style:none;
+    border-right: 1px solid #b0b0b0;
+    
+}
+
+#results{
+
+
+    font-size: 15px;
+}
+
+#results thead{
+
+
+    font-size: 17px;
+
+}
+
+
+
+#divFuente{
+    font-size: 13px;
+
+    line-height:20px;
+}
+
+
+
+.tab-links a {
+    padding:6px 23px;
+     font-size:16px;
+
+}
+
+#miMapa{
+    width: 65%; 
+    height:350px; 
+}
+
+
+
+.infoTerritorial img{
+    width: 100%;
+    height: 4px;
+}
+
+#container1{
+    margin-bottom: 100px;
+}
+
+#rightPanel table{
+
+    border-collapse: separate;
+    border-spacing: 20px;
+}
+#rightPanel select{
+
+    font-size: 15px;
+    width: 200px;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    height: 60px;
+    background: #f6f6f6;
+    margin-top: 30px;
+}
+
+.tabs{
+    margin-top: 30px;
+}
+

@@ -1,0 +1,313 @@
+/* 
+    Document   : styleIndex
+    Created on : 25/07/2014, 11:56:51 AM
+    Author     : MCDS
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+@font-face {
+    font-family: 'hmedium';
+    src: url('../font/helveticaneuemed-webfont.eot');
+    src: url('../font/helveticaneuemed-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../font/helveticaneuemed-webfont.woff') format('woff'),
+        url('../font/helveticaneuemed-webfont.ttf') format('truetype'),
+        url('../font/helveticaneuemed-webfont.svg#helveticaneuemedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'hnormal';
+    src: url('../font/helveticaneueout-webfont.eot');
+    src: url('../font/helveticaneueout-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../font/helveticaneueout-webfont.woff') format('woff'),
+        url('../font/helveticaneueout-webfont.ttf') format('truetype'),
+        url('../font/helveticaneueout-webfont.svg#helvnueoutlinenormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'hregular';
+    src: url('../font/helveticaneue-webfont.eot');
+    src: url('../font/helveticaneue-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../font/helveticaneue-webfont.woff') format('woff'),
+        url('../font/helveticaneue-webfont.ttf') format('truetype'),
+        url('../font/helveticaneue-webfont.svg#helveticaneueregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'hheavy';
+    src: url('../font/helveticaneuehv-webfont.eot');
+    src: url('../font/helveticaneuehv-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../font/helveticaneuehv-webfont.woff') format('woff'),
+        url('../font/helveticaneuehv-webfont.ttf') format('truetype'),
+        url('../font/helveticaneuehv-webfont.svg#helveticaneueheavy') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'hlight';
+    src: url('../font/helveticaneuelt-webfont.eot');
+    src: url('../font/helveticaneuelt-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../font/helveticaneuelt-webfont.woff') format('woff'),
+        url('../font/helveticaneuelt-webfont.ttf') format('truetype'),
+        url('../font/helveticaneuelt-webfont.svg#helveticaneuelight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'hitalic';
+    src: url('../font/helveticaneueit-webfont.eot');
+    src: url('../font/helveticaneueit-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../font/helveticaneueit-webfont.woff') format('woff'),
+        url('../font/helveticaneueit-webfont.ttf') format('truetype'),
+        url('../font/helveticaneueit-webfont.svg#helveticaneueitalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'hbold';
+    src: url('../font/helveticaneuebd-webfont.eot');
+    src: url('../font/helveticaneuebd-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../font/helveticaneuebd-webfont.woff') format('woff'),
+        url('../font/helveticaneuebd-webfont.ttf') format('truetype'),
+        url('../font/helveticaneuebd-webfont.svg#helveticaneuebold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+header {
+
+    position:absolute; 
+    top:0px; 
+    left:0px;  
+    right:0px;
+    overflow:hidden;
+    /*Fondo en gradiente*/    
+    background: #001C36;
+    z-index: 9999
+
+}
+
+footer{
+
+    position:absolute; 
+    bottom:0px; 
+    height:30px; 
+    left:0px; 
+    right:0px; 
+    padding-top: 5px;
+    overflow:hidden;
+    background: #001C36;
+    font-family: hbold;
+    color: #fff;
+    font-size: 11px;    
+
+}
+footer table{
+
+    margin: auto;
+     border-collapse: separate;
+  border-spacing:  5px;
+}
+
+section{
+    position:absolute; 
+    bottom:30px; 
+    left:0px; 
+    right:0px; 
+    overflow:auto;
+    background: #fff;
+    font-family: hlight;
+}
+
+
+a.button-left {
+
+    display: block;
+    font-family: hbold;
+    height: 50px;
+    margin-left: 40px;
+    padding-left: 100px; /* no debe sobrepasa la anchura de la imagen que utilizamos arriba */
+    text-decoration: none;
+    margin-top: 30px;
+    border-bottom: 0.1em solid #001C36;
+
+}
+
+a.button-left span {
+    display: block;
+    line-height: 1px;
+    margin-left:  -45px;
+    margin-top: 20px;
+    font-family: hbold;
+    color:#000;
+    font-size: 18px
+}
+.icon-ag{ 
+    background: transparent  url('images/boton-agenda.png') no-repeat top left;
+
+}
+.icon-rv{ 
+    background: transparent  url('images/boton-relevantes.png') no-repeat top left;
+
+}
+.icon-ss{ 
+    background: transparent  url('images/boton-siise.png') no-repeat top left;
+
+}
+
+.icon-tt{ 
+    background: transparent  url('images/boton-territorial.png') no-repeat top left;
+
+}
+
+
+/* #### Mobile Phones Low Definition #### */
+
+/*Portrait 320 x 470 px*/
+@media  screen and (min-width: 320px){
+
+
+    header {
+        height:114px; 
+    }
+    header table{
+        margin: auto;
+        margin-top: 25px;
+    }
+    /*    Botones de ingreso a los sistemas*/
+    a.button-left {
+        width: 170px !important;
+        margin-left: 20px;
+    }
+    a.button-left span {
+        padding-top: 20px;
+    }
+    section{
+
+        top:114px; 
+        padding-bottom: 40px;
+    }
+}
+
+/*Landscape 470 x 320 px*/
+@media  screen and (min-width : 321px) {
+
+    header table{
+        margin: auto;
+        margin-top: 8px;
+    }
+    header {
+        height:70px; 
+    }
+    section{
+
+        top:70px; 
+        padding-bottom: 30px;
+
+    }
+    a.button-left {
+        width: 260px !important;
+        margin-left: 90px;
+        padding-top: 0px;
+
+    }
+    a.button-left span {
+        padding-top: 15px;
+    }
+
+}
+
+@media  screen and (max-width : 360px )and ( min-width: 321px) {
+    header table{
+        margin: auto;
+        margin-top: 30px;
+    }
+    header {
+        height:120px; 
+    }
+    section{
+
+        top:120px; 
+
+    }
+
+    a.button-left {
+
+        width: 170px !important;
+        margin-left: 40px;
+        padding-bottom: 10px;
+    }
+}
+@media (min-width: 768px) and (max-width: 979px){
+    header {
+        height:170px; 
+    }
+    header table{
+        margin: auto;
+        margin-top: 30px;
+    }
+    section{
+
+        top:170px; 
+
+    }
+
+    a.button-left {
+        width: 220px !important;
+        margin:auto;
+        margin-top: 100px;
+    }
+    a.button-left span {
+
+        padding-top: 20px;
+        font-size: 23px;
+
+    }
+}
+
+@media screen and (min-width: 979px)  {
+
+    header {
+        height:160px; 
+    }
+    header table{
+        margin: auto;
+        margin-top: 30px;
+    }
+
+    section{
+
+        top:160px; 
+
+    }
+    a.button-left {
+
+        width: 300px !important;
+        margin:auto;
+        margin-top: 50px;
+    }
+    a.button-left span {
+
+        padding-top: 20px;
+        padding-left: 20px;
+
+    }
+    footer{
+
+        height:50px; 
+    }
+}
