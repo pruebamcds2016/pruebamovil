@@ -441,6 +441,7 @@ body {
 /*----- Tabs -----*/
 .tabs {
     width:100%;
+    padding-top: 15px;
 
 }
 
@@ -650,6 +651,7 @@ li.active a, li.active a:hover {
 
 #miMapa{
     background: #f6f6f6;
+    border: 1px solid #d1d1d1;
 }
 
 .nombreIndicador{
@@ -728,11 +730,12 @@ li.active a, li.active a:hover {
 }
 
 .infoTerritorial table thead tr{
-    font-size: 13px;
+    font-size: 14px;
     color:#000;
     background-color:  #A6A5A5 !important;
     border-bottom:1px #494949 solid;
     text-align: center;
+    
 }
 
 
@@ -752,8 +755,8 @@ li.active a, li.active a:hover {
 
 /*Acordion*/
 .ui-accordion{
-    width: 96%;
-    margin-left: 2%; /* Buscamos el centro vertical (relativo) del navegador */
+    width: 100%;
+   
 }
 
 .ui-accordion .ui-accordion-header
@@ -806,5 +809,4 @@ width:5px;
 width:8px;
     height:5px;
 }
-
 

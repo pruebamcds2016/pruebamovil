@@ -48,6 +48,8 @@
 #inf_general td:nth-of-type(1){
     background: #A6A5A5;
     border-top: 5px #fff solid;
+    padding: 5px !important;
+ 
 
 }
 
@@ -89,8 +91,8 @@
     top: 6px;
     left: 6px;
     width: 45%; 
-    padding-right: 10px; 
-    white-space: normal;
+    padding-right: 100px; 
+    white-space: nowrap;
 }
 
 /*
