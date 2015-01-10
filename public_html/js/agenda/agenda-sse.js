@@ -7,9 +7,16 @@
 function ViewModelSubsector() {
 
     var principal = this;
+
     /*
      * Variables globales y de knockout.js
+     * Se recupera las variables responsive
+     * @tema
      */
+
+    if (location.search.substr(1)) {
+        tema = location.search.substr(1);
+    }
     var Variable = "11";
     var ipserver;
     principal.ejemploLista = ko.observableArray();
@@ -18,6 +25,7 @@ function ViewModelSubsector() {
      * Visibilidad de los elementos html
      */
     $(".loadingPag").css("display", "block");
+    $("#errorLabel").css("display", "none");
 
 
     /*
@@ -28,32 +36,37 @@ function ViewModelSubsector() {
         dataType: "text",
         success: function(data) {
             ipserver = data;
-            //Codigo 154 para indicadores de agenda social
-            var cadena = ipserver + "/ServicioWeb/webresources/ec.gob.desarrollosocial.indsubsector/154";
+
+            var cadena = ipserver + "/SWSISEcuador/webresources/ritema/temas/" + tema;
             $.getJSON(cadena, function(result) {
                 $(".loadingPag").css("display", "none");
 
                 $.each(result, function() {
                     principal.ejemploLista.push({
-                        url: ko.observable("agnInd.html?" + this.serial_sse),
+                        url: ko.observable("agnInd.html?" + this.riIdTema.idTema + "&" + this.idTema),
                         details: ko.observable(""),
-                        nombreSse: ko.observable(this.nombre_sse)
+                        nombreGrupo: ko.observable(this.strNombreTema)
                     });
+                }).error(function(jqXHR, textStatus, errorThrown) { /* assign handler */
+                    /* alert(jqXHR.responseText) */
+//                alert("Ocurrio un error" + jqXHR.responseText);
+                    $(".loadingPag").css("display", "none");
+                    $("#errorLabel").css("display", "block");
                 });
             });
         }
     });
 
-
-    /*
+/*
      * Variables para buscador
      */
     principal.firstName = ko.observable("");
     var firstNames = ko.observableArray();
     function indOj() {
         this.label = "";
-        this.serialInd = "";
-        this.serialGrp = "";
+        this.id_ib = "";
+        this.id_tema = "";
+
     }
 
 
@@ -64,35 +77,24 @@ function ViewModelSubsector() {
         dataType: "text",
         success: function(data) {
             ipserver = data;
-            var cadena = ipserver + "/ServicioWeb/webresources/ec.gob.desarrollosocial.indsisgrpind/movil/buscador/" + 11;
+//            http://201.219.3.75:8080/SWSISEcuador/webresources/indanalisis/buscar/4
+            var cadena = ipserver + "/SWSISEcuador/webresources/indanalisis/buscar/" + tema;
+
             $.getJSON(cadena, function(result) {
 
                 $("#firstName").css("display", "block");
-                if (Variable === "11") {
+              
+
                     $.each(result, function() {
                         var obj = new indOj();
-                        obj.label = this.nombreInd;
-                        obj.serialInd = this.serialInd;
-                        obj.serialGrp = this.codigoInd;
+                        obj.label = this.str_nombre_ia;
+                        obj.id_ib = this.id_ib;
+                        obj.id_tema = this.id_tema;
 
                         firstNames.push(obj);
 
                     });
-
-
-                } else {
-
-                    $.each(result, function() {
-                        var obj = new indOj();
-                        obj.label = this.serialInd.nombreInd;
-                        obj.serialInd = this.serialInd.serialInd;
-                        obj.serialGrp = this.serialSse.serialGrp.serialGrp;
-
-                        firstNames.push(obj);
-
-                    });
-                }
-
+                    
                 //First names es la lista donde se llenan las palabras que coinciden en la busqueda
 
 
@@ -107,15 +109,9 @@ function ViewModelSubsector() {
                         return true;
                     },
                     select: function(event, ui) {
-                        var serialGrp = ui.item.serialGrp;
-                        var serialInd = ui.item.serialInd;
-
-                        if (Variable === "11") {
-                            location.href = "agnGrafica.html?" + serialGrp;
-                        }
-                        else {
-                            location.href = "grafica.html?" + serialInd + "&" + serialGrp + "&" + 11;
-                        }
+                        var id_ib = ui.item.id_ib;
+                        var id_tema = ui.item.id_tema;
+                            location.href = "grafica.html?" + id_ib + "&" + id_tema ;  
                     }
                 });
             });

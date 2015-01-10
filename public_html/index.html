@@ -1,9 +1,11 @@
 <!DOCTYPE HTML>
 <html>
-  <head>
-         <title>Sistema de Información Social del Ecuador</title>
+    <head>
+        <title>Sistema de Información Social del Ecuador</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+        <script src="js/libs/knockout-2.2.1/knockout-min.js"></script>
         <script src="js/libs/jquery-1.9.1.min/jquery-1.9.1.min.js"></script>
         <link rel="stylesheet" href="css/styleIndex.css">
         <link rel="stylesheet" href="css/normalize.min.css">
@@ -17,16 +19,22 @@
                     </tr>
                 </tbody>
             </table>
-        
+
         </header>
         <section>
-            <a class="button-left icon-ss" href="sector.html?12" ><span>Indicadores sociales</span></a>
-            <a class="button-left icon-tt" href="cnsT1.html" ><span>Indicadores territoriales</span></a>
-            <a class="button-left icon-rv" href="relvSector.html?13" ><span>Indicadores relevantes</span></a>
-            <a class="button-left icon-ag" href="agnSse.html" ><span>Agenda social</span></a>
-             <a class="button-left icon-rv" href="relvSector.html?13" ><span>Cobertura programas sociales</span></a>
-            <a class="button-left icon-ag" href="agnSse.html" ><span>Registros administrativos</span></a>
+            <ul class="listviewIndex"  data-bind="foreach: listaIndex">
+                <li>
+                    <a class="button-left"  data-bind="attr: { href: url}">
 
+                        <img class="icon-ss" data-bind="attr: { src: icon }" /><span data-bind="attr: {title: details }, text: nombreModulo" />
+                    </a>
+                </li>
+            </ul>
+            <div class ="loadingPag" >
+                <div class="absoluta">Espere un momento</div>
+            </div>
+            
+            <div class="absoluta" id="errorLabel">En este momento no hay información disponible.</div>
         </section>
         <script src="js/index.js"></script>
         <footer>
@@ -34,8 +42,8 @@
                 <tbody>
                     <tr>
                         <td> <img alt=""  src="css/images/SIISE20x20.png"/></td>
-                <td> Sistema de Información Social del Ecuador</td>
-                </tr>
+                        <td> Sistema de Información Social del Ecuador</td>
+                    </tr>
                 </tbody>
             </table>
         </footer> 

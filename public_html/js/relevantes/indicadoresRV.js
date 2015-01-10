@@ -5,34 +5,52 @@
 
 function ViewModelIndicador() {
     var principal = this;
-    principal.ejemploLista = ko.observableArray();
-    principal.firstName = ko.observable("");
+     /*
+     * Variables globales y de knockout.js
+     * Se recupera las variables responsive
+     * @id_tema
+     * @id_subtema
+     */
+
     if (location.search.substr(1)) {
         Variable = location.search.substr(1);
+        var elem = Variable.split('&');
+        id_tema = elem[0];
+        id_subtema = elem[1];
     }
-
-     $(".loadingPag").css("display", "block");
-//Variable es el serial del grupo
+    /*
+     * Variables globales y de knockout.js
+     */
     var ipserver;
+    principal.ejemploLista = ko.observableArray();
+    principal.firstName = ko.observable("");
+    /*
+     * Visibilidad de los elementos html
+     */
+    $(".loadingPag").css("display", "block");
+
+    
+   /*
+     *Evento ajax para listar los sectores
+     */
     $.ajax({
         url: "cadena.txt",
         dataType: "text",
         success: function(data) {
             ipserver = data;
-            var cadena = ipserver + "/ServicioWeb/webresources/indseriesrelevantes/" + Variable;
+
+            var cadena = ipserver + "/SWSISEcuador/webresources/indanalisis/indicador/" + id_tema + "/" + id_subtema;
 
             $.getJSON(cadena, function(result) {
                 $(".loadingPag").css("display", "none");
-$(".mapaSitio").html(result[0].serialSse.serialGrp.nombreGrp);
-              
+                $(".mapaSitio").html(result[0].str_nombre_tema);
                 $.each(result, function() {
                     principal.ejemploLista.push({
-                        url: ko.observable("relvGrafica.html?" + this.serialInd.serialInd + "&" + Variable + "&" + 13),
+                        url: ko.observable("relvGrafica.html?"+this.id_ib + "&" + this.id_tema),
                         details: ko.observable(""),
-                        nombreIndicador: ko.observable(this.serialInd.nombreInd)
+                        nombreIndicador: ko.observable(this.str_nombre_ia)
                     });
                 });
-
             });
         }
     });

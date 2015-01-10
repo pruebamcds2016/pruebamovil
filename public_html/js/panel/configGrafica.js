@@ -33,7 +33,7 @@ window._skel_panels_config = {
             breakpoints: 'mobile',
             position: 'top-center',
             width: '100%',
-            height: 80,
+            height: 70,
             html: '<div data-action="copyHTML" data-args="title"></div>'
         },
         contactBar: {

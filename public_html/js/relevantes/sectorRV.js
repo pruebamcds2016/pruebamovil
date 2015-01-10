@@ -9,10 +9,11 @@ function ViewModelSector() {
     principal.firstName = ko.observable("");
     //Se recupera la variable
     if (location.search.substr(1)) {
-        Variable = location.search.substr(1);
+        tema = location.search.substr(1);
     }
 
     $(".loadingPag").css("display", "block");
+    $("#errorLabel").css("display", "none");
     var ipserver;
 
     $.ajax({
@@ -20,18 +21,21 @@ function ViewModelSector() {
         dataType: "text",
         success: function(data) {
             ipserver = data;
-            var cadena = ipserver + "/ServicioWeb/webresources/ec.gob.desarrollosocial.indgrupo/movil/" + Variable;
+              var cadena = ipserver + "/SWSISEcuador/webresources/ritema/temas/" + tema;
             $.getJSON(cadena, function(result) {
                 $(".loadingPag").css("display", "none");
-                // $("#mapaSitio").html("Indicadores Relevantes");
-
-                $.each(result, function() {
+                 $.each(result, function() {
                     principal.ejemploLista.push({
-                        url: ko.observable("relvInd.html?" + this.serialGrp),
+                        url: ko.observable("relvInd.html?" + this.riIdTema.idTema + "&" + this.idTema),
                         details: ko.observable(""),
-                        nombreGrupo: ko.observable(this.nombreGrp)
+                        nombreGrupo: ko.observable(this.strNombreTema)
                     });
                 });
+            }).error(function(jqXHR, textStatus, errorThrown) { /* assign handler */
+                /* alert(jqXHR.responseText) */
+//                alert("Ocurrio un error" + jqXHR.responseText);
+                $(".loadingPag").css("display", "none");
+                $("#errorLabel").css("display", "block");
             });
         }
     });

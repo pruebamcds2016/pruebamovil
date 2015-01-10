@@ -593,7 +593,7 @@ li.active a, li.active a:hover {
 
 .listviewSector li a:hover{
     font-weight: bold;
-    font-size:17px;
+    font-size:15px;
     font-family:hbold;
     padding-left: 15px
 }
@@ -711,7 +711,7 @@ li.active a, li.active a:hover {
 
 #labelUbicacion{
     font-family: hregular;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: bold;
 }
 
@@ -725,8 +725,6 @@ li.active a, li.active a:hover {
 
 .infoTerritorial table {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 6px;
 }
 
 .infoTerritorial table thead tr{
@@ -737,6 +735,8 @@ li.active a, li.active a:hover {
     text-align: center;
     
 }
+
+
 
 
 

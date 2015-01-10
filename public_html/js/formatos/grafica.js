@@ -9,17 +9,15 @@ function ViewModelGrafica() {
     /*
      * Variables globales y de knockout.js
      * Se recupera las variables responsive
-     * @nombreIndicador
-     * @serialGrupo
-     * @serialSistema
+     * @id_ib
+     * @id_tema
      */
 
     if (location.search.substr(1)) {
         Variable = location.search.substr(1);
         var elem = Variable.split('&');
-        nombreIndicador = elem[0];
-        serialGrupo = elem[1];
-        serialSistema = elem[2];
+        id_ib = elem[0];
+        id_tema = elem[1];
     }
     /*
      * Visibilidad de los elementos html
@@ -44,11 +42,12 @@ function ViewModelGrafica() {
         dataType: "text",
         success: function(data) {
             ipserver = data;
-            cadena = ipserver + "/ServicioWeb/webresources/grafico/RLV/" + serialGrupo + "/" + nombreIndicador;
+//            http://201.219.3.75:8080/SWSISEcuador/webresources/indanalisis/conPobRef/943/24
+            cadena = ipserver + "/SWSISEcuador/webresources/indanalisis/conPobRef/" + id_ib + "/" + id_tema;
 
             $.getJSON(cadena, function(result) {
                 $(".loadingPag").css("display", "none");
-                $(".mapaSitio").html(result.subsector_grafica + " > " + result.nombre_indicador);
+                $(".mapaSitio").html(result.tema_indicador);
 
                 for (var j = 0; j < 1; j++) {
                     principal.fichaList.push({
@@ -66,7 +65,7 @@ function ViewModelGrafica() {
                 $("#divFuente").css("display", "block");
 
                 $('#ficha').html(result.definicion_grafica);
-                $(".lblFuente").html(result.fuente_indicador);
+                $(".lblFuente").html(result.fuente_indicador + " - " + result.institucion_fuente);
                 $(".lblAnio").html(result.anio_indicador);
                 $(".nombreIndicador").html(result.nombre_indicador + " (" + result.anio_indicador + ")");
                 $("#labelTool").html('&nbsp;' + result.titulo_tablaDatos);
@@ -132,7 +131,7 @@ function ViewModelGrafica() {
                 $('#container').highcharts({
                     //Type spline: suaviza las curvas
                     chart: {
-                        type: 'spline'
+                        type: result.tipo_grafica
 
                     },
                     title: {
@@ -190,7 +189,7 @@ function ViewModelGrafica() {
                  * Se muestra mensaje de error cuando caduca el tiempo de acceso al servidor
                  */
                 $(".loadingPag").css("display", "none");
-                $("#errorGrafico").css("display", "block");
+                $(".errorGrafico").css("display", "block");
                 $(".errorGrafico").html("Al momento no se puede mostrar la informacion");
                 $(".tab-links").css("display", "none");
 

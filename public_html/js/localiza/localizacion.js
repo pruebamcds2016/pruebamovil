@@ -133,6 +133,7 @@ function init() {
                 var cadena = ipserver + "/ServicioWeb/webresources/indregion/";
 
                 $.getJSON(cadena, function(result) {
+                    
                     $.each(result, function() {
                         self.regiones.push({
                             serialReg: this.serialReg,
@@ -156,10 +157,11 @@ function init() {
                     var cadena = ipserver + "/ServicioWeb/webresources/indprovincia/" + serialRegion;
 
                     $.getJSON(cadena, function(result) {
+                        banderaParroquia = "cnsTRegion.html?" + serialRegion;
                         $('#provinciaCombo').attr("disabled", false);
                         $('#cantonCombo').attr("disabled", true);
                         $('#parroquiaCombo').attr("disabled", true);
-                        $('input[type="submit"]').attr('disabled', 'disabled');
+                        $('input[type="submit"]').removeAttr('disabled');
                         $.each(result, function() {
                             self.provincias.push({
                                 serialPrv: this.serialPrv,
@@ -188,8 +190,7 @@ function init() {
                         $('#provinciaCombo').attr("disabled", false);
                         $('#cantonCombo').attr("disabled", false);
                         $('#parroquiaCombo').attr("disabled", true);
-                        $('input[type="submit"]').attr('disabled', 'disabled');
-
+                         $('input[type="submit"]').removeAttr('disabled');
                         auxProvincia = result[0].serialPrv.codigotPrv;
 
                         $.each(result, function() {
@@ -222,7 +223,7 @@ function init() {
                         $('#provinciaCombo').attr("disabled", false);
                         $('#cantonCombo').attr("disabled", false);
                         $('#parroquiaCombo').attr("disabled", false);
-                        $('input[type="submit"]').removeAttr('disabled');
+                       $('input[type="submit"]').removeAttr('disabled');
                         $.each(result, function() {
                             self.parroquias.push({
                                 serialPar: this.serialPar,
@@ -248,11 +249,8 @@ function init() {
                         auxParroquia = result.codigotPar;
                         banderaParroquia = "cnsT3.html?" + auxProvincia + "&" + auxCanton + "&" + auxParroquia;
                     });
-
                 }
             });
-
-
         });
 
 

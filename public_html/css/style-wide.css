@@ -29,10 +29,16 @@
     background: #f6f6f6;
 }
 
-.listviewSector{margin-top: 20px}
+.listviewSector{
+    margin-top: 40px;
+    margin-left: 15px;
+    width: 97%;
+}
 
 .tabs{
-    margin-top: 10px
+    margin-top: 10px;
+     margin-left: 15px;
+      width: 97%;
 }
 
 /* Footer */
@@ -138,3 +144,4 @@
     color: #fff;
 
 }
+

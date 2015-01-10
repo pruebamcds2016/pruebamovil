@@ -97,7 +97,8 @@ body{
     height: 340px
 }
 #container1{
-    height: 340px
+    height: 340px;
+    width: 85% !important;
 }
 .mapaSitio{
         font-size: 11px;
@@ -108,7 +109,7 @@ body{
 
 #miMapa{
     width: 100%; 
-    height:220px; 
+    height:200px; 
 }
 
 @media  screen and (min-width : 321px) {
@@ -165,8 +166,6 @@ body{
     font-family: hbold;
 }
 
-
-
-#labelUbicacion{
-    margin-top: 13px;
+.infoUbicacion table {
+    line-height: 0px;
 }
