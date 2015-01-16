@@ -83,25 +83,27 @@ function ViewModelGrafica() {
                         dato3: ""
                     });
                     for (var j = 0; j < datoR.length; j++) {
-
-                        if (result.tooltip_indicador !== null)
+                        if (datoR[j] !== null)
                         {
+                            if (result.valoresX_indicador[j] === "2017") {
 
-                            principal.ejemploLista.push({
-                                dato1: "",
-                                dato2: result.valoresX_indicador[j],
-                                dato3: format(datoR[j], result.numero_decimales)
-                            });
+                                principal.ejemploLista.push({
+                                    dato1: "",
+                                    dato2: result.valoresX_indicador[j] + "- meta",
+                                    dato3: format(datoR[j], result.numero_decimales)
 
-                        }
-                        else {
+                                });
 
-                            principal.ejemploLista.push({
-                                dato1: "",
-                                dato2: result.valoresX_indicador[j],
-                                dato3: format(datoR[j], result.numero_decimales)
-                            });
 
+                            } else {
+
+                                principal.ejemploLista.push({
+                                    dato1: "",
+                                    dato2: result.valoresX_indicador[j],
+                                    dato3: format(datoR[j],result.numero_decimales)
+                                });
+                                
+                                 }
                         }
 
                     }
@@ -110,20 +112,17 @@ function ViewModelGrafica() {
                  * Se inicializa la paginación en la tabla de datos
                  */
 
-                pager = new Pager('results', result.valoresX_indicador.length + 1);
-                pager.init();
-                pager.showPageNav('pager', 'pageNavPosition');
-                pager.showPage(1);
+               
 
                 //Los valores que se necesitan son arrays
                 var valoresX = result.valoresX_indicador;
                 var intervalo;
-                if (valoresX.length>4){
+                if (valoresX.length > 4) {
                     intervalo = 4;
-                }else{
+                } else {
                     intervalo = 1;
                 }
-               
+
 
                 /*
                  * Gráfico en HighCharts

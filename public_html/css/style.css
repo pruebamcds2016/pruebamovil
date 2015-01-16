@@ -414,21 +414,22 @@ body {
     border-radius:0px 5px 0px 0px;
 }
 
-#results thead{
+#results thead tr{
     font-family: hbold;
     color:#000;
-    background-color: #444 !important;
-    border-bottom:1px #494949 solid;
+    background-color: #A6A5A5 !important;
+    border-bottom:1px #444 solid;
     font-size: 14px;
     text-align: center;
 }
 #results tr:nth-child(2n) {
-    background: #d1d1d1;
+     background: #e6e6e6;
 
 }
 
 #results tr:nth-child(2n+1){
-    background: #e6e6e6;
+   
+    background: #d1d1d1;
 }
 
 .estiloColumnas{

@@ -41,16 +41,19 @@ function ViewModelSector() {
     });
     
     
-     principal.firstName = ko.observable("");
+     /*
+     * Variables para buscador
+     */
+    principal.firstName = ko.observable("");
     var firstNames = ko.observableArray();
     function indOj() {
         this.label = "";
-        this.serialInd = "";
-        this.serialGrp = "";
+        this.id_ib = "";
+        this.id_tema = "";
 
     }
-    
-    
+
+
     $("#firstName").css("display", "none");
 
     $.ajax({
@@ -58,37 +61,25 @@ function ViewModelSector() {
         dataType: "text",
         success: function(data) {
             ipserver = data;
-            var cadena = ipserver + "/ServicioWeb/webresources/ec.gob.desarrollosocial.indsisgrpind/movil/buscador/" + Variable;
+//            http://201.219.3.75:8080/SWSISEcuador/webresources/indanalisis/buscar/4
+            var cadena = ipserver + "/SWSISEcuador/webresources/indanalisis/buscar/" + tema;
 
             $.getJSON(cadena, function(result) {
 
                 $("#firstName").css("display", "block");
-                if (Variable === "11") {
+              
+
                     $.each(result, function() {
                         var obj = new indOj();
-                        obj.label = this.nombreInd;
-                        obj.serialInd = this.serialInd;
-                        obj.serialGrp = this.codigoInd;
+                        obj.label = this.str_nombre_ia;
+                        obj.id_ib = this.id_ib;
+                        obj.id_tema = this.id_tema;
 
                         firstNames.push(obj);
 
                     });
-
-
-                } else {
-
-                    $.each(result, function() {
-                        var obj = new indOj();
-                        obj.label = this.serialInd.nombreInd;
-                        obj.serialInd = this.serialInd.serialInd;
-                        obj.serialGrp = this.serialSse.serialGrp.serialGrp;
-
-                        firstNames.push(obj);
-
-                    });
-                }
-
-//First names es la lista donde se llenan las palabras que coinciden en la busqueda
+                    
+                //First names es la lista donde se llenan las palabras que coinciden en la busqueda
 
 
                 $('#firstName').autocomplete({
@@ -96,34 +87,20 @@ function ViewModelSector() {
                     messages: {
                         noResults: '',
                         results: function() {
-                            //  $('#hideKeyboard').focus();
                         }
                     },
                     focus: function() {
-                        // prevent value inserted on focus
                         return true;
                     },
                     select: function(event, ui) {
-
-
-                        var serialGrp = ui.item.serialGrp;
-                        var serialInd = ui.item.serialInd;
-
-                        if (Variable === "11") {
-                            location.href = "agnGrafica.html?" + serialGrp;
-                        }
-                        else {
-                            location.href = "relvGrafica.html?" + serialInd + "&" + serialGrp + "&" + Variable;
-
-                        }
-
-
+                        var id_ib = ui.item.id_ib;
+                        var id_tema = ui.item.id_tema;
+                            location.href = "grafica.html?" + id_ib + "&" + id_tema ;  
                     }
                 });
             });
         }
     });
-
 }
 
 // Activamos knockout.js
