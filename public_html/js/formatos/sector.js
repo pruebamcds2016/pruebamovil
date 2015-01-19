@@ -41,7 +41,7 @@ function ViewModelSector() {
                 $(".loadingPag").css("display", "none");
                 $.each(result, function() {
                     principal.ejemploLista.push({
-                        url: ko.observable("indicador.html?" + this.riIdTema.idTema + "&" + this.idTema),
+                        url: ko.observable(this.strPantalla+"?" + this.riIdTema.idTema + "&" + this.idTema),
                         details: ko.observable(""),
                         nombreGrupo: ko.observable(this.strNombreTema)
                     });
@@ -79,7 +79,7 @@ function ViewModelSector() {
             var cadena = ipserver + "/SWSISEcuador/webresources/indanalisis/buscar/" + tema;
 
             $.getJSON(cadena, function(result) {
-
+                var url = result[0].str_pantalla;
                 $("#firstName").css("display", "block");
               
 
@@ -109,7 +109,7 @@ function ViewModelSector() {
                     select: function(event, ui) {
                         var id_ib = ui.item.id_ib;
                         var id_tema = ui.item.id_tema;
-                            location.href = "grafica.html?" + id_ib + "&" + id_tema ;  
+                            location.href = url+"?" + id_ib + "&" + id_tema ;  
                     }
                 });
             });

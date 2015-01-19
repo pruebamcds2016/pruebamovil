@@ -18,6 +18,7 @@ function ViewModelGrafica() {
         var elem = Variable.split('&');
         id_ib = elem[0];
         id_tema = elem[1];
+         id_subtema = elem[2];
     }
     /*
      * Visibilidad de los elementos html

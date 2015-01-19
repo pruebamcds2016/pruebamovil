@@ -14,7 +14,7 @@ function ViewModelIndicador() {
      * @id_subtema
      */
 
-    if (location.search.substr(1)) {
+     if (location.search.substr(1)) {
         Variable = location.search.substr(1);
         var elem = Variable.split('&');
         id_tema = elem[0];
@@ -47,7 +47,7 @@ function ViewModelIndicador() {
                 $(".mapaSitio").html(result[0].str_nombre_tema);
                 $.each(result, function() {
                     principal.ejemploLista.push({
-                        url: ko.observable("grafica.html?"+this.id_ib + "&" + this.id_tema),
+                        url: ko.observable(this.str_pantalla +"?"+this.id_ib + "&" + this.id_tema+"&"+this.ri_id_tema),
                         details: ko.observable(""),
                         nombreIndicador: ko.observable(this.str_nombre_ia)
                     });
@@ -80,7 +80,7 @@ function ViewModelIndicador() {
             var cadena = ipserver + "/SWSISEcuador/webresources/indanalisis/buscar/" + id_tema;
 
             $.getJSON(cadena, function(result) {
-
+  var url = result[0].str_pantalla;
                 $("#firstName").css("display", "block");
 
 
@@ -110,7 +110,7 @@ function ViewModelIndicador() {
                     select: function(event, ui) {
                         var id_ib = ui.item.id_ib;
                         var id_tema = ui.item.id_tema;
-                        location.href = "grafica.html?" + id_ib + "&" + id_tema;
+                      location.href = url+"?" + id_ib + "&" + id_tema ;
                     }
                 });
             });
