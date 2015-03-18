@@ -47,7 +47,7 @@ function ViewModelGrafica() {
             ipserver = data;
 //            http://201.219.3.75:8080/SWSISEcuador/webresources/indanalisis/conPobRef/943/24
             cadena = ipserver + "/SWSISEcuador/webresources/indanalisis/conPobRef/" + id_ib + "/" + id_subtema;
-           
+
             $.getJSON(cadena, function(result) {
                 $(".loadingPag").css("display", "none");
                 $(".mapaSitio").html(result.tema_indicador);
@@ -65,6 +65,7 @@ function ViewModelGrafica() {
                 $("#tblCabecera").css("display", "block");
                 $("#pageNavPosition").css("display", "block");
                 $("#results").css("display", "block");
+
                 $("#divFuente").css("display", "block");
 
                 $('#ficha').html(result.definicion_grafica);
@@ -72,46 +73,194 @@ function ViewModelGrafica() {
                 $(".lblAnio").html(result.anio_indicador);
                 $(".nombreIndicador").html(result.nombre_indicador + " (" + result.anio_indicador + ")");
                 $("#labelTool").html('&nbsp;' + result.titulo_tablaDatos);
-                /**
-                 * Función para paginación tabla datos
-                 */
-                var i;
+
+                //alert(result.titulo_tablaDatos);
+                /***********INICIO GRAFICAR LA TABLA DINAMICAMENTE*/
+                //$("#tablaDatos").append(titulo + tabla + grafica);
+                $("#tablaDatos").html("");
+                //alert(result.valoresY_indicador.length);
+                var cabecera =
+                        "<table id= results><thead><tr><th> Año </th> ";
 
                 for (var i = 0; i < result.valoresY_indicador.length; i++) {
-                    var datoR = result.valoresY_indicador[i].data;
-                    // var listaP = datoR.data.split(',');
-                    principal.ejemploLista.push({
-                        dato1: result.valoresY_indicador[i].name,
-                        dato2: "",
-                        dato3: ""
-                    });
-                    for (var j = 0; j < datoR.length; j++) {
-                        if (datoR[j] !== null)
-                        {
-                            if (result.valoresX_indicador[j] === "2017") {
+                    cabecera = cabecera + "<th>" + result.valoresY_indicador[i].name + " </th>";
+                }
 
-                                principal.ejemploLista.push({
-                                    dato1: "",
-                                    dato2: result.valoresX_indicador[j] + "- meta",
-                                    dato3: format(datoR[j], result.numero_decimales)
-
-                                });
+                cabecera = cabecera + "</tr></thead><tbody>";
+                var cuerpo = "";
+                var tabla = "";
+                //alert(result.valoresX_indicador.length);
+                for (var i = 0; i < result.valoresX_indicador.length; i++) {
+                    if (result.valoresX_indicador[i] === "2017") {
+                        cuerpo = "<tr><th>" + result.valoresX_indicador[i] + "- meta </th>";
+                    }
+                    else {
+                        cuerpo = "<tr><th>" + result.valoresX_indicador[i] + "</th>";
+                    }
 
 
-                            } else {
+                    for (var j = 0; j < result.valoresY_indicador.length; j++) {
+                        if (result.valoresY_indicador[j].data[i] !== null) {
 
-                                principal.ejemploLista.push({
-                                    dato1: "",
-                                    dato2: result.valoresX_indicador[j],
-                                    dato3: format(datoR[j], result.numero_decimales)
-                                });
-
-                            }
+                            cuerpo = cuerpo + "<th>" + result.valoresY_indicador[j].data[i] + " </th>";
+                        } else {
+                            cuerpo = cuerpo + "<th> </th>";
                         }
 
                     }
+
+                    cuerpo = cuerpo + "</tr>";
+                    tabla = tabla + cuerpo;
+
                 }
-            
+
+                var pie = "</tbody></table>";
+                $("#tablaDatos").append(cabecera + tabla + pie);
+
+                /***obtener la posicion del año base ***/
+                //alert(result.valoresX_indicador);
+                //alert(result.anio_base);
+                var index = result.valoresX_indicador.indexOf('' + result.anio_base + '');
+                //alert(index);
+
+
+                /**inicio obtener el mayo de datos**/
+                var maximo = [];
+                var max;
+
+                for (var i = 0; i < result.valoresY_indicador.length; i++) {
+                    max = Math.max.apply(null, result.valoresY_indicador[i].data);
+                    maximo.push(max);
+                }
+                ;
+
+                max = Math.max.apply(null, maximo);
+                /**fin obtener el mayo de datos**/
+
+
+                /***********FIN GRAFICAR LA TABLA DINAMICAMENTE*/
+
+
+
+                /***********INICIO  GRAFICAR LA TABLA ESTATICO*/
+
+                //encabezado2:'lore';
+                //para formar el encabezado de la tabla
+                /*for (var h = 0; h < result.valoresY_indicador.length; h++) {
+                 $(".encabezado" + h).html(result.valoresY_indicador[h].name);
+                 
+                 }*/
+
+                /**
+                 * Función para paginación tabla datos
+                 */
+
+
+                //lleno los años
+                /*for (var j = 0; j < result.valoresX_indicador.length; j++) {
+                 if (result.valoresX_indicador[j] === "2017") {
+                 
+                 principal.ejemploLista.push({
+                 dato1: result.valoresX_indicador[j] + "- meta",
+                 dato2: "",
+                 dato3: "",
+                 dato4: ""
+                 //dato3: format(datoR[j], result.numero_decimales)
+                 });
+                 
+                 } else {
+                 
+                 principal.ejemploLista.push({
+                 dato1: result.valoresX_indicador[j],
+                 dato2: "",
+                 dato3: "",
+                 dato4: ""
+                 });
+                 
+                 }
+                 }*/
+                //alert(result.valoresY_indicador[0].data[1]);
+
+
+                /*
+                 var totalDesglose = result.valoresY_indicador.length;
+                 //alert(totalDesglose);
+                 for (var j = 0; j < result.valoresX_indicador.length; j++) {
+                 
+                 if (totalDesglose === 3) {
+                 if (result.valoresX_indicador[j] === "2017") {
+                 
+                 principal.ejemploLista.push({
+                 dato1: result.valoresX_indicador[j] + "- meta",
+                 dato2: format(result.valoresY_indicador[0].data[j], result.numero_decimales),
+                 dato3: format(result.valoresY_indicador[1].data[j], result.numero_decimales),
+                 dato4: format(result.valoresY_indicador[2].data[j], result.numero_decimales)
+                 });
+                 
+                 
+                 } else {
+                 
+                 principal.ejemploLista.push({
+                 dato1: result.valoresX_indicador[j],
+                 dato2: format(result.valoresY_indicador[0].data[j], result.numero_decimales),
+                 dato3: format(result.valoresY_indicador[1].data[j], result.numero_decimales),
+                 dato4: format(result.valoresY_indicador[2].data[j], result.numero_decimales)
+                 });
+                 
+                 }
+                 } else {
+                 if (totalDesglose === 2) {
+                 if (result.valoresX_indicador[j] === "2017") {
+                 
+                 principal.ejemploLista.push({
+                 dato1: result.valoresX_indicador[j] + "- meta",
+                 dato2: format(result.valoresY_indicador[0].data[j], result.numero_decimales),
+                 dato3: format(result.valoresY_indicador[1].data[j], result.numero_decimales),
+                 dato4: ""
+                 });
+                 
+                 
+                 } else {
+                 
+                 principal.ejemploLista.push({
+                 dato1: result.valoresX_indicador[j],
+                 dato2: format(result.valoresY_indicador[0].data[j], result.numero_decimales),
+                 dato3: format(result.valoresY_indicador[1].data[j], result.numero_decimales),
+                 dato4: ""
+                 });
+                 
+                 }
+                 } else {
+                 if (totalDesglose === 1) {
+                 if (result.valoresX_indicador[j] === "2017") {
+                 
+                 principal.ejemploLista.push({
+                 dato1: result.valoresX_indicador[j] + "- meta",
+                 dato2: format(result.valoresY_indicador[0].data[j], result.numero_decimales),
+                 dato3: "",
+                 dato4: ""
+                 });
+                 
+                 
+                 } else {
+                 
+                 principal.ejemploLista.push({
+                 dato1: result.valoresX_indicador[j],
+                 dato2: format(result.valoresY_indicador[0].data[j], result.numero_decimales),
+                 dato3: "",
+                 dato4: ""
+                 });
+                 
+                 }
+                 }
+                 }
+                 
+                 }
+                 
+                 }*/
+
+                /***********FIN  GRAFICAR LA TABLA ESTATICO*/
+
                 //Los valores que se necesitan son arrays
                 var valoresX = result.valoresX_indicador;
                 var intervalo;
@@ -120,6 +269,8 @@ function ViewModelGrafica() {
                 } else {
                     intervalo = 1;
                 }
+                //alert(intervalo);
+                //alert(result.etiquetaY_indicador);
 
                 /*
                  * Gráfico en HighCharts
@@ -142,10 +293,26 @@ function ViewModelGrafica() {
                         minTickInterval: intervalo,
                         title: {
                             text: result.etiquetaX_indicador
-                        }
+                        }, plotLines: [{
+                                color: 'green', // Color value
+                                dashStyle: 'solid', // Style of the plot line. Default to solid
+                                value: index, // Value of where the line will appear
+                                width: 2, // Width of the line    
+                                label: {
+                                    text: 'Línea base',
+                                    rotation: 360,
+                                    fontStyle: 'italic',
+                                    y: 16,
+                                    x: -34,
+                                    style: {
+                                        color: 'green'
+                                    }
+                                }
+                            }]
                     },
                     yAxis: {
                         floor: 0,
+                        //max: max + 7,
                         title: {
                             text: result.etiquetaY_indicador
                         },
@@ -154,6 +321,7 @@ function ViewModelGrafica() {
                                 width: 1,
                                 color: '#808080'
                             }]
+
                     },
                     tooltip: {
                         valueSuffix: ' ' + result.tooltip_indicador
@@ -164,23 +332,117 @@ function ViewModelGrafica() {
                     ,
                     series: []
                 });
+
+                //alert(result.tipo_grafica);
+                /*if (result.tipo_grafica === 'column') {
+                 alert(result.tipo_grafica);
+                 } else {
+                 if (result.tipo_grafica === 'spline')
+                 alert(result.tipo_grafica);
+                 }*/
+                /*********************INICIO AGREGARLE EL AÑO BASE A LOS INDICADORES DED SERIE***********************/
+
+                //alert(result.valoresY_indicador.length);
+                //alert(result.valoresY_indicador[0].data[0])
+                var seriesY = [];
+                //alert(result.valoresX_indicador.length);
+                //alert(result.valoresY_indicador[0].data.length);
+                //alert(result.valoresX_indicador[14]);
+                for (var i = 0; i < result.valoresY_indicador.length; i++) {
+                    var valoresY = [];
+                    for (var j = 0; j < result.valoresY_indicador[i].data.length; j++) {
+
+
+                        if (result.valoresX_indicador[j] === "2010") {
+
+                            if (result.tipo_grafica === 'column') {
+                                valoresY.push({y: result.valoresY_indicador[i].data[j]});
+                                //valoresY.push({y: result.valoresY_indicador[i].data[j], marker: {symbol: 'url(http://www.highcharts.com/demo/gfx/sun.png)'}});
+
+                            }
+                            else {
+                                if (result.tipo_grafica === 'spline') {
+                                    valoresY.push({y: result.valoresY_indicador[i].data[j]});
+
+
+                                }
+                            }
+
+
+                            //valoresY.push({y: result.valoresY_indicador[i].data[j]});
+
+                            /*{
+                             y: 26.5,
+                             marker: {
+                             symbol: 'url(http://www.highcharts.com/demo/gfx/sun.png)'
+                             }
+                             }*/
+                        } else {
+
+                            valoresY.push(result.valoresY_indicador[i].data[j]);
+                        }
+                        //alert(i);
+
+                    }
+                    seriesY.push(valoresY);
+                }
+                //valoresY.push({marker: {symbol: 'url(http://www.highcharts.com/demo/gfx/sun.png)'}});
+                //seriesY.push(valoresY);
+
+                //alert(seriesY.length);
+                //alert(seriesY[0]);
+
+                /*********FIN**********/
+
+
+
+
+
                 // Creación dinámica de series
                 var chart = $('#container').highcharts();
+                //alert(result.valoresY_indicador.length)
                 for (var i = 0; i < result.valoresY_indicador.length; i++) {
+
                     var nombre = result.valoresY_indicador[i].name;
                     chart.addSeries({
                         name: nombre,
-                        data: result.valoresY_indicador[i].data
+                        data: seriesY[i]
+                                //data: result.valoresY_indicador[i].data
 
                     });
                 }
+                /*******************/
+                // si tiene año base se pone el symbolo o el color dependiendo si es serie o columna
+                /* if (result.tipo_grafica === 'column') {
+                 
+                 chart.addSeries({
+                 name: 'Línea base: ' + "2010",
+                 color: 'white'
+                 //data: seriesY[i]
+                 //data: result.valoresY_indicador[i].data
+                 });
+                 }
+                 else {
+                 if (result.tipo_grafica === 'spline') {
+                 
+                 chart.addSeries({
+                 name: 'Línea base',
+                 marker: {symbol: 'url(sun.png)'}
+                 
+                 //data: seriesY[i]
+                 //data: result.valoresY_indicador[i].data
+                 });
+                 }
+                 }*/
 
 
+                /*******************/
                 chart.tooltip.refresh(chart.series[0].data[valoresX.length - 1]);
 
 
 
-            }).error(function() {
+            }
+            ).error(function() {
                 /*
                  * Se muestra mensaje de error cuando caduca el tiempo de acceso al servidor
                  */
@@ -220,7 +482,7 @@ function ViewModelGrafica() {
         return numero;
     }
     ;
-    
+
 }
 // Activamos knockout.js
 ko.applyBindings(new ViewModelGrafica());

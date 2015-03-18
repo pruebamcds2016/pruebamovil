@@ -36,7 +36,8 @@ function init() {
 
     $('input[type="submit"]').attr('disabled', 'disabled');
 
-
+    //var bandera = 0;
+    //alert(bandera);
     /**********************************************/
     /*Ubicacion y mapa*/
     /**********************************************/
@@ -54,14 +55,27 @@ function init() {
     mapa.addLayer(layerBase);
     /*Se oculta el mapa hasta que se cargue toda la información*/
     $("#miMapa").css("display", "none");
-
-//Recupera la posicion del dispositivo
+    
     navigator.geolocation.getCurrentPosition(success, error);
 
+    /*if (!navigator.geolocation) {
+     alert("hola");
+     }
+     else{
+     alert("holarrrrrrrrrrrrrrr");
+     }*/
+    
     /*Si no se recuperan las coordenadas, se mostrará por defecto la localizacion de Quito*/
+    /*Cuando el browser no soporta la geolocalizacion*/
     if (!navigator.geolocation) {
+        //bandera = 3;
+        //alert(bandera);
+        /*ojo la lines document.getElementById("#miMapa").innerHTML = "" hay q verificar si va o no ahi */
+        //document.getElementById("#miMapa").innerHTML = "";
+        //alert('geolocation' + bandera);
         /*Se muestran lso div que contienen el nombre de la DPA*/
         $(".infoUbicacion").css("display", "block");
+        $("#labelUbicacion").html("Usted se encuentra en:");
         $("#labelUbicacion").css("display", "block");
 
         /*Se setean por defecto las coordenadas de Quito*/
@@ -81,11 +95,20 @@ function init() {
         var icon = new OpenLayers.Icon('puntero.png', size, offset);
         markers.addMarker(new OpenLayers.Marker(lnglat, icon));
         return;
-    }
+    } /*else {
+     //se cambio esto por el else estaba fuera del if
+     //Recupera la posicion del dispositivo y se redirije a success y si no se redirije a error
+     alert('busca la loca para rediijir a success o error');
+     navigator.geolocation.getCurrentPosition(success, error);
+     }*/
+
 
     /*Se dibuja el mapa de acuerdo a las coordenadas proporcionadas en el dispositivo*/
-
     function success(position) {
+        //bandera = 1;
+        //alert(bandera);
+        //alert('success' + bandera); 
+        //document.getElementById("#miMapa").innerHTML = "";
 
         /*Se muestran la leyendas de ubicacion*/
         $(".infoUbicacion").css("display", "block");
@@ -111,7 +134,13 @@ function init() {
     ;
     /*Si hay un error de conexion o falla de datos de mostrara por defecto la ciudad de Quito*/
     function error() {
+        //bandera = 2;
+        //alert('error' + bandera);
+        //document.getElementById("#miMapa").innerHTML = "";
+        
+        /*Se muestran la leyendas de ubicacion*/
         $(".infoUbicacion").css("display", "block");
+        $("#labelUbicacion").html("Usted se encuentra en:");
         $("#labelUbicacion").css("display", "block");
         lat = -0.20300087;
         lng = -78.4987696;
@@ -129,6 +158,38 @@ function init() {
         ViewCombos();
     }
     ;
+
+    /*sE AGREGO PARA SOLUCIONAR LO DEL MOZILLA + BANDERAS Y document.getElementById("#miMapa").innerHTML = "" */
+    //alert(bandera);
+    /*if (bandera === 0) {
+        //alert(bandera);
+        //alert('bandera 1, 2, 3');
+        //document.getElementById("#miMapa").innerHTML = "";
+        $(".infoUbicacion").css("display", "block");
+        $("#labelUbicacion").html("Usted se encuentra en banderaaaaaaaaaaaaa:");
+        
+        $("#labelUbicacion").css("display", "block");
+        //return;
+        //-1.24908, -78.61675
+        //lat = -0.20300087;
+        //lng = -78.4987696;
+        lat = -1.24908;
+        lng = -78.61675;
+        var lnglat = new OpenLayers.LonLat(lng, lat).transform(
+                new OpenLayers.Projection("EPSG:4326"),
+                mapa.getProjectionObject());
+        mapa.setCenter(lnglat, 9);
+        var markers = new OpenLayers.Layer.Markers("Marcas");
+        mapa.addLayer(markers);
+
+        var size = new OpenLayers.Size(21, 25);
+        var offset = new OpenLayers.Pixel(-(size.w / 2), -size.h);
+        var icon = new OpenLayers.Icon('puntero.png', size, offset);
+        markers.addMarker(new OpenLayers.Marker(lnglat, icon));
+        ViewCombos();
+
+    }
+    ;*/
 
     /******************************************************************/
     /*Funcion Knockout.js para mostrar la informacion******************/
@@ -614,7 +675,7 @@ function init() {
                                         enabled: false
                                     },
                                     xAxis: {
-                                        categories: resultados.valoresX_indicador,
+                                        categories: resultados.valoresX_indicador
                                     },
                                     yAxis: {
                                         min: 0,
@@ -671,7 +732,7 @@ function init() {
                             //  var datos = ipserver + "/SWSISEcuador/webresources/infraestructura/canton/" + codigo_prv + "/" + codigo_ciu;
                             //var datos = "http://localhost:8080/SWSISEcuador/webresources/territorial/consultaGraficaVivienda/" + codigo_prv + "/" + codigo_ciu;
                             var datos = ipserver + "/SWSISEcuador/webresources/territorial/consultaGraficaVivienda/" + codigo_prv + "/" + codigo_ciu;
-                            
+
                             $.getJSON(datos, function(resultados) {
                                 // $('#graficaViviendas').html("");
 

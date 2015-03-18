@@ -723,13 +723,13 @@ li.active a, li.active a:hover {
     font-family: hlight;
     text-align: left;
     font-weight: bold;
-    margin-left: 30px;
+    /*margin-left: 30px;*/
     /*sin margin left*/
     
 }
 
 .infoTerritorial table {
-    width: 97%;
+    width: 100%;
     margin-left: 20px;
     /*width: 100%;*/
 }
