@@ -92,19 +92,19 @@ function ViewModelGrafica() {
                 //alert(result.valoresX_indicador.length);
                 for (var i = 0; i < result.valoresX_indicador.length; i++) {
                     if (result.valoresX_indicador[i] === "2017") {
-                        cuerpo = "<tr><th>" + result.valoresX_indicador[i] + "- meta </th>";
+                        cuerpo = "<tr><td><center>" + result.valoresX_indicador[i] + "- meta </center></td>";
                     }
                     else {
-                        cuerpo = "<tr><th>" + result.valoresX_indicador[i] + "</th>";
+                        cuerpo = "<tr><td><center>" + result.valoresX_indicador[i] + "</center></td>";
                     }
 
 
                     for (var j = 0; j < result.valoresY_indicador.length; j++) {
                         if (result.valoresY_indicador[j].data[i] !== null) {
 
-                            cuerpo = cuerpo + "<th>" + result.valoresY_indicador[j].data[i] + " </th>";
+                            cuerpo = cuerpo + "<td><center>" + result.valoresY_indicador[j].data[i] + " </center></td>";
                         } else {
-                            cuerpo = cuerpo + "<th> </th>";
+                            cuerpo = cuerpo + "<td> </td>";
                         }
 
                     }
@@ -303,7 +303,7 @@ function ViewModelGrafica() {
                                     rotation: 360,
                                     fontStyle: 'italic',
                                     y: 16,
-                                    x: -34,
+                                    x: -32,
                                     style: {
                                         color: 'green'
                                     }
