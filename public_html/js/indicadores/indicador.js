@@ -32,6 +32,8 @@ function ViewModelIndicador() {
      * Visibilidad de los elementos html
      */
     $(".loadingPag").css("display", "block");
+    $("#errorLabel").css("display", "none");
+
 
     /*
      *Evento ajax para listar los sectores
@@ -41,7 +43,7 @@ function ViewModelIndicador() {
         dataType: "text",
         success: function(data) {
             ipserver = data;
-   //http://201.219.3.75:8080/SWSISEcuador/webresources/indanalisis/indicador/1/24
+            //http://201.219.3.75:8080/SWSISEcuador/webresources/indanalisis/indicador/1/24
             var cadena = ipserver + "/SWSISEcuador/webresources/indanalisis/indicador/" + id_tema + "/" + id_subtema;
 
             $.getJSON(cadena, function(result) {
@@ -49,11 +51,16 @@ function ViewModelIndicador() {
                 $(".mapaSitio").html(result[0].str_nombre_tema);
                 $.each(result, function() {
                     principal.ejemploLista.push({
-                        url: ko.observable(this.str_pantalla +"?"+ this.ri_id_tema + "&" +this.id_ib+"&"+this.id_tema),
+                        url: ko.observable(this.str_pantalla + "?" + this.ri_id_tema + "&" + this.id_ib + "&" + this.id_tema),
                         details: ko.observable(""),
                         nombreIndicador: ko.observable(this.str_nombre_ia)
                     });
                 });
+            }).error(function() { /* assign handler */
+                /* alert(jqXHR.responseText) */
+//                alert("Ocurrio un error" + jqXHR.responseText);
+                $(".loadingPag").css("display", "none");
+                $("#errorLabel").css("display", "block");
             });
         }
     });
@@ -82,7 +89,7 @@ function ViewModelIndicador() {
             var cadena = ipserver + "/SWSISEcuador/webresources/indanalisis/buscar/" + id_tema;
 
             $.getJSON(cadena, function(result) {
-  var url = result[0].str_pantalla;
+                var url = result[0].str_pantalla;
                 $("#firstName").css("display", "block");
 
 
@@ -112,9 +119,14 @@ function ViewModelIndicador() {
                     select: function(event, ui) {
                         var id_ib = ui.item.id_ib;
                         var id_tema = ui.item.id_tema;
-                      location.href = url+"?" + id_ib + "&" + id_tema ;
+                        location.href = url + "?" + id_ib + "&" + id_tema;
                     }
                 });
+            }).error(function() { /* assign handler */
+                /* alert(jqXHR.responseText) */
+//                alert("Ocurrio un error" + jqXHR.responseText);
+                $(".loadingPag").css("display", "none");
+                $("#errorLabel").css("display", "block");
             });
         }
     });

@@ -294,18 +294,19 @@ function ViewModelGrafica() {
                         title: {
                             text: result.etiquetaX_indicador
                         }, plotLines: [{
-                                color: 'green', // Color value
-                                dashStyle: 'solid', // Style of the plot line. Default to solid
+                                color: 'gray', // Color value
+                                dashStyle: 'shortdash', // Style of the plot line. Default to solid
                                 value: index, // Value of where the line will appear
-                                width: 2, // Width of the line    
+                                width: 1.5, // Width of the line    
                                 label: {
-                                    text: 'Línea base',
+                                    text: "Línea base(" + result.anio_base + ")",
                                     rotation: 360,
                                     fontStyle: 'italic',
                                     y: 16,
-                                    x: -32,
+                                    x: 2,
                                     style: {
-                                        color: 'green'
+                                        color: 'gray ',
+                                        fontSize: '11px'
                                     }
                                 }
                             }]
@@ -448,7 +449,7 @@ function ViewModelGrafica() {
                  */
                 $(".loadingPag").css("display", "none");
                 $(".errorGrafico").css("display", "block");
-                $(".errorGrafico").html("Al momento no se puede mostrar la informacion");
+                $(".errorGrafico").html("En este momento no hay información disponible.");
                 $(".tab-links").css("display", "none");
 
             });
