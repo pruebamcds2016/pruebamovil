@@ -16,9 +16,9 @@ $(document).ready(function() {
         id_ib = elem[1];
         id_subtema = elem[2];
     }
-
     var url;
-    switch (id_subtema) {
+    url = "grafica.html";
+    /*switch (id_tema) {
         case "1":
             url = "grafica.html";
             break;
@@ -26,14 +26,14 @@ $(document).ready(function() {
             url = "relvGrafica.html";
             break;
         case "4":
-            url = "agnGrafica.html";
+            url = "grafica.html";
             break;
         default:
             url = "";
-    }
+    }*/
 
     var pageTitle = document.title + " - SISEcuador "; //HTML page title
-    var pageUrl = 'http://www.siise.gob.ec/share/' + url + '?' + id_ib + '&' + id_tema; //Location of the page
+    var pageUrl = 'http://192.168.50.76:8383/share/' + url + '?' + id_tema + '&' + id_ib + '&' + id_subtema; //Location of the page
     var openLink = '';
 
     //$('#btnWhatsApp').attr("href","whatsapp://send?text=Compartiendo informacion desde "+encodeURIComponent(pageUrl));

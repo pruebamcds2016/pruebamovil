@@ -3,35 +3,40 @@
  * Vista del index
  * autor: @Adriana.Romero
  */
-$(document).ready(function() {
 
-    if (location.search.substr(1)) {
+
+/**
+ * 
+ */
+$(document).ready(function() {
+   if (location.search.substr(1)) {
         Variable = location.search.substr(1);
         var elem = Variable.split('&');
-        id_provincia = elem[0];
-        id_canton = elem[1];
-        id_parroquia = elem[2];
+        id_tema = elem[0];
+        id_ib = elem[1];
+        id_subtema = elem[2];
     }
 
-    if (id_provincia === '3') {
-        url = "cnsT1.html";
-    } else {
-        if (id_parroquia === '0') {
-
-            url = "cnsT2.html";
-        } else {
-
-            url = "cnsT3.html";
-        }
+    var url;
+    switch (id_subtema) {
+        case "1":
+            url = "grafica.html";
+            break;
+        case "2":
+            url = "relvGrafica.html";
+            break;
+        case "4":
+            url = "agnGrafica.html";
+            break;
+        default:
+            url = "";
     }
 
-
-    var pageTitle = document.title; //HTML page title
-    var pageUrl = 'http://192.168.50.76:8383/share/' + url + '?' + id_provincia + '&' + id_canton + '&' + id_parroquia;
-    ; //Location of the page
+    var pageTitle = document.title + " - SISEcuador "; //HTML page title
+    var pageUrl = 'http://www.siise.gob.ec/share/' + url + '?' + id_ib + '&' + id_tema; //Location of the page
     var openLink = '';
 
-
+    //$('#btnWhatsApp').attr("href","whatsapp://send?text=Compartiendo informacion desde "+encodeURIComponent(pageUrl));
     //user clicks on a share button
     $('.button-wrap').click(function(event) {
         var shareName = $(this).attr('class').split(' ')[0]; //get the first class name of clicked element
@@ -72,4 +77,6 @@ $(document).ready(function() {
 
         return false;
     });
+
+
 });
