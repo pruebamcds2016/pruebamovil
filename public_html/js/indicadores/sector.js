@@ -45,7 +45,8 @@ function ViewModelSector() {
                     principal.ejemploLista.push({
                         url: ko.observable(this.strPantalla + "?" + this.riIdTema.idTema + "&0" + "&" + this.idTema),
                         details: ko.observable(""),
-                        nombreGrupo: ko.observable(this.strNombreTema)
+                        nombreGrupo: ko.observable(this.strNombreTema),
+                        icon: ko.observable(this.strUrlIcono)
                     });
                 });
             }).error(function(jqXHR, textStatus, errorThrown) { /* assign handler */
@@ -73,7 +74,6 @@ function ViewModelSector() {
 
 
     $("#firstName").css("display", "none");
-
     $.ajax({
         url: "cadena.txt",
         dataType: "text",
@@ -83,7 +83,7 @@ function ViewModelSector() {
             var cadena = ipserver + "/SWSISEcuador/webresources/indanalisis/buscar/" + tema;
 
             $.getJSON(cadena, function(result) {
-                var url = result[0].str_pantalla;
+                url = result[0].str_pantalla;
                 $("#firstName").css("display", "block");
 
 
@@ -110,13 +110,15 @@ function ViewModelSector() {
                     focus: function() {
                         return true;
                     },
+                    // se forma la url para ir hacia el infdicador : SISEcuadorv2 es el nombre del proyecto
                     select: function(event, ui) {
                         var id_ib = ui.item.id_ib;
                         var id_tema = ui.item.id_tema;
-                        location.href = url + "?" + id_ib + "&" + id_tema;
+                        //location.href = url + "?" + id_ib + "&" + id_tema;
+                        location.href =  url + "?" + tema + "&" + id_ib + "&" + id_tema;
                     }
                 });
-            });
+           });
         }
     });
 

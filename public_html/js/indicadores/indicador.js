@@ -116,10 +116,12 @@ function ViewModelIndicador() {
                     focus: function() {
                         return true;
                     },
+                    // se forma la url para ir hacia el infdicador : SISEcuadorv2 es el nombre del proyecto
                     select: function(event, ui) {
                         var id_ib = ui.item.id_ib;
-                        var id_tema = ui.item.id_tema;
-                        location.href = url + "?" + id_ib + "&" + id_tema;
+                        var tema = ui.item.id_tema;
+                        //location.href = url + "?" + id_ib + "&" + id_tema1;
+                        location.href =  url + "?" + id_tema + "&" + id_ib + "&" + tema;
                     }
                 });
             }).error(function() { /* assign handler */

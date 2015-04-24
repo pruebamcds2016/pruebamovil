@@ -10,7 +10,7 @@
         <script src="js/panel/configPanel.js"></script>
         <script src="js/panel/skel.min.js"></script>
         <script src="js/panel/skel-panels.min.js"></script>
-       <script src="js/cabeceras.js"></script>
+        <script src="js/cabeceras.js"></script>
         <link rel="stylesheet" href="css/normalize.min.css">
 
     </head>
@@ -29,15 +29,18 @@
                 <!-- Barra izquierda -->
                 <section class="3u" id="left-sidebar">
                     <nav id="nav">
-                       
-                        
+
+
                     </nav>
                 </section>
                 <!-- Contenido -->
                 <section class="9u" id="content">
                     <ul style="margin-top:5px;" class="listviewSector" data-bind="foreach: ejemploLista">
                         <li>
-                            <a data-bind="attr: { href: url, title: details }, text: nombreGrupo"></a>
+                            <a data-bind="attr: { href: url}">
+                                <img class="icon-ss" data-bind="attr: { src: icon }" />&nbsp;&nbsp;&nbsp;
+                                <span data-bind="attr: {title: details }, text: nombreGrupo" />
+                            </a>
                         </li>
                     </ul>
                     <br>
@@ -56,7 +59,7 @@
                 </section>
                 <script src="js/indicadores/sector.js"></script>
                 <script src="js/navegadorPI.js"></script>
-                 
+
 
             </div>
 
