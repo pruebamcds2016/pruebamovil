@@ -60,9 +60,13 @@ function init() {
     /*Funcion Knockout.js para mostrar la informacion******************/
     /******************************************************************/
     function ViewCombos() {
-        /**
-         * 
-         */
+
+        /*Variables que se utilizan en las consultas*/
+        var ipserver;
+        var nombre_prv;
+        var nombre_ciu;
+        var codigo_prv;
+        var codigo_ciu;
 
         if (location.search.substr(1)) {
             Variable = location.search.substr(1);
@@ -70,6 +74,7 @@ function init() {
             codigo_prv = elem[0];
             codigo_ciu = elem[1];
         }
+        //alert(codigo_prv + "-"+codigo_ciu);
 
 
 
@@ -194,24 +199,18 @@ function init() {
         /*Funcion para consultar indicadores*/
         /***********************************/
 
-        /*Variables que se utilizan en las consultas*/
-        var ipserver;
-        var nombre_prv;
-        var nombre_ciu;
-        var codigo_prv;
-        var codigo_ciu;
-
-
-        //alert('0' + codigo_prv);
         if (codigo_prv.length === 1) {
             codigo_prv1 = "0" + codigo_prv;
+        } else {
+            codigo_prv1 = codigo_prv;
         }
 
         if (codigo_ciu.length === 1) {
             codigo_ciu1 = "0" + codigo_ciu;
             codigo_ciu1 = codigo_prv1 + codigo_ciu1;
+        } else {
+            codigo_ciu1 = codigo_prv1 + codigo_ciu;
         }
-        //alert(codigo_ciu);
 
         $.ajax({
             url: "cadenaMapa.txt",
@@ -267,7 +266,7 @@ function init() {
                     nombre_ciu = result1.nombre_canton;
                     $(".provincia").html(nombre_prv);
                     $(".canton").html(nombre_ciu);
-                    
+
                 });
 
                 $("#labelUbicacion").html('La ubicación seleccionada es: &nbsp;');

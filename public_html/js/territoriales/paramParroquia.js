@@ -60,9 +60,19 @@ function init() {
     /*Funcion Knockout.js para mostrar la informacion******************/
     /******************************************************************/
     function ViewCombos() {
-        /**
-         * 
-         */
+
+        /*Variables que se utilizan en las consultas*/
+        var ipserver;
+        var codigo_prv;
+        var nombre_prv;
+
+        var codigo_ciu;
+        var nombre_ciu;
+
+        var codigo_par;
+        var nombre_par;
+
+
 
         if (location.search.substr(1)) {
             Variable = location.search.substr(1);
@@ -194,26 +204,17 @@ function init() {
         /*Funcion para consultar indicadores*/
         /***********************************/
 
-        /*Variables que se utilizan en las consultas*/
-        var ipserver;
-        var codigo_prv;
-        var nombre_prv;
-
-        var codigo_ciu;
-        var nombre_ciu;
-
-        var codigo_par;
-        var nombre_par;
-
-
-
         if (codigo_prv.length === 1) {
             codigo_prv1 = "0" + codigo_prv;
+        } else {
+            codigo_prv1 = codigo_prv;
         }
 
         if (codigo_ciu.length === 1) {
             codigo_ciu1 = "0" + codigo_ciu;
             codigo_ciu1 = codigo_prv1 + codigo_ciu1;
+        } else {
+            codigo_ciu1 = codigo_prv1 + codigo_ciu;
         }
 
         codigo_par1 = codigo_ciu1 + codigo_par;

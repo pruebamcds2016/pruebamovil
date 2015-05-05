@@ -281,7 +281,7 @@ section{
 
     /*div donde se muestra la lista de los modulos*/
     section{
-        top:130px; 
+        top:100px; 
     }
     /*    Botones de ingreso a los sistemas*/
     .listviewIndex li a.button-left {
@@ -304,7 +304,7 @@ section{
 
     /*Tamaño del header en esta pagina*/
     header {
-        height:80px; 
+        height:90px; 
     }
     /*Formato de la tablas en el header de la pagina*/
     header table{
@@ -335,12 +335,12 @@ section{
     }
 
 }
-/*Resolucion 360x640  horizontal*/
+/*Resolucion 360x640  horizontal mi samsung s4*/
 @media  screen and ( min-width: 601px) and (max-width : 640px ){
 
     /*Tamaño del header en esta pagina*/
     header {
-        height:80px; 
+        height:90px; 
     }
     /*Formato de la tablas en el header de la pagina*/
     header table{
@@ -382,7 +382,7 @@ section{
     }
     /*Tamaño del header en esta pagina*/
     header {
-        height:80px; 
+        height:90px; 
     }
     /*div donde se muestra la lista de los modulos*/
     section{
@@ -423,7 +423,7 @@ section{
     }
     /*div donde se muestra la lista de los modulos*/
     section{
-        top:190px;
+        top:100px;
     }
     /*  Lista de modulos en la pagina principal*/
     .listviewIndex li{
@@ -472,7 +472,7 @@ section{
     }
     /*div donde se muestra la lista de los modulos*/
     section{
-        top:190px;
+        top:100px;
     }
 
     .listviewIndex li{
@@ -521,7 +521,7 @@ section{
     }
     /*div donde se muestra la lista de los modulos*/
     section{
-        top:190px;
+        top:100px;
     }
 
     .listviewIndex li{
@@ -571,7 +571,7 @@ section{
     }
     /*div donde se muestra la lista de los modulos*/
     section{
-        top:190px;
+        top:100px;
     }
 
     .listviewIndex li{
@@ -617,7 +617,7 @@ section{
     }
     /*div donde se muestra la lista de los modulos*/
     section{
-        top:120px;
+        top:100px;
     }
 
     .listviewIndex li{
