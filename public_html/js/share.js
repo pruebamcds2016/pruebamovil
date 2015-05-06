@@ -46,26 +46,26 @@ $(document).ready(function() {
             case 'facebook':
                 //openLink = 'http://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(pageUrl) + '&amp;title=' + encodeURIComponent(pageTitle);
                 openLink = 'http://m.facebook.com/sharer.php?u=' + encodeURIComponent(pageUrl) + '&t=' + encodeURIComponent('Miniterio Coordinador de Desarrollo Social');
-                alert('facebook:'+openLink);
+                //alert('facebook:'+openLink);
                 break;
             case 'twitter':
                 //openLink = 'http://twitter.com/home?status=' + encodeURIComponent(pageTitle + ' ' + pageUrl);                
                 openLink = 'http://www.twitter.com/share?text=' + encodeURIComponent('Compartiendo información desde #SISEcuador Sistema de Información Social del Ecuador del @SocialEc #MCDS') + '&url=' + encodeURIComponent(pageUrl);
-                alert('twitter:'+openLink);
+                //alert('twitter:'+openLink);
                 break;
             case 'google':
                 openLink = 'https://plus.google.com/share?url=' + encodeURIComponent(pageUrl) + '&amp;title=' + encodeURIComponent(pageTitle);
-                alert('google:'+openLink);
+                //alert('google:'+openLink);
                 break;
             case 'email':
                 openLink = 'mailto:?subject=' + pageTitle
                         + '&body= Se ha compartido información del Miniterio Coordinador de Desarrollo Social - MCDS ' + encodeURIComponent(pageUrl);
-                alert('email:'+openLink);
+                //alert('email:'+openLink);
                 break;
             case 'whatsapp':
                 //$('#btnWhatsApp').attr("href","whatsapp://send?text=Compartiendo informacion desde "+encodeURIComponent(pageUrl));
                 openLink = 'whatsapp://send?text= Información compartida desde la aplicación "Sistema de Informacion Social del Ecuador SISEcuador" del Miniterio Coordinador de Desarrollo Social MCDS. ' + encodeURIComponent(pageUrl);
-                alert('whatsapp:'+openLink);
+                //alert('whatsapp:'+openLink);
                 break;
 
         }
@@ -78,6 +78,7 @@ $(document).ready(function() {
                 winOptions = 'width=' + winWidth + ',height=' + winHeight + ',top=' + winTop + ',left=' + winLeft;
 
         //open Popup window and redirect user to share website.
+        alert(openLink);
         window.open(openLink, 'Compartir este enlace', winOptions);
 
         return false;
