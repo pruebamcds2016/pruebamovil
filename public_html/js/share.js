@@ -51,7 +51,8 @@ $(document).ready(function() {
             case 'twitter':
                 //openLink = 'http://twitter.com/home?status=' + encodeURIComponent(pageTitle + ' ' + pageUrl);                
                 //openLink = 'http://www.twitter.com/share?text=' + encodeURIComponent('Compartiendo información desde #SISEcuador Sistema de Información Social del Ecuador del @SocialEc #MCDS') + '&url=' + encodeURIComponent(pageUrl);
-                openLink = 'http://www.twitter.com/share?text=';
+                //openLink = 'http://www.twitter.com/share?text=';
+                window.open('https://twitter.com/intent/tweet?text='+ encodeURIComponent('Compartiendo información desde #SISEcuador Sistema de Información Social del Ecuador del @SocialEc #MCDS') + '&url=' + encodeURIComponent(pageUrl), 'popup','width=600,height=450');
                 break;
             case 'google':
                 //openLink = 'https://plus.google.com/share?url=' + encodeURIComponent(pageUrl) + '&amp;title=' + encodeURIComponent(pageTitle);
@@ -69,7 +70,7 @@ $(document).ready(function() {
         }
 
         //Parameters for the Popup window
-        winWidth = 650;
+      /*  winWidth = 650;
         winHeight = 450;
         winLeft = ($(window).width() - winWidth) / 2,
                 winTop = ($(window).height() - winHeight) / 2,
@@ -78,7 +79,7 @@ $(document).ready(function() {
         //open Popup window and redirect user to share website.
         window.open(openLink, 'Compartir este enlace', winOptions);
         //window.open('https://twitter.com/intent/tweet?text=&url=&original_referer='+ encodeURIComponent('Compartiendo información desde #SISEcuador Sistema de Información Social del Ecuador del @SocialEc #MCDS') + '&url=' + encodeURIComponent(pageUrl), 'popup','width=600,height=450');
-
+*/
         return false;
     });
 
