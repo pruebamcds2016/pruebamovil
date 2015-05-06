@@ -72,7 +72,7 @@ $(document).ready(function() {
 
         if (shareName === 'twitter') {
             //alert(pageUrl);
-            window.open('http://www.twitter.com/intent/tweet?text=Compartiendo información desde  Sistema de Información Social del Ecuador del @SocialEc MCDS' + '&url=' + encodeURIComponent(pageUrl)+'&original_referer=', 'popup', 'width=600,height=450');
+            window.open('http://www.twitter.com/intent/tweet?text=Compartiendo información desde  Sistema de Información Social del Ecuador del @SocialEc MCDS' + '&url=' + pageUrl+'&original_referer=', 'popup', 'width=600,height=450');
         }
         //Parameters for the Popup window
         winWidth = 650;
