@@ -44,28 +44,28 @@ $(document).ready(function() {
         switch (shareName) //switch to different links based on different social name
         {
             case 'facebook':
-                alert('facebook');
                 //openLink = 'http://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(pageUrl) + '&amp;title=' + encodeURIComponent(pageTitle);
                 openLink = 'http://m.facebook.com/sharer.php?u=' + encodeURIComponent(pageUrl) + '&t=' + encodeURIComponent('Miniterio Coordinador de Desarrollo Social');
+                alert('facebook:'+openLink);
                 break;
             case 'twitter':
-                alert('twitter');
                 //openLink = 'http://twitter.com/home?status=' + encodeURIComponent(pageTitle + ' ' + pageUrl);                
                 openLink = 'http://www.twitter.com/share?text=' + encodeURIComponent('Compartiendo información desde #SISEcuador Sistema de Información Social del Ecuador del @SocialEc #MCDS') + '&url=' + encodeURIComponent(pageUrl);
+                alert('twitter:'+openLink);
                 break;
             case 'google':
-                alert('google');
                 openLink = 'https://plus.google.com/share?url=' + encodeURIComponent(pageUrl) + '&amp;title=' + encodeURIComponent(pageTitle);
+                alert('google:'+openLink);
                 break;
             case 'email':
-                alert('email');
                 openLink = 'mailto:?subject=' + pageTitle
                         + '&body= Se ha compartido información del Miniterio Coordinador de Desarrollo Social - MCDS ' + encodeURIComponent(pageUrl);
+                alert('email:'+openLink);
                 break;
             case 'whatsapp':
-                alert('whatsapp');
                 //$('#btnWhatsApp').attr("href","whatsapp://send?text=Compartiendo informacion desde "+encodeURIComponent(pageUrl));
                 openLink = 'whatsapp://send?text= Información compartida desde la aplicación "Sistema de Informacion Social del Ecuador SISEcuador" del Miniterio Coordinador de Desarrollo Social MCDS. ' + encodeURIComponent(pageUrl);
+                alert('whatsapp:'+openLink);
                 break;
 
         }
