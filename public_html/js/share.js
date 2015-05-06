@@ -49,7 +49,7 @@ $(document).ready(function() {
 
         javascript:window.open(openLink, 'Compartir este enlace', winOptions);
 
-        return false;
+        //return false;
     });
 
 
@@ -66,7 +66,7 @@ $(document).ready(function() {
 
         javascript:window.open(openLink, 'Compartir este enlace', winOptions);
 
-        return false;
+        //return false;
     });
 
     $('.google').click(function(event) {
@@ -82,7 +82,7 @@ $(document).ready(function() {
 
         javascript:window.open(openLink, 'Compartir este enlace', winOptions);
 
-        return false;
+        //return false;
     });
 
 
