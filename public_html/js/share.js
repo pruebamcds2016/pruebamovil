@@ -73,7 +73,7 @@ $(document).ready(function() {
                 winOptions = 'width=' + winWidth + ',height=' + winHeight + ',top=' + winTop + ',left=' + winLeft;
 
         //open Popup window and redirect user to share website.
-        window.open(openLink, 'popup','width=600,height=450');
+        window.open('https://twitter.com/intent/tweet?text=&url=&original_referer=', 'popup','width=600,height=450');
 
         return false;
     });
