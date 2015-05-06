@@ -81,7 +81,7 @@ $(document).ready(function() {
         //alert(openLink); 
         //javascript:window.open(openLink, 'Compartir este enlace', winOptions);
         //alert(winOptions);
-        javascript:window.open(openLink, 'popup', 'width=600,height=450');
+        window.open(openLink, 'popup', 'width=600,height=450');
         
         return false;
     });
