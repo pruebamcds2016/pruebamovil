@@ -76,19 +76,19 @@ $(document).ready(function() {
             window.open('https://twitter.com/intent/tweet?text=hola&url=dd&original_referer=','popup','width=600,height=450');
         }
         //Parameters for the Popup window
-        winWidth = 650;
+        /*winWidth = 650;
         winHeight = 450;
         winLeft = ($(window).width() - winWidth) / 2,
                 winTop = ($(window).height() - winHeight) / 2,
                 winOptions = 'width=' + winWidth + ',height=' + winHeight + ',top=' + winTop + ',left=' + winLeft;
-
+*/
         //open Popup window and redirect user to share website.
         //alert(openLink); 
         //javascript:window.open(openLink, 'Compartir este enlace', winOptions);
         //alert(winOptions);
         //window.open(openLink, 'popup', 'width=600,height=450');
 
-        return false;
+        //return false;
     });
 
 
