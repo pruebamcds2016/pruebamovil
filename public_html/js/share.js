@@ -36,59 +36,53 @@ $(document).ready(function() {
     var pageUrl = 'http://192.168.50.76:8383/share/' + url + '?' + id_tema + '&' + id_ib + '&' + id_subtema; //Location of the page
     var openLink = '';
 
-    //$('#btnWhatsApp').attr("href","whatsapp://send?text=Compartiendo informacion desde "+encodeURIComponent(pageUrl));
-    //user clicks on a share button
-    $('.button-wrap').click(function(event) {
-        var shareName = $(this).attr('class').split(' ')[0]; //get the first class name of clicked element
+    $('.twitter').click(function(event) {
 
-        switch (shareName) //switch to different links based on different social name
-        {
-            case 'facebook':
-                //openLink = 'http://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(pageUrl) + '&amp;title=' + encodeURIComponent(pageTitle);
-                openLink = 'http://m.facebook.com/sharer.php?u=' + encodeURIComponent(pageUrl) + '&t=' + encodeURIComponent('Miniterio Coordinador de Desarrollo Social');
-                //alert('facebook:'+openLink);
-                break;
-            case 'twitter':
-                //openLink = 'http://twitter.com/home?status=' + encodeURIComponent(pageTitle + ' ' + pageUrl);                
-                openLink = 'http://www.twitter.com/intent/tweet?text=' + encodeURIComponent('Compartiendo información desde #SISEcuador Sistema de Información Social del Ecuador del @SocialEc #MCDS') + '&url=' + encodeURIComponent(pageUrl);
-                //alert('twitter:'+openLink);
-                break;
-            case 'google':
-                openLink = 'https://plus.google.com/share?url=' + encodeURIComponent(pageUrl) + '&amp;title=' + encodeURIComponent(pageTitle);
-                //alert('google:'+openLink);
-                break;
-            case 'email':
-                openLink = 'mailto:?subject=' + pageTitle
-                        + '&body= Se ha compartido información del Miniterio Coordinador de Desarrollo Social - MCDS ' + encodeURIComponent(pageUrl);
-                //alert('email:'+openLink);
-                break;
-            case 'whatsapp':
-                //$('#btnWhatsApp').attr("href","whatsapp://send?text=Compartiendo informacion desde "+encodeURIComponent(pageUrl));
-                openLink = 'whatsapp://send?text= Información compartida desde la aplicación "Sistema de Informacion Social del Ecuador SISEcuador" del Miniterio Coordinador de Desarrollo Social MCDS. ' + encodeURIComponent(pageUrl);
-                //alert('whatsapp:'+openLink);
-                break;
+        openLink = 'http://www.twitter.com/intent/tweet?text=' + encodeURIComponent('Compartiendo información desde #SISEcuador Sistema de Información Social del Ecuador del @SocialEc #MCDS') + '&url=' + encodeURIComponent(pageUrl);
 
-        }
 
-        /*if (shareName === 'twitter') {
-         //alert(pageUrl);
-         //window.open('https://twitter.com/intent/tweet?text=hola&url=dd&original_referer=','popup','width=600,height=450');
-         window.open('http://www.twitter.com/intent/tweet?text=' + encodeURIComponent('Compartiendo información desde #SISEcuador Sistema de Información Social del Ecuador del @SocialEc #MCDS') + '&url=' + encodeURIComponent(pageUrl),'popup','width=600,height=450');
-         }*/
-        //Parameters for the Popup window
         winWidth = 650;
         winHeight = 450;
         winLeft = ($(window).width() - winWidth) / 2,
                 winTop = ($(window).height() - winHeight) / 2,
                 winOptions = 'width=' + winWidth + ',height=' + winHeight + ',top=' + winTop + ',left=' + winLeft;
 
-        //open Popup window and redirect user to share website.
-        //alert(openLink); 
         javascript:window.open(openLink, 'Compartir este enlace', winOptions);
-        //alert(winOptions);
-        //window.open(openLink, 'popup', 'width=600,height=450');
 
-        //return false;
+        return false;
+    });
+
+
+    $('.facebook').click(function(event) {
+
+        openLink = 'http://m.facebook.com/sharer.php?u=' + encodeURIComponent(pageUrl) + '&t=' + encodeURIComponent('Miniterio Coordinador de Desarrollo Social');
+
+
+        winWidth = 650;
+        winHeight = 450;
+        winLeft = ($(window).width() - winWidth) / 2,
+                winTop = ($(window).height() - winHeight) / 2,
+                winOptions = 'width=' + winWidth + ',height=' + winHeight + ',top=' + winTop + ',left=' + winLeft;
+
+        javascript:window.open(openLink, 'Compartir este enlace', winOptions);
+
+        return false;
+    });
+
+    $('.google').click(function(event) {
+
+        openLink = 'https://plus.google.com/share?url=' + encodeURIComponent(pageUrl) + '&amp;title=' + encodeURIComponent(pageTitle);
+
+
+        winWidth = 650;
+        winHeight = 450;
+        winLeft = ($(window).width() - winWidth) / 2,
+                winTop = ($(window).height() - winHeight) / 2,
+                winOptions = 'width=' + winWidth + ',height=' + winHeight + ',top=' + winTop + ',left=' + winLeft;
+
+        javascript:window.open(openLink, 'Compartir este enlace', winOptions);
+
+        return false;
     });
 
 
