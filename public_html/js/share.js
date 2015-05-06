@@ -71,7 +71,7 @@ $(document).ready(function() {
         //open Popup window and redirect user to share website.
         window.open(openLink, 'Compartir este enlace', winOptions);
 
-       //return false;
+       return false;
     });
 
 
