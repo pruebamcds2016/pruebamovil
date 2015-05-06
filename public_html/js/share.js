@@ -47,7 +47,7 @@ $(document).ready(function() {
                 winTop = ($(window).height() - winHeight) / 2,
                 winOptions = 'width=' + winWidth + ',height=' + winHeight + ',top=' + winTop + ',left=' + winLeft;
 
-        javascript:window.open(openLink, 'Compartir este enlace', winOptions);
+        window.open(openLink, 'Compartir este enlace', winOptions);
 
         //return false;
     });
@@ -64,7 +64,7 @@ $(document).ready(function() {
                 winTop = ($(window).height() - winHeight) / 2,
                 winOptions = 'width=' + winWidth + ',height=' + winHeight + ',top=' + winTop + ',left=' + winLeft;
 
-        javascript:window.open(openLink, 'Compartir este enlace', winOptions);
+        window.open(openLink, 'Compartir este enlace', winOptions);
 
         //return false;
     });
@@ -80,7 +80,7 @@ $(document).ready(function() {
                 winTop = ($(window).height() - winHeight) / 2,
                 winOptions = 'width=' + winWidth + ',height=' + winHeight + ',top=' + winTop + ',left=' + winLeft;
 
-        javascript:window.open(openLink, 'Compartir este enlace', winOptions);
+        window.open(openLink, 'Compartir este enlace', winOptions);
 
         //return false;
     });
