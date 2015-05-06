@@ -45,14 +45,17 @@ $(document).ready(function() {
         {
             case 'facebook':
                 //openLink = 'http://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(pageUrl) + '&amp;title=' + encodeURIComponent(pageTitle);
-                openLink = 'http://m.facebook.com/sharer.php?u=' + encodeURIComponent(pageUrl) + '&t=' + encodeURIComponent('Miniterio Coordinador de Desarrollo Social');
+                //openLink = 'http://m.facebook.com/sharer.php?u=' + encodeURIComponent(pageUrl) + '&t=' + encodeURIComponent('Miniterio Coordinador de Desarrollo Social');
+                openLink = 'http://m.facebook.com/sharer.php?u=';
                 break;
             case 'twitter':
                 //openLink = 'http://twitter.com/home?status=' + encodeURIComponent(pageTitle + ' ' + pageUrl);                
-                openLink = 'http://www.twitter.com/share?text=' + encodeURIComponent('Compartiendo información desde #SISEcuador Sistema de Información Social del Ecuador del @SocialEc #MCDS') + '&url=' + encodeURIComponent(pageUrl);
+                //openLink = 'http://www.twitter.com/share?text=' + encodeURIComponent('Compartiendo información desde #SISEcuador Sistema de Información Social del Ecuador del @SocialEc #MCDS') + '&url=' + encodeURIComponent(pageUrl);
+                openLink = 'http://www.twitter.com/share?text=';
                 break;
             case 'google':
-                openLink = 'https://plus.google.com/share?url=' + encodeURIComponent(pageUrl) + '&amp;title=' + encodeURIComponent(pageTitle);
+                //openLink = 'https://plus.google.com/share?url=' + encodeURIComponent(pageUrl) + '&amp;title=' + encodeURIComponent(pageTitle);
+                openLink = 'https://plus.google.com/share?url=';
                 break;
             case 'email':
                 openLink = 'mailto:?subject=' + pageTitle
@@ -73,7 +76,8 @@ $(document).ready(function() {
                 winOptions = 'width=' + winWidth + ',height=' + winHeight + ',top=' + winTop + ',left=' + winLeft;
 
         //open Popup window and redirect user to share website.
-        window.open('https://twitter.com/intent/tweet?text=&url=&original_referer=', 'popup','width=600,height=450');
+        window.open(openLink, 'Compartir este enlace', winOptions);
+        //window.open('https://twitter.com/intent/tweet?text=&url=&original_referer='+ encodeURIComponent('Compartiendo información desde #SISEcuador Sistema de Información Social del Ecuador del @SocialEc #MCDS') + '&url=' + encodeURIComponent(pageUrl), 'popup','width=600,height=450');
 
         return false;
     });
