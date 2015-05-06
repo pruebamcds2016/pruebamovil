@@ -78,8 +78,8 @@ $(document).ready(function() {
                 winOptions = 'width=' + winWidth + ',height=' + winHeight + ',top=' + winTop + ',left=' + winLeft;
 
         //open Popup window and redirect user to share website.
-        alert(openLink);
-        window.open(openLink, 'Compartir este enlace', winOptions);
+        //alert(openLink);
+        javascript:window.open(openLink, 'Compartir este enlace', winOptions);
 
         return false;
     });
