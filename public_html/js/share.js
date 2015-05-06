@@ -50,7 +50,7 @@ $(document).ready(function() {
                 break;
             case 'twitter':
                 //openLink = 'http://twitter.com/home?status=' + encodeURIComponent(pageTitle + ' ' + pageUrl);                
-                openLink = 'http://www.twitter.com/share?text=' + encodeURIComponent('Compartiendo información desde #SISEcuador Sistema de Información Social del Ecuador del @SocialEc #MCDS') + '&url=' + encodeURIComponent(pageUrl);
+                openLink = 'http://www.twitter.com/intent/tweet?text=' + encodeURIComponent('Compartiendo información desde #SISEcuador Sistema de Información Social del Ecuador del @SocialEc #MCDS') + '&url=' + encodeURIComponent(pageUrl);
                 //alert('twitter:'+openLink);
                 break;
             case 'google':
@@ -79,8 +79,10 @@ $(document).ready(function() {
 
         //open Popup window and redirect user to share website.
         //alert(openLink); 
-        javascript:window.open(openLink, 'Compartir este enlace', winOptions);
-
+        //javascript:window.open(openLink, 'Compartir este enlace', winOptions);
+        //alert(winOptions);
+        javascript:window.open(openLink, 'popup', 'width=600,height=450');
+        
         return false;
     });
 
