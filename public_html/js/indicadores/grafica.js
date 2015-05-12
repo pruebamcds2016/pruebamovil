@@ -102,7 +102,7 @@ function ViewModelGrafica() {
                     for (var j = 0; j < result.valoresY_indicador.length; j++) {
                         if (result.valoresY_indicador[j].data[i] !== null) {
 
-                            cuerpo = cuerpo + "<td><center>" + result.valoresY_indicador[j].data[i] + " </center></td>";
+                            cuerpo = cuerpo + "<td><center>" + format(result.valoresY_indicador[j].data[i]) + " </center></td>";
                         } else {
                             cuerpo = cuerpo + "<td> </td>";
                         }
