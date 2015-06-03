@@ -50,7 +50,7 @@ function ViewModelIndicador() {
                 $(".loadingPag").css("display", "none");
                 $(".mapaSitio").html(result[0].str_nombre_tema);
                 $.each(result, function() {
-                    principal.ejemploLista.push({
+                     principal.ejemploLista.push({
                         url: ko.observable(this.str_pantalla + "?" + this.ri_id_tema + "&" + this.id_ib + "&" + this.id_tema),
                         details: ko.observable(""),
                         nombreIndicador: ko.observable(this.str_nombre_ia)
