@@ -46,16 +46,27 @@ function init() {
     mapa = new OpenLayers.Map("miMapa");
 
     /*Se consulta el servico WMS desde el servidor del SIISE Mapas, el mapa se pintará a nivel de canton*/
-    var layerBase = new OpenLayers.Layer.WMS(
-            "OpenLayers WMS",
-            "http://201.219.3.196:8079/geoserver/wms?service=WMS", {
-        layers: "siise:cant_00"
-    });
+    /*var layerBase = new OpenLayers.Layer.WMS(
+     "OpenLayers WMS",
+     "http://201.219.3.196:8079/geoserver/wms?service=WMS", {
+     layers: "siise:cant_00"
+     });*/
+
+    var apiKey = "AqTGBsziZHIJYYxgivLBf0hVdrAk9mWO5cQcb8Yux8sW5M8c8opEC2lZqKR1ZZXf";
+
+    layerBase = new OpenLayers.Layer.Bing({
+        name: "Calles",
+        key: apiKey,
+        type: "Road",
+        visibility: true,
+        displayInLayerSwitcher: true
+    })
+
     /*Se añade la capa al mapa*/
     mapa.addLayer(layerBase);
     /*Se oculta el mapa hasta que se cargue toda la información*/
     $("#miMapa").css("display", "none");
-    
+
     navigator.geolocation.getCurrentPosition(success, error);
 
     /*if (!navigator.geolocation) {
@@ -64,7 +75,7 @@ function init() {
      else{
      alert("holarrrrrrrrrrrrrrr");
      }*/
-    
+
     /*Si no se recuperan las coordenadas, se mostrará por defecto la localizacion de Quito*/
     /*Cuando el browser no soporta la geolocalizacion*/
     if (!navigator.geolocation) {
@@ -137,7 +148,7 @@ function init() {
         //bandera = 2;
         //alert('error' + bandera);
         //document.getElementById("#miMapa").innerHTML = "";
-        
+
         /*Se muestran la leyendas de ubicacion*/
         $(".infoUbicacion").css("display", "block");
         $("#labelUbicacion").html("Usted se encuentra en:");
@@ -162,34 +173,34 @@ function init() {
     /*sE AGREGO PARA SOLUCIONAR LO DEL MOZILLA + BANDERAS Y document.getElementById("#miMapa").innerHTML = "" */
     //alert(bandera);
     /*if (bandera === 0) {
-        //alert(bandera);
-        //alert('bandera 1, 2, 3');
-        //document.getElementById("#miMapa").innerHTML = "";
-        $(".infoUbicacion").css("display", "block");
-        $("#labelUbicacion").html("Usted se encuentra en banderaaaaaaaaaaaaa:");
-        
-        $("#labelUbicacion").css("display", "block");
-        //return;
-        //-1.24908, -78.61675
-        //lat = -0.20300087;
-        //lng = -78.4987696;
-        lat = -1.24908;
-        lng = -78.61675;
-        var lnglat = new OpenLayers.LonLat(lng, lat).transform(
-                new OpenLayers.Projection("EPSG:4326"),
-                mapa.getProjectionObject());
-        mapa.setCenter(lnglat, 9);
-        var markers = new OpenLayers.Layer.Markers("Marcas");
-        mapa.addLayer(markers);
-
-        var size = new OpenLayers.Size(21, 25);
-        var offset = new OpenLayers.Pixel(-(size.w / 2), -size.h);
-        var icon = new OpenLayers.Icon('puntero.png', size, offset);
-        markers.addMarker(new OpenLayers.Marker(lnglat, icon));
-        ViewCombos();
-
-    }
-    ;*/
+     //alert(bandera);
+     //alert('bandera 1, 2, 3');
+     //document.getElementById("#miMapa").innerHTML = "";
+     $(".infoUbicacion").css("display", "block");
+     $("#labelUbicacion").html("Usted se encuentra en banderaaaaaaaaaaaaa:");
+     
+     $("#labelUbicacion").css("display", "block");
+     //return;
+     //-1.24908, -78.61675
+     //lat = -0.20300087;
+     //lng = -78.4987696;
+     lat = -1.24908;
+     lng = -78.61675;
+     var lnglat = new OpenLayers.LonLat(lng, lat).transform(
+     new OpenLayers.Projection("EPSG:4326"),
+     mapa.getProjectionObject());
+     mapa.setCenter(lnglat, 9);
+     var markers = new OpenLayers.Layer.Markers("Marcas");
+     mapa.addLayer(markers);
+     
+     var size = new OpenLayers.Size(21, 25);
+     var offset = new OpenLayers.Pixel(-(size.w / 2), -size.h);
+     var icon = new OpenLayers.Icon('puntero.png', size, offset);
+     markers.addMarker(new OpenLayers.Marker(lnglat, icon));
+     ViewCombos();
+     
+     }
+     ;*/
 
     /******************************************************************/
     /*Funcion Knockout.js para mostrar la informacion******************/

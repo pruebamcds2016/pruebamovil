@@ -44,11 +44,23 @@ function init() {
     mapa = new OpenLayers.Map("miMapa");
 
     /*Se consulta el servico WMS desde el servidor del SIISE Mapas, el mapa se pintará a nivel de canton*/
-    var layerBase = new OpenLayers.Layer.WMS(
-            "OpenLayers WMS",
-            "http://201.219.3.196:8079/geoserver/wms?service=WMS", {
-        layers: "siise:cant_00"
-    });
+    /*var layerBase = new OpenLayers.Layer.WMS(
+     "OpenLayers WMS",
+     "http://201.219.3.196:8079/geoserver/wms?service=WMS", {
+     layers: "siise:cant_00"
+     });*/
+
+    var apiKey = "AqTGBsziZHIJYYxgivLBf0hVdrAk9mWO5cQcb8Yux8sW5M8c8opEC2lZqKR1ZZXf";
+
+    layerBase = new OpenLayers.Layer.Bing({
+        name: "Calles",
+        key: apiKey,
+        type: "Road",
+        visibility: true,
+        displayInLayerSwitcher: true
+    })
+
+
     /*Se añade la capa al mapa*/
     mapa.addLayer(layerBase);
     /*Se oculta el mapa hasta que se cargue toda la información*/
