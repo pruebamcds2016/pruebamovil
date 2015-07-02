@@ -810,6 +810,166 @@ function init() {
                     /**fin**/
 
 
+                    /****************************************/
+                    /*Funcion para crear tabla Infraestructura obras del sector*/
+                    /****************************************/
+                    /*type: "POST",
+                     url: "http://192.168.50.76:8080/WSObservatorio/webresources/infraestructura",
+                     dataType: "text",
+                     data: "{idProvincia: " + a + ", idCanton: " + b + "}"*/
+                    $.ajax({
+                        url: "cadena.txt",
+                        dataType: "text",
+                        success: function(data) {
+                            ipserver = data;
+                            /*Se realiza la consulta a nivel de canton y con la informacion se arma la tabla*/
+                            //  var datos = ipserver + "/SWSISEcuador/webresources/infraestructura/canton/" + codigo_prv + "/" + codigo_ciu;
+                            //var datos = "http://localhost:8080/SWSISEcuador/webresources/territorial/consultaGraficaVivienda/" + codigo_prv + "/" + codigo_ciu;
+                            //var datos = ipserver + "/SWSISEcuador/webresources/territorial/consultaGraficaVivienda/" + codigo_prv + "/" + codigo_ciu;
+                            var a = "17";
+                            var b = "01";
+                            var datos = "http://192.168.50.76:8080/WSObservatorio/webresources/infraestructura/" + a + "/" + b;
+
+                            $.getJSON(datos, function(resultados) {
+                                //alert(resultados.nombreIndicador);
+                                $('#tablaInfraestructuraEstadoObra').html("");
+
+                                var titulo = "<div class='tituloTablas'>"
+                                        + "<span> Obras del sector social en el cantón " + resultados.canton + "</span></div>";
+
+                                /*Se setea la cabecera*/
+                                var cabecera = "<table><thead><tr><td style=' text-align: center' rowspan='2'><p>SECTOR</p></td>"
+                                        + "<td colspan='" + (resultados.valoresYIndicador.length + 1) + "'style=' text-align: center'>ESTADO DE LA OBRA</td></tr><tr>";
+                                for (var i = 0; i < resultados.valoresYIndicador.length; i++) {
+                                    cabecera = cabecera + "<td style=' text-align: center'>" + resultados.valoresYIndicador[i].name + "</td>"
+                                }
+                                cabecera = cabecera + "<td style=' text-align: center'>TOTAL</td></tr></thead>";
+                                var cuerpo = "<tbody>";
+                                //datos del estado de la obra por institucion
+                                for (var i = 0; i < resultados.valoresXIndicador.length; i++) {
+                                    cuerpo = cuerpo + "<tr><td style=' text-align: center'><a href= ObrasSector.html?" + a + "&" + b + "&" + resultados.valoresXIndicador[i] + ">" + resultados.valoresXIndicador[i] + "</a></td>"
+                                    var sum = 0;
+                                    for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
+                                        if (resultados.valoresYIndicador[j].data[i] != null) {
+                                            cuerpo = cuerpo + "<td style=' text-align: left'>" + resultados.valoresYIndicador[j].data[i] + "</td>"
+                                            sum = sum + resultados.valoresYIndicador[j].data[i];
+                                        } else {
+                                            cuerpo = cuerpo + "<td style=' text-align: left'> </td>"
+                                        }
+                                    }
+                                    cuerpo = cuerpo + "<td style=' text-align: left'>" + sum + " </td>"
+                                    cuerpo = cuerpo + "</tr>";
+                                }
+
+                                // Obtener los totales generales
+                                cuerpo = cuerpo + "<tr><td style=' text-align: center'>Total General</td>";
+                                //alert(resultados.valoresYIndicador[0].data.length)
+                                var totalGeneral = 0;
+                                for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
+                                    var totalColumna = 0;
+                                    for (var h = 0; h < resultados.valoresYIndicador[j].data.length; h++) {
+                                        if (resultados.valoresYIndicador[j].data[h] != null) {
+                                            totalColumna = totalColumna + resultados.valoresYIndicador[j].data[h];
+                                            totalGeneral = totalGeneral + resultados.valoresYIndicador[j].data[h];
+                                        }
+                                    }
+                                    cuerpo = cuerpo + "<td style=' text-align: left'>" + totalColumna + "</td>"
+                                }
+                                cuerpo = cuerpo + "<td style=' text-align: left'>" + totalGeneral + "</td>"
+                                cuerpo = cuerpo + "</tr>";
+                                var pie = "</tbody></table>";
+                                $('#tablaInfraestructuraEstadoObra').append(titulo + cabecera + cuerpo + pie);
+                            });
+                        }});
+
+                    //fin
+
+
+                    /****************************************/
+                    /*Funcion para crear graficas Infraestructura */
+                    /****************************************/
+
+
+                    $.ajax({
+                        url: "cadena.txt",
+                        dataType: "text",
+                        success: function(data) {
+                            ipserver = data;
+                            /*Se realiza la consulta a nivel de canton y con la informacion se arma la tabla*/
+                            //  var datos = ipserver + "/SWSISEcuador/webresources/infraestructura/canton/" + codigo_prv + "/" + codigo_ciu;
+                            //var datos = "http://localhost:8080/SWSISEcuador/webresources/territorial/consultaGraficaVivienda/" + codigo_prv + "/" + codigo_ciu;
+                            //var datos = ipserver + "/SWSISEcuador/webresources/territorial/consultaGraficaVivienda/" + codigo_prv + "/" + codigo_ciu;
+                            var a = "17";
+                            var b = "01";
+                            var datos = "http://192.168.50.76:8080/WSObservatorio/webresources/infraestructura/" + a + "/" + b;
+
+                            $.getJSON(datos, function(resultados) {
+                                // $('#graficaViviendas').html("");
+                                //alert(resultados.nombreIndicador);
+
+                                /*
+                                 * Gráfico en HighCharts
+                                 */
+                                $('#graficoInfraestructuraEstadoObra').highcharts({
+                                    chart: {
+                                        type: 'column',
+                                        style: {
+                                            fontFamily: 'Helvetica' // default font
+
+                                        }
+                                    },
+                                    title: {
+                                        text: resultados.nombreIndicador
+                                    },
+                                    subtitle: {
+                                        text: resultados.fuenteIndicador + "/" + resultados.institucionFuente
+                                    },
+                                    credits: {
+                                        enabled: false
+                                    },
+                                    xAxis: {
+                                        categories: resultados.valoresXIndicador,
+                                    },
+                                    yAxis: {
+                                        min: 0,
+                                        title: {
+                                            text: 'Porcentaje'
+                                        }
+                                    },
+                                    plotOptions: {
+                                        column: {
+                                            stacking: 'normal',
+                                            dataLabels: {
+                                                enabled: true,
+                                                color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                                            }
+                                        }
+                                    },
+                                    series: []
+                                });
+                                // Creación dinámica de series
+                                var chart = $('#graficoInfraestructuraEstadoObra').highcharts();
+                                for (var i = 0; i < resultados.valoresYIndicador.length; i++) {
+                                    var nombre = resultados.valoresYIndicador[i].name;
+                                    chart.addSeries({
+                                        name: nombre,
+                                        data: resultados.valoresYIndicador[i].data
+
+                                    });
+                                }
+
+
+                                chart.tooltip.refresh(chart.series[0].data[resultados.valoresXIndicador.length - 1]);
+
+
+
+                            });
+                            //alert("hola");
+                        }});
+
+                    //fin
+
+
                 });
             }
         });
