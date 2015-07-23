@@ -758,6 +758,433 @@ function init() {
 
         //fin
 
+        //para consultar en la base de datos de observatorio se requiere que sea string provincia = 17 y canton = 05
+        var codigoProvincia;
+        var codigoCanton;
+        var codigoParroquia;
+        if (codigo_prv.length === 1) {
+            codigoProvincia = "0" + codigo_prv;
+        } else {
+            codigoProvincia = codigo_prv;
+        }
+        //alert(String(codigo_ciu));
+        if (codigo_ciu.length === 1) {
+            codigoCanton = "0" + codigo_ciu;
+            //alert("ok")
+            //codigo_ciu1 = codigo_prv1 + codigo_ciu1;
+        } else {
+            codigoCanton = codigo_ciu;
+            //alert("else");
+        }
+
+        if (codigo_par.length === 1) {
+            codigoParroquia = "0" + codigo_par;
+            //alert("ok")
+            //codigo_ciu1 = codigo_prv1 + codigo_ciu1;
+        } else {
+            codigoParroquia = codigo_par;
+            //alert("else");
+        }
+
+        /****************************************/
+        /*Funcion para crear tabla Infraestructura Nueva PROVINCIA Y CANTON*/
+        /****************************************/
+        $.ajax({
+            url: "cadenaInfraestructura.txt",
+            dataType: "text",
+            success: function(data) {
+                //var datos = "http://192.168.50.76:8080/WSObservatorio/webresources/infraestructura/obras/" + codigoProvincia + "/" + codigoCanton;
+                ipserver = data;
+                var datos = ipserver + "/WSObservatorio/webresources/infraestructura/obras/" + codigoProvincia + "/" + codigoCanton;
+                $.getJSON(datos, function(resultados) {
+                    if (resultados.provincia !== null) {
+                        //alert(resultados.nombreIndicador);
+                        $('#tablaInfraestructuraNuevaProvinciaCanton').html("");
+
+                        var titulo = "<div class='tituloTablas'>"
+                                + "<span> Infraestructura nueva cantón " + resultados.canton + "</span></div>";
+
+                        /*Se setea la cabecera*/
+                        var cabecera = "<table><thead><tr><td style=' text-align: center' rowspan='2'><p>SECTOR</p></td>"
+                                + "<td colspan='" + (resultados.valoresYIndicador.length + 1) + "'style=' text-align: center'>ESTADO DE LA OBRA</td></tr><tr>";
+                        for (var i = 0; i < resultados.valoresYIndicador.length; i++) {
+                            cabecera = cabecera + "<td style=' text-align: center'>" + resultados.valoresYIndicador[i].name + "</td>"
+                        }
+                        cabecera = cabecera + "<td style=' text-align: center'>TOTAL</td></tr></thead>";
+                        var cuerpo = "<tbody>";
+                        //datos del estado de la obra por institucion
+                        for (var i = 0; i < resultados.valoresXIndicador.length; i++) {
+                            cuerpo = cuerpo + "<tr><td style=' text-align: center'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + "-1" + "&" + resultados.valoresXClaveValor[i].codigo + ">" + resultados.valoresXClaveValor[i].valor + "</a></td>"
+                            var sum = 0;
+                            for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
+                                if (resultados.valoresYIndicador[j].data[i] != null) {
+                                    cuerpo = cuerpo + "<td style=' text-align: left'>" + resultados.valoresYIndicador[j].data[i] + "</td>"
+                                    sum = sum + resultados.valoresYIndicador[j].data[i];
+                                } else {
+                                    cuerpo = cuerpo + "<td style=' text-align: left'> </td>"
+                                }
+                            }
+                            cuerpo = cuerpo + "<td style=' text-align: left'>" + sum + " </td>"
+                            cuerpo = cuerpo + "</tr>";
+                        }
+
+                        // Obtener los totales generales
+                        cuerpo = cuerpo + "<tr><td style=' text-align: center'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + "-1" + "&" + "-1>Total General</td></a>";
+                        //alert(resultados.valoresYIndicador[0].data.length)
+                        var totalGeneral = 0;
+                        for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
+                            var totalColumna = 0;
+                            for (var h = 0; h < resultados.valoresYIndicador[j].data.length; h++) {
+                                if (resultados.valoresYIndicador[j].data[h] != null) {
+                                    totalColumna = totalColumna + resultados.valoresYIndicador[j].data[h];
+                                    totalGeneral = totalGeneral + resultados.valoresYIndicador[j].data[h];
+                                }
+                            }
+                            cuerpo = cuerpo + "<td style=' text-align: left'>" + totalColumna + "</td>"
+                        }
+                        cuerpo = cuerpo + "<td style=' text-align: left'>" + totalGeneral + "</td>"
+                        cuerpo = cuerpo + "</tr>";
+                        var pie = "</tbody></table>";
+                        $('#tablaInfraestructuraNuevaProvinciaCanton').append(titulo + cabecera + cuerpo + pie);
+
+                    }
+                });
+            }});
+
+        //fin
+
+
+        /****************************************/
+        /*Funcion para crear graficas Infraestructura */
+        /****************************************/
+        $.ajax({
+            url: "cadenaInfraestructura.txt",
+            dataType: "text",
+            success: function(data) {
+                //var datos = "http://192.168.50.76:8080/WSObservatorio/webresources/infraestructura/obras/" + codigoProvincia + "/" + codigoCanton;
+                ipserver = data;
+                var datos = ipserver + "/WSObservatorio/webresources/infraestructura/obras/" + codigoProvincia + "/" + codigoCanton;
+                $.getJSON(datos, function(resultados) {
+                    if (resultados.provincia !== null) {
+
+                        /*
+                         * Gráfico en HighCharts
+                         */
+                        $('#graficoInfraestructuraNuevaProvinciaCanton').highcharts({
+                            chart: {
+                                type: 'column',
+                                style: {
+                                    fontFamily: 'Helvetica' // default font
+
+                                }
+                            },
+                            title: {
+                                text: resultados.nombreIndicador
+                            },
+                            subtitle: {
+                                text: resultados.fuenteIndicador + "/" + resultados.institucionFuente
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            xAxis: {
+                                categories: resultados.valoresXIndicador,
+                            },
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: 'Porcentaje'
+                                }
+                            },
+                            plotOptions: {
+                                column: {
+                                    stacking: 'normal',
+                                    dataLabels: {
+                                        enabled: true,
+                                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                                    }
+                                }
+                            },
+                            series: []
+                        });
+                        // Creación dinámica de series
+                        var chart = $('#graficoInfraestructuraNuevaProvinciaCanton').highcharts();
+                        for (var i = 0; i < resultados.valoresYIndicador.length; i++) {
+                            var nombre = resultados.valoresYIndicador[i].name;
+                            /*chart.addSeries({
+                             name: nombre,
+                             data: resultados.valoresYIndicador[i].data
+                             
+                             });*/
+                            if (resultados.valoresYIndicador.length === 3) {
+                                //1=terminadas VERDE
+                                if (i === 0) {
+                                    chart.addSeries({
+                                        name: nombre,
+                                        data: resultados.valoresYIndicador[i].data,
+                                        color: '#90ed7d'
+
+                                    });
+                                } else {
+                                    //3=planificada Negro
+                                    if (i === 2) {
+                                        chart.addSeries({
+                                            name: nombre,
+                                            data: resultados.valoresYIndicador[i].data,
+                                            color: '#434348'
+
+
+                                        });
+                                    } else {
+                                        //2=EN EJECUCION  azul
+                                        chart.addSeries({
+                                            name: nombre,
+                                            data: resultados.valoresYIndicador[i].data,
+                                            color: '#7cb5ec'
+
+                                        });
+                                    }
+                                }
+                            } else {
+                                //1=terminadas VERDE
+                                //alert(resultados.valoresYIndicador[i].name);
+                                if (resultados.valoresYIndicador[i].name === 'Terminada') {
+                                    chart.addSeries({
+                                        name: nombre,
+                                        data: resultados.valoresYIndicador[i].data,
+                                        color: '#90ed7d'
+
+                                    });
+                                } else {
+                                    //3=planificada Negro
+                                    if (resultados.valoresYIndicador[i].name === 'Planificada') {
+                                        chart.addSeries({
+                                            name: nombre,
+                                            data: resultados.valoresYIndicador[i].data,
+                                            color: '#434348'
+
+
+                                        });
+                                    } else {
+                                        //2=EN EJECUCION  azul
+                                        chart.addSeries({
+                                            name: nombre,
+                                            data: resultados.valoresYIndicador[i].data,
+                                            color: '#7cb5ec'
+
+                                        });
+                                    }
+                                }
+                            }
+
+                        }
+                        chart.tooltip.refresh(chart.series[0].data[resultados.valoresXIndicador.length - 1]);
+                    }
+
+                });
+            }});
+
+        //fin
+
+        /****************************************/
+        /*Funcion para crear tabla Infraestructura nueva PROVINCIA Y CANTON Y PARROQUIA*/
+        /****************************************/
+        $.ajax({
+            url: "cadenaInfraestructura.txt",
+            dataType: "text",
+            success: function(data) {
+                //var datos = "http://192.168.50.76:8080/WSObservatorio/webresources/infraestructura/obras/" + codigoProvincia + "/" + codigoCanton + "/" + codigoParroquia;
+                ipserver = data;
+                var datos = ipserver + "/WSObservatorio/webresources/infraestructura/obras/" + codigoProvincia + "/" + codigoCanton + "/" + codigoParroquia;
+                $.getJSON(datos, function(resultados) {
+                    if (resultados.provincia !== null) {
+                        //alert(resultados.nombreIndicador);
+                        $('#tablaInfraestructuraNuevaProvinciaCantonParroquia').html("");
+
+                        var titulo = "<div class='tituloTablas'>"
+                                + "<span> Infraestructura nueva parroquia " + resultados.parroquia + "</span></div>";
+
+                        /*Se setea la cabecera*/
+                        var cabecera = "<table><thead><tr><td style=' text-align: center' rowspan='2'><p>SECTOR</p></td>"
+                                + "<td colspan='" + (resultados.valoresYIndicador.length + 1) + "'style=' text-align: center'>ESTADO DE LA OBRA</td></tr><tr>";
+                        for (var i = 0; i < resultados.valoresYIndicador.length; i++) {
+                            cabecera = cabecera + "<td style=' text-align: center'>" + resultados.valoresYIndicador[i].name + "</td>"
+                        }
+                        cabecera = cabecera + "<td style=' text-align: center'>TOTAL</td></tr></thead>";
+                        var cuerpo = "<tbody>";
+                        //datos del estado de la obra por institucion
+                        for (var i = 0; i < resultados.valoresXIndicador.length; i++) {
+                            cuerpo = cuerpo + "<tr><td style=' text-align: center'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + codigoParroquia + "&" + resultados.valoresXClaveValor[i].codigo + ">" + resultados.valoresXClaveValor[i].valor + "</a></td>"
+                            var sum = 0;
+                            for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
+                                if (resultados.valoresYIndicador[j].data[i] != null) {
+                                    cuerpo = cuerpo + "<td style=' text-align: left'>" + resultados.valoresYIndicador[j].data[i] + "</td>"
+                                    sum = sum + resultados.valoresYIndicador[j].data[i];
+                                } else {
+                                    cuerpo = cuerpo + "<td style=' text-align: left'> </td>"
+                                }
+                            }
+                            cuerpo = cuerpo + "<td style=' text-align: left'>" + sum + " </td>"
+                            cuerpo = cuerpo + "</tr>";
+                        }
+
+                        // Obtener los totales generales
+                        cuerpo = cuerpo + "<tr><td style=' text-align: center'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + codigoParroquia + "&" + "-1>Total General</td></a>";
+                        //alert(resultados.valoresYIndicador[0].data.length)
+                        var totalGeneral = 0;
+                        for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
+                            var totalColumna = 0;
+                            for (var h = 0; h < resultados.valoresYIndicador[j].data.length; h++) {
+                                if (resultados.valoresYIndicador[j].data[h] != null) {
+                                    totalColumna = totalColumna + resultados.valoresYIndicador[j].data[h];
+                                    totalGeneral = totalGeneral + resultados.valoresYIndicador[j].data[h];
+                                }
+                            }
+                            cuerpo = cuerpo + "<td style=' text-align: left'>" + totalColumna + "</td>"
+                        }
+                        cuerpo = cuerpo + "<td style=' text-align: left'>" + totalGeneral + "</td>"
+                        cuerpo = cuerpo + "</tr>";
+                        var pie = "</tbody></table>";
+                        $('#tablaInfraestructuraNuevaProvinciaCantonParroquia').append(titulo + cabecera + cuerpo + pie);
+
+                    }
+                });
+            }});
+
+        //fin
+
+
+        /****************************************/
+        /*Funcion para crear graficas Infraestructura */
+        /****************************************/
+        $.ajax({
+            url: "cadenaInfraestructura.txt",
+            dataType: "text",
+            success: function(data) {
+                //var datos = "http://192.168.50.76:8080/WSObservatorio/webresources/infraestructura/obras/" + codigoProvincia + "/" + codigoCanton + "/" + codigoParroquia;
+                ipserver = data;
+                var datos = ipserver + "/WSObservatorio/webresources/infraestructura/obras/" + codigoProvincia + "/" + codigoCanton + "/" + codigoParroquia;
+                $.getJSON(datos, function(resultados) {
+                    if (resultados.provincia !== null) {
+
+                        /*
+                         * Gráfico en HighCharts
+                         */
+                        $('#graficoInfraestructuraNuevaProvinciaCantonParroquia').highcharts({
+                            chart: {
+                                type: 'column',
+                                style: {
+                                    fontFamily: 'Helvetica' // default font
+
+                                }
+                            },
+                            title: {
+                                text: resultados.nombreIndicador
+                            },
+                            subtitle: {
+                                text: resultados.fuenteIndicador + "/" + resultados.institucionFuente
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            xAxis: {
+                                categories: resultados.valoresXIndicador,
+                            },
+                            yAxis: {
+                                min: 0,
+                                title: {
+                                    text: 'Porcentaje'
+                                }
+                            },
+                            plotOptions: {
+                                column: {
+                                    stacking: 'normal',
+                                    dataLabels: {
+                                        enabled: true,
+                                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                                    }
+                                }
+                            },
+                            series: []
+                        });
+                        // Creación dinámica de series
+                        var chart = $('#graficoInfraestructuraNuevaProvinciaCantonParroquia').highcharts();
+                        for (var i = 0; i < resultados.valoresYIndicador.length; i++) {
+                            var nombre = resultados.valoresYIndicador[i].name;
+                            /*chart.addSeries({
+                             name: nombre,
+                             data: resultados.valoresYIndicador[i].data
+                             
+                             });*/
+                            if (resultados.valoresYIndicador.length === 3) {
+                                //1=terminadas VERDE
+                                if (i === 0) {
+                                    chart.addSeries({
+                                        name: nombre,
+                                        data: resultados.valoresYIndicador[i].data,
+                                        color: '#90ed7d'
+
+                                    });
+                                } else {
+                                    //3=planificada Negro
+                                    if (i === 2) {
+                                        chart.addSeries({
+                                            name: nombre,
+                                            data: resultados.valoresYIndicador[i].data,
+                                            color: '#434348'
+
+
+                                        });
+                                    } else {
+                                        //2=EN EJECUCION  azul
+                                        chart.addSeries({
+                                            name: nombre,
+                                            data: resultados.valoresYIndicador[i].data,
+                                            color: '#7cb5ec'
+
+                                        });
+                                    }
+                                }
+                            } else {
+                                //1=terminadas VERDE
+                                //alert(resultados.valoresYIndicador[i].name);
+                                if (resultados.valoresYIndicador[i].name === 'Terminada') {
+                                    chart.addSeries({
+                                        name: nombre,
+                                        data: resultados.valoresYIndicador[i].data,
+                                        color: '#90ed7d'
+
+                                    });
+                                } else {
+                                    //3=planificada Negro
+                                    if (resultados.valoresYIndicador[i].name === 'Planificada') {
+                                        chart.addSeries({
+                                            name: nombre,
+                                            data: resultados.valoresYIndicador[i].data,
+                                            color: '#434348'
+
+
+                                        });
+                                    } else {
+                                        //2=EN EJECUCION  azul
+                                        chart.addSeries({
+                                            name: nombre,
+                                            data: resultados.valoresYIndicador[i].data,
+                                            color: '#7cb5ec'
+
+                                        });
+                                    }
+                                }
+                            }
+
+                        }
+                        chart.tooltip.refresh(chart.series[0].data[resultados.valoresXIndicador.length - 1]);
+                    }
+
+                });
+            }});
+
+        //fin
 
 
     }
@@ -793,8 +1220,3 @@ function init() {
     }
     ;
 }
-
-
-
-
-
