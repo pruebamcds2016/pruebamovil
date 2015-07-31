@@ -11,24 +11,37 @@ $(document).ready(function() {
         id_provincia = elem[0];
         id_canton = elem[1];
         id_parroquia = elem[2];
+        id_institucion = elem[3];
+        id_estado = elem[4];
+
     }
-
-    if (id_provincia === '3') {
-        url = "cnsT1.html";
+    //Cuando en la url tien maas de 3 parametros en la url
+    if (elem.length > 3) {
+        url = "DetalleInfraestructuraSocial.html";
     } else {
-        if (id_parroquia === '0') {
-
-            url = "cnsT2.html";
+        if (id_provincia === '3') {
+            url = "cnsT1.html";
         } else {
+            if (id_parroquia === '0') {
 
-            url = "cnsT3.html";
+                url = "cnsT2.html";
+            } else {
+
+                url = "cnsT3.html";
+            }
         }
+
     }
 
 
     var pageTitle = document.title; //HTML page title
-    var pageUrl = 'http://192.168.50.76:8383/share/' + url + '?' + id_provincia + '&' + id_canton + '&' + id_parroquia;
-    ; //Location of the page
+    if (elem.length > 3) {
+        var pageUrl = 'http://192.168.50.76:8383/share/' + url + '?' + id_provincia + '&' + id_canton + '&' + id_parroquia+ '&' + id_institucion + '&' + id_estado;
+    } else {
+        var pageUrl = 'http://192.168.50.76:8383/share/' + url + '?' + id_provincia + '&' + id_canton + '&' + id_parroquia;
+    }
+
+    //Location of the page
     var openLink = '';
 
 

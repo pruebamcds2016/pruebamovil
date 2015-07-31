@@ -11,7 +11,7 @@ and open the template in the editor.
         <script src="js/libs/jquery-1.9.1.min/jquery-1.9.1.min.js"></script>
         <script src="js/libs/jquery-ui/jquery-ui.js"></script>
         <script src="js/libs/knockout-2.2.1/knockout-min.js"></script>
-        <script src="js/panel/configFicha.js"></script>
+        <script src="js/panel/configDetalleInfraestructuraSocial.js"></script>
         <script src="js/panel/skel.min.js"></script>
         <script src="js/panel/skel-panels.min.js"></script>
         <script src="js/libs/jquery-ui/jquery-ui.js"></script>
@@ -20,6 +20,7 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/jquery-ui/jquery-ui-1.10.4.custom.css">
 
+        <!--<script type="text/javascript" src="js/libs/jquery-tablesorter/jquery-latest.js"></script>--> 
 
     </head>
     <body>
@@ -48,9 +49,9 @@ and open the template in the editor.
                             <thead>
                                 <tr>
                                     <th style="text-align: center; font-family: hheavy"><div id="provinciaTitulo"> </div></th>
-                                    <th style="text-align: center; font-family: hheavy"><div id="cantonTitulo"></div></th>
+                            <th style="text-align: center; font-family: hheavy"><div id="cantonTitulo"></div></th>
 
-                                </tr>
+                            </tr>
                             </thead>
                             <tbody>
 
@@ -63,26 +64,23 @@ and open the template in the editor.
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <div class ="loadingPag" >
                         <div class="absoluta">Espere un momento</div>
                     </div>
 
                     <br>
                     <div class="infoTerritorial">
-                        
+
                         <div id="tablaDetalleInfraestructuraEstadoObra">
 
-                            
+
                         </div>
                         <br>
-                        
-
-                        <script src="js/highcharts/highcharts.js"></script>
-
+                        <script src="js/navegadorPI.js"></script>
                         <script src="js/territoriales/InfraestructuraNueva.js"></script>
 
-                        <script src="js/navegadorPI.js"></script>
+
 
 
                     </div>
@@ -92,10 +90,30 @@ and open the template in the editor.
 
 
                 </section>
-                
+
             </div>
 
         </div>
-        
+        <!-- Bottom Panel -->
+        <div id="bottomPanel">
+            <div id="labelShare" >Compartir</div> 
+            <div class="row">
+                <div class="2u">
+                    <a class="email button-wrap" href="javascript://" ><span>E-mail</span></a>
+                </div>
+                <div class="2u">
+                    <a class="facebook button-wrap" href="javascript://" ><span>Facebook</span></a>
+                </div>
+                <div class="3u">
+                    <a class="twitter button-wrap" href="javascript://" ><span>Twitter</span></a>
+                </div>
+                <div class="3u">
+                    <a class="google button-wrap" href="javascript://" ><span>Google+</span></a>
+                </div>
+                <div class="3u">
+                    <a id="btnWhatsApp" class="whatsapp button-wrap" href="javascript://"><span>WhatsApp</span></a>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
