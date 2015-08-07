@@ -10,9 +10,9 @@ Version 1.5.7
 
 /* You can change these values */
 var image_path = "";
-var image_up = "arrow-up.gif";
-var image_down = "arrow-down.gif";
-var image_none = "arrow-none.gif";
+var image_up = "";
+var image_down = "";
+var image_none = "";
 var europeandate = true;
 var alternate_row_colors = true;
 
@@ -23,23 +23,18 @@ var SORT_COLUMN_INDEX;
 var thead = false;
 
 function sortables_init() {
-    alert("hola");
 	// Find all tables with class sortable and make them sortable
 	if (!document.getElementsByTagName) return;
 	tbls = document.getElementsByTagName("table");
-        //alert(tbls.length);
 	for (ti=0;ti<tbls.length;ti++) {
 		thisTbl = tbls[ti];
-                //alert(thisTbl);
-                ts_makeSortable(thisTbl);
-		if (((' '+thisTbl.className+' ').indexOf("sortable") !== -1) && (thisTbl.id)) {
+		if (((' '+thisTbl.className+' ').indexOf("sortable") != -1) && (thisTbl.id)) {
 			ts_makeSortable(thisTbl);
 		}
 	}
 }
 
 function ts_makeSortable(t) {
-        alert("lore");
 	if (t.rows && t.rows.length > 0) {
 		if (t.tHead && t.tHead.rows.length > 0) {
 			var firstRow = t.tHead.rows[t.tHead.rows.length-1];
@@ -55,7 +50,7 @@ function ts_makeSortable(t) {
 		var cell = firstRow.cells[i];
 		var txt = ts_getInnerText(cell);
 		if (cell.className != "unsortable" && cell.className.indexOf("unsortable") == -1) {
-			cell.innerHTML = '<a href="#" class="sortheader" onclick="ts_resortTable(this, '+i+');return false;">'+txt+'<span class="sortarrow">&nbsp;&nbsp;<img src="'+ image_path + image_none + '" alt="&darr;"/></span></a>';
+			cell.innerHTML = '<a href="#" class="sortheader" onclick="ts_resortTable(this, '+i+');return false;">'+txt+'<span class="sortarrow">&nbsp;&nbsp;</span></a>';
 		}
 	}
 	if (alternate_row_colors) {
@@ -134,11 +129,11 @@ function ts_resortTable(lnk, clid) {
 	}
 	newRows.sort(sortfn);
 	if (span.getAttribute("sortdir") == 'down') {
-			ARROW = '&nbsp;&nbsp;<img src="'+ image_path + image_down + '" alt="&darr;"/>';
+			ARROW = '&nbsp;&nbsp;';
 			newRows.reverse();
 			span.setAttribute('sortdir','up');
 	} else {
-			ARROW = '&nbsp;&nbsp;<img src="'+ image_path + image_up + '" alt="&uarr;"/>';
+			ARROW = '&nbsp;&nbsp;';
 			span.setAttribute('sortdir','down');
 	} 
     // We appendChild rows that already exist to the tbody, so it moves them rather than creating new ones
@@ -158,7 +153,7 @@ function ts_resortTable(lnk, clid) {
 	for (var ci=0;ci<allspans.length;ci++) {
 		if (allspans[ci].className == 'sortarrow') {
 			if (getParent(allspans[ci],"table") == getParent(lnk,"table")) { // in the same table as us?
-				allspans[ci].innerHTML = '&nbsp;&nbsp;<img src="'+ image_path + image_none + '" alt="&darr;"/>';
+				allspans[ci].innerHTML = '&nbsp;&nbsp;';
 			}
 		}
 	}		

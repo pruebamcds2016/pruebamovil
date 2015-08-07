@@ -102,7 +102,7 @@
  */
 
 (function ($) {
-    alert("holauuuuuuuuuuuuuuuu")
+    //alert("holauuuuuuuuuuuuuuuu")
     $.extend({
         tablesorter: new
         function () {

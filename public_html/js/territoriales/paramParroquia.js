@@ -11,6 +11,12 @@ var mapa;
 var cadena = "";
 var estiloProvincia;
 var control = 0;
+var viviendas;
+var obrasNacional;
+var obrasCantonal;
+var obrasParroquial;
+var divGrafica;
+
 
 
 /*Funcion init() ubicada en el Onload de la pagina*/
@@ -344,254 +350,6 @@ function init() {
             }
         });
 
-        //POBLACION POR CICLO DE VIDA
-
-        $.ajax({
-            url: "cadena.txt",
-            dataType: "text",
-            success: function(data) {
-                ipserver = data;
-                //var datos = "http://localhost:8080/SWSISEcuador/webresources/territorial/consultaCicloVida/" + codigo_prv + "/" + codigo_ciu + "/" + codigo_par;
-                var datos = ipserver + "/SWSISEcuador/webresources/territorial/consultaCicloVida/" + codigo_prv + "/" + codigo_ciu + "/" + codigo_par;
-
-                $.getJSON(datos, function(result1) {
-
-                    /*Se arma la tabla dinámica */
-                    $("#divCicloVida").html("");
-                    $.each(result1, function() {
-                        /*Se define la cabecera de la tabla*/
-                        var cabecera =
-                                "<table><thead><tr><th></th>"
-                                + "<th>" + nombre_ciu + "</th><th>" + nombre_par + "</th></tr></thead>"
-                                + "<tbody>";
-                        var cuerpo = "";
-                        /*Se realiza un each recorriendo la lista de los indicadores*/
-                        $.each(this.lista, function() {
-                            cuerpo = cuerpo
-                                    + "<tr>"
-                                    + "<td style='text-align: left'>" + this.nombre_indicador + "</td>"
-                                    + "<td>" + format(this.valor_indicador_canton) + "</td>"
-                                    + "<td>" + format(this.valor_indicador_parroquia) + "</td>"
-                                    + "</tr>";
-                        });
-                        var pie = "</tbody></table>";
-                        var tabla = cabecera + cuerpo + pie;
-
-                        var titulo = "<div class='tituloTablas'>"
-                                + "<span>" + this.nombre_grupo + "</span></div>";
-                        var grafica = "";
-                        // if (this.lista[0].serial_tema === 65) {
-
-
-                        // grafica = "<div id='divPoblacion'></div>";
-                        //}
-                        //if (this.lista[0].serial_tema === 67) {
-
-
-                        //grafica = "<div id='divVivienda'></div>";
-                        // }
-
-                        /*.append: muestra la tabla que se construyo*/
-                        $("#divCicloVida").append(titulo + tabla + grafica);
-
-
-                    });
-                });
-            }
-        });
-
-        //INDICADORES GENERALES
-
-        $.ajax({
-            url: "cadena.txt",
-            dataType: "text",
-            success: function(data) {
-                ipserver = data;
-                //var datos = "http://localhost:8080/SWSISEcuador/webresources/territorial/consultaIndicadorGeneral/" + codigo_prv + "/" + codigo_ciu + "/" + codigo_par;
-                var datos = ipserver + "/SWSISEcuador/webresources/territorial/consultaIndicadorGeneral/" + codigo_prv + "/" + codigo_ciu + "/" + codigo_par;
-
-                $.getJSON(datos, function(result1) {
-
-                    /*Se arma la tabla dinámica */
-                    $("#divIndicadorGeneral").html("");
-                    $.each(result1, function() {
-                        /*Se define la cabecera de la tabla*/
-                        var cabecera =
-                                "<table><thead><tr><th></th>"
-                                + "<th>" + nombre_ciu + "</th><th>" + nombre_par + "</th></tr></thead>"
-                                + "<tbody>";
-                        var cuerpo = "";
-                        /*Se realiza un each recorriendo la lista de los indicadores*/
-                        $.each(this.lista, function() {
-                            cuerpo = cuerpo
-                                    + "<tr>"
-                                    + "<td style='text-align: left'>" + this.nombre_indicador + "</td>"
-                                    + "<td>" + format(this.valor_indicador_canton) + "</td>"
-                                    + "<td>" + format(this.valor_indicador_parroquia) + "</td>"
-                                    + "</tr>";
-                        });
-                        var pie = "</tbody></table>";
-                        var tabla = cabecera + cuerpo + pie;
-
-                        var titulo = "<div class='tituloTablas'>"
-                                + "<span>" + this.nombre_grupo + "</span></div>";
-                        var grafica = "";
-
-                        $("#divIndicadorGeneral").append(titulo + tabla + grafica);
-
-
-                    });
-                });
-            }
-        });
-
-        /****************************************/
-        /*Funcion para consultar distribucion geografica*/
-        /****************************************/
-
-
-        $.ajax({
-            url: "cadena.txt",
-            dataType: "text",
-            success: function(data) {
-                ipserver = data;
-                //Se realiza la consulta a nivel de canton y con la informacion se arma la tabla
-                // var datos = ipserver + "/SWSISEcuador/webresources/distribucionGeografica/canton/17/1";
-                //var datos = "http://localhost:8080/SWSISEcuador/webresources/distribucionGeografica/parroquia/" + codigo_prv + "/" + codigo_ciu + "/" + codigo_par;
-                var datos = ipserver + "/SWSISEcuador/webresources/distribucionGeografica/parroquia/" + codigo_prv + "/" + codigo_ciu + "/" + codigo_par;
-
-                $.getJSON(datos, function(resultados) {
-
-                    // alert(resultados);
-                    $('#distribucionGeografica').html("");
-
-                    var titulo = "<div class='tituloTablas'>"
-                            + "<span> Distribución geográfica (distritos por parroquias) </span></div>";
-
-                    ///*Se setea la cabecera
-                    var cabecera = "<table><thead><tr><td style=' text-align: center'><p>Distrito</p></td>\n\
-                    <td style=' text-align: center'><p>Cantón</p></td>\n\
-                    <td style=' text-align: center'><p>Personas</p></td></tr></thead>";
-
-
-                    var cuerpo = "<tbody>";
-
-                    //alert(resultados.length);
-                    $.each(resultados, function() {
-                        //Se agrupan las filas y las columnas para dar formato a la tabla
-                        cuerpo = cuerpo + "<td style=' text-align: center' rowspan='" + this.lista.length + "'>" + this.distrito + "</td>"
-                                + "<td style=' text-align: left'>" + this.lista[0].nombre + "</td>"
-                                + " <td style=' text-align: right'>" + this.lista[0].valor + "</td></tr>";
-                        for (var i = 1; i < this.lista.length; i++) {
-                            cuerpo = cuerpo
-                                    + "<tr><td style=' text-align: left'>" + this.lista[i].nombre + "</td>"
-                                    + " <td style=' text-align: right'>" + this.lista[i].valor + "</td></tr>";
-                        }
-                    });
-                    var pie = "</tbody></table>";
-
-                    $('#distribucionGeografica').append(titulo + cabecera + cuerpo + pie);
-                });
-            }
-        });
-
-        /*************************************************/
-        /*Funcion para consultar Distribucion Poblacional*/
-        /*************************************************/
-        /*
-         $.ajax({
-         url: "cadena.txt",
-         dataType: "text",
-         success: function(data) {
-         ipserver = data;
-         //Se realiza la consulta a nivel de canton y con la informacion se arma la tabla
-         // var datos = ipserver + "/SWSISEcuador/webresources/distribucionGeografica/canton/17/1";
-         var datos = "http://localhost:8080/SWSISEcuador/webresources/distribucionPoblacional/parroquia/" + codigo_prv + "/" + codigo_ciu + "/" + codigo_par;
-         ;
-         
-         $.getJSON(datos, function(resultados) {
-         
-         // alert(resultados);
-         $('#distribucionPoblacional').html("");
-         
-         var titulo = "<div class='tituloTablas'>"
-         + "<span> Distribución poblacional (parroquias por cantón) </span></div>";
-         
-         //*Se setea la cabecera
-         var cabecera = "<table><thead><tr><td style=' text-align: center'><p>Cantón</p></td>\n\
-         <td style=' text-align: center'><p>Poblacion</p></td></tr></thead>";
-         
-         var cuerpo = "<tbody>";
-         //alert(resultados.length);
-         //alert(resultados[i].nombre);
-         for (var i = 0; i < resultados.length; i++) {
-         
-         cuerpo = cuerpo
-         + "<tr><td style=' text-align: left'>" + resultados[i].nombre + "</td>"
-         + " <td style=' text-align: right'>" + resultados[i].valor + "</td></tr>";
-         
-         }
-         ;
-         
-         var pie = "</tbody></table>";
-         
-         $('#distribucionPoblacional').append(titulo + cabecera + cuerpo + pie);
-         });
-         }
-         });*/
-
-
-        /****************************************/
-        /*Funcion para consultar infraestructura*/
-        /****************************************/
-
-
-        $.ajax({
-            url: "cadena.txt",
-            dataType: "text",
-            success: function(data) {
-                ipserver = data;
-                /*Se realiza la consulta a nivel de canton y con la informacion se arma la tabla*/
-                //  var datos = ipserver + "/SWSISEcuador/webresources/infraestructura/canton/" + codigo_prv + "/" + codigo_ciu;
-                //var datos = "http://localhost:8080/SWSISEcuador/webresources/infraestructura/parroquia/" + codigo_prv + "/" + codigo_ciu + "/" + codigo_par;
-                var datos = ipserver + "/SWSISEcuador/webresources/infraestructura/parroquia/" + codigo_prv + "/" + codigo_ciu + "/" + codigo_par;
-
-
-                $.getJSON(datos, function(resultados) {
-                    $('#infraestructura').html("");
-
-                    var titulo = "<div class='tituloTablas'>"
-                            + "<span> Oferta de Servicios parroquia " + resultados[0].dpa + "</span></div>";
-
-                    /*Se setea la cabecera*/
-                    var cabecera = "<table><thead><tr><td style=' text-align: center' rowspan='2'><p>Ministerios</p></td>"
-                            + "<td colspan='2'style=' text-align: center'>Infraestructura actual</td></tr><tr><td style=' text-align: center'>Tipo</td>"
-                            + "<td style=' text-align: center'>Unidades</td></tr></thead>";
-
-                    var cuerpo = "<tbody>";
-
-                    // alert(resultados[0].canton);
-
-                    $.each(resultados, function() {
-
-                        /*Se agrupan las filas y las columnas para dar formato a la tabla*/
-                        cuerpo = cuerpo + "<td style=' text-align: center' rowspan='" + this.lista.length + "'>" + this.institucion + "</td>"
-                                + "<td style=' text-align: left'>" + this.lista[0].nombre_infraestructura + "</td>"
-                                + " <td style=' text-align: right'>" + this.lista[0].valor + "</td></tr>";
-                        for (var i = 1; i < this.lista.length; i++) {
-                            cuerpo = cuerpo
-                                    + "<tr><td style=' text-align: left'>" + this.lista[i].nombre_infraestructura + "</td>"
-                                    + " <td style=' text-align: right'>" + this.lista[i].valor + "</td></tr>";
-                        }
-                    });
-                    var pie = "</tr></tbody></table>";
-
-                    $('#infraestructura').append(titulo + cabecera + cuerpo + pie);
-                });
-            }
-        });
-
-
 
         /****************************************/
         /*Funcion para crear graficas Poblacion*/
@@ -678,6 +436,199 @@ function init() {
             }});
 
 
+
+        //POBLACION POR CICLO DE VIDA
+        $("#divCicloVida").css("display", "none");
+        $("#menosCicloVida").hide();
+        $("#menosCicloVida").click(function(event) {
+            event.preventDefault();
+            $("#divCicloVida").hide();
+            $("#moreCicloVida").show();
+            $("#menosCicloVida").hide();
+        });
+        $("#moreCicloVida").click(function(event) {
+            $("#moreCicloVida").hide();
+            $("#menosCicloVida").show();
+            $("#divCicloVida").show();
+        });
+        $.ajax({
+            url: "cadena.txt",
+            dataType: "text",
+            success: function(data) {
+                ipserver = data;
+                //var datos = "http://localhost:8080/SWSISEcuador/webresources/territorial/consultaCicloVida/" + codigo_prv + "/" + codigo_ciu + "/" + codigo_par;
+                var datos = ipserver + "/SWSISEcuador/webresources/territorial/consultaCicloVida/" + codigo_prv + "/" + codigo_ciu + "/" + codigo_par;
+
+                $.getJSON(datos, function(result1) {
+
+                    /*Se arma la tabla dinámica */
+                    $("#divCicloVida").html("");
+                    $.each(result1, function() {
+                        /*Se define la cabecera de la tabla*/
+                        var cabecera =
+                                "<table><thead><tr><th></th>"
+                                + "<th>" + nombre_ciu + "</th><th>" + nombre_par + "</th></tr></thead>"
+                                + "<tbody>";
+                        var cuerpo = "";
+                        /*Se realiza un each recorriendo la lista de los indicadores*/
+                        $.each(this.lista, function() {
+                            cuerpo = cuerpo
+                                    + "<tr>"
+                                    + "<td style='text-align: left'>" + this.nombre_indicador + "</td>"
+                                    + "<td>" + format(this.valor_indicador_canton) + "</td>"
+                                    + "<td>" + format(this.valor_indicador_parroquia) + "</td>"
+                                    + "</tr>";
+                        });
+                        var pie = "</tbody></table>";
+                        var tabla = cabecera + cuerpo + pie;
+
+                        var titulo = "<div class='tituloTablas'>"
+                                + "<span>" + this.nombre_grupo + "</span></div>";
+                        $('#moreCicloVida').html(titulo + "<p>Ver más...</p>");
+                        var grafica = "";
+                        // if (this.lista[0].serial_tema === 65) {
+
+
+                        // grafica = "<div id='divPoblacion'></div>";
+                        //}
+                        //if (this.lista[0].serial_tema === 67) {
+
+
+                        //grafica = "<div id='divVivienda'></div>";
+                        // }
+
+                        /*.append: muestra la tabla que se construyo*/
+                        $("#divCicloVida").append(titulo + tabla + grafica);
+
+
+                    });
+                });
+            }
+        });
+
+        //INDICADORES GENERALES
+        $("#divIndicadorGeneral").css("display", "none");
+        $("#divVivienda").css("display", "none");
+        $("#menosIndicadorGeneral").hide();
+        $("#menosIndicadorGeneral").click(function(event) {
+            event.preventDefault();
+            $("#divIndicadorGeneral").hide();
+            //$("#graficoInfraestructuraNueva").hide();
+            $("#divVivienda").html("");
+            $("#moreIndicadorGeneral").show();
+            $("#menosIndicadorGeneral").hide();
+        });
+        $("#moreIndicadorGeneral").click(function(event) {
+            $("#moreIndicadorGeneral").hide();
+            $("#menosIndicadorGeneral").show();
+            $("#divIndicadorGeneral").show();
+            $("#divVivienda").show();
+            //divGrafica = '#graficoInfraestructuraNueva';
+            graficaViviendas(viviendas);
+
+        });
+        $.ajax({
+            url: "cadena.txt",
+            dataType: "text",
+            success: function(data) {
+                ipserver = data;
+                //var datos = "http://localhost:8080/SWSISEcuador/webresources/territorial/consultaIndicadorGeneral/" + codigo_prv + "/" + codigo_ciu + "/" + codigo_par;
+                var datos = ipserver + "/SWSISEcuador/webresources/territorial/consultaIndicadorGeneral/" + codigo_prv + "/" + codigo_ciu + "/" + codigo_par;
+
+                $.getJSON(datos, function(result1) {
+
+                    /*Se arma la tabla dinámica */
+                    $("#divIndicadorGeneral").html("");
+                    $.each(result1, function() {
+                        /*Se define la cabecera de la tabla*/
+                        var cabecera =
+                                "<table><thead><tr><th></th>"
+                                + "<th>" + nombre_ciu + "</th><th>" + nombre_par + "</th></tr></thead>"
+                                + "<tbody>";
+                        var cuerpo = "";
+                        /*Se realiza un each recorriendo la lista de los indicadores*/
+                        $.each(this.lista, function() {
+                            cuerpo = cuerpo
+                                    + "<tr>"
+                                    + "<td style='text-align: left'>" + this.nombre_indicador + "</td>"
+                                    + "<td>" + format(this.valor_indicador_canton) + "</td>"
+                                    + "<td>" + format(this.valor_indicador_parroquia) + "</td>"
+                                    + "</tr>";
+                        });
+                        var pie = "</tbody></table>";
+                        var tabla = cabecera + cuerpo + pie;
+
+                        var titulo = "<div class='tituloTablas'>"
+                                + "<span>" + this.nombre_grupo + "</span></div>";
+                        $('#moreIndicadorGeneral').html(titulo + "<p>Ver más...</p>");
+                        var grafica = "";
+
+                        $("#divIndicadorGeneral").append(titulo + tabla + grafica);
+
+
+                    });
+                });
+            }
+        });
+
+        //para graficar las viviendas
+        function graficaViviendas(resultados) {
+            /*
+             * Gráfico en HighCharts
+             */
+            $('#divVivienda').highcharts({
+                chart: {
+                    type: 'column',
+                    style: {
+                        fontFamily: 'Helvetica' // default font
+
+                    }
+                },
+                title: {
+                    text: resultados.nombre_indicador
+                },
+                subtitle: {
+                    text: resultados.fuente_indicador + "/" + resultados.institucion_fuente
+                },
+                credits: {
+                    enabled: false
+                },
+                xAxis: {
+                    categories: resultados.valoresX_indicador,
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Porcentaje'
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: true,
+                            color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                        }
+                    }
+                },
+                series: []
+            });
+            // Creación dinámica de series
+            var chart = $('#divVivienda').highcharts();
+            for (var i = 0; i < resultados.valoresY_indicador.length; i++) {
+                var nombre = resultados.valoresY_indicador[i].name;
+                chart.addSeries({
+                    name: nombre,
+                    data: resultados.valoresY_indicador[i].data
+
+                });
+            }
+
+
+            chart.tooltip.refresh(chart.series[0].data[resultados.valoresX_indicador.length - 1]);
+
+
+        }
         /****************************************/
         /*Funcion para crear graficas Vivienda*/
         /****************************************/
@@ -691,72 +642,189 @@ function init() {
                 //  var datos = ipserver + "/SWSISEcuador/webresources/infraestructura/canton/" + codigo_prv + "/" + codigo_ciu;
                 //var datos = "http://localhost:8080/SWSISEcuador/webresources/territorial/consultaGraficaVivienda/" + codigo_prv + "/" + codigo_ciu + "/" + codigo_par;
                 var datos = ipserver + "/SWSISEcuador/webresources/territorial/consultaGraficaVivienda/" + codigo_prv + "/" + codigo_ciu + "/" + codigo_par;
-
-
                 $.getJSON(datos, function(resultados) {
-                    // $('#divVivienda').html("");
-
-                    /*
-                     * Gráfico en HighCharts
-                     */
-                    $('#divVivienda').highcharts({
-                        chart: {
-                            type: 'column',
-                            style: {
-                                fontFamily: 'Helvetica' // default font
-
-                            }
-                        },
-                        title: {
-                            text: resultados.nombre_indicador
-                        },
-                        subtitle: {
-                            text: resultados.fuente_indicador + "/" + resultados.institucion_fuente
-                        },
-                        credits: {
-                            enabled: false
-                        },
-                        xAxis: {
-                            categories: resultados.valoresX_indicador,
-                        },
-                        yAxis: {
-                            min: 0,
-                            title: {
-                                text: 'Porcentaje'
-                            }
-                        },
-                        plotOptions: {
-                            column: {
-                                stacking: 'normal',
-                                dataLabels: {
-                                    enabled: true,
-                                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
-                                }
-                            }
-                        },
-                        series: []
-                    });
-                    // Creación dinámica de series
-                    var chart = $('#divVivienda').highcharts();
-                    for (var i = 0; i < resultados.valoresY_indicador.length; i++) {
-                        var nombre = resultados.valoresY_indicador[i].name;
-                        chart.addSeries({
-                            name: nombre,
-                            data: resultados.valoresY_indicador[i].data
-
-                        });
-                    }
-
-
-                    chart.tooltip.refresh(chart.series[0].data[resultados.valoresX_indicador.length - 1]);
-
-
-
+                    viviendas = resultados;
                 });
 
             }});
 
         //fin
+
+        /****************************************/
+        /*Funcion para consultar distribucion geografica*/
+        /****************************************/
+        $("#distribucionGeografica").css("display", "none");
+        $("#menosDistribucionGeografica").hide();
+        $("#menosDistribucionGeografica").click(function(event) {
+            event.preventDefault();
+            $("#distribucionGeografica").hide();
+            $("#moreDistribucionGeografica").show();
+            $("#menosDistribucionGeografica").hide();
+        });
+        $("#moreDistribucionGeografica").click(function(event) {
+            $("#moreDistribucionGeografica").hide();
+            $("#menosDistribucionGeografica").show();
+            $("#distribucionGeografica").show();
+        });
+        $.ajax({
+            url: "cadena.txt",
+            dataType: "text",
+            success: function(data) {
+                ipserver = data;
+                //Se realiza la consulta a nivel de canton y con la informacion se arma la tabla
+                // var datos = ipserver + "/SWSISEcuador/webresources/distribucionGeografica/canton/17/1";
+                //var datos = "http://localhost:8080/SWSISEcuador/webresources/distribucionGeografica/parroquia/" + codigo_prv + "/" + codigo_ciu + "/" + codigo_par;
+                var datos = ipserver + "/SWSISEcuador/webresources/distribucionGeografica/parroquia/" + codigo_prv + "/" + codigo_ciu + "/" + codigo_par;
+
+                $.getJSON(datos, function(resultados) {
+
+                    // alert(resultados);
+                    $('#distribucionGeografica').html("");
+
+                    var titulo = "<div class='tituloTablas'>"
+                            + "<span> Distribución geográfica (distritos por parroquias) </span></div>";
+
+                    $('#moreDistribucionGeografica').html(titulo + "<p>Ver más...</p>");
+
+                    ///*Se setea la cabecera
+                    var cabecera = "<table><thead><tr><td style=' text-align: center'><p>Distrito</p></td>\n\
+                    <td style=' text-align: center'><p>Cantón</p></td>\n\
+                    <td style=' text-align: center'><p>Personas</p></td></tr></thead>";
+
+
+                    var cuerpo = "<tbody>";
+
+                    //alert(resultados.length);
+                    $.each(resultados, function() {
+                        //Se agrupan las filas y las columnas para dar formato a la tabla
+                        cuerpo = cuerpo + "<td style=' text-align: center' rowspan='" + this.lista.length + "'>" + this.distrito + "</td>"
+                                + "<td style=' text-align: left'>" + this.lista[0].nombre + "</td>"
+                                + " <td style=' text-align: right'>" + this.lista[0].valor + "</td></tr>";
+                        for (var i = 1; i < this.lista.length; i++) {
+                            cuerpo = cuerpo
+                                    + "<tr><td style=' text-align: left'>" + this.lista[i].nombre + "</td>"
+                                    + " <td style=' text-align: right'>" + this.lista[i].valor + "</td></tr>";
+                        }
+                    });
+                    var pie = "</tbody></table>";
+
+                    $('#distribucionGeografica').append(titulo + cabecera + cuerpo + pie);
+                });
+            }
+        });
+
+        /*************************************************/
+        /*Funcion para consultar Distribucion Poblacional*/
+        /*************************************************/
+        /*
+         $.ajax({
+         url: "cadena.txt",
+         dataType: "text",
+         success: function(data) {
+         ipserver = data;
+         //Se realiza la consulta a nivel de canton y con la informacion se arma la tabla
+         // var datos = ipserver + "/SWSISEcuador/webresources/distribucionGeografica/canton/17/1";
+         var datos = "http://localhost:8080/SWSISEcuador/webresources/distribucionPoblacional/parroquia/" + codigo_prv + "/" + codigo_ciu + "/" + codigo_par;
+         ;
+         
+         $.getJSON(datos, function(resultados) {
+         
+         // alert(resultados);
+         $('#distribucionPoblacional').html("");
+         
+         var titulo = "<div class='tituloTablas'>"
+         + "<span> Distribución poblacional (parroquias por cantón) </span></div>";
+         
+         //*Se setea la cabecera
+         var cabecera = "<table><thead><tr><td style=' text-align: center'><p>Cantón</p></td>\n\
+         <td style=' text-align: center'><p>Poblacion</p></td></tr></thead>";
+         
+         var cuerpo = "<tbody>";
+         //alert(resultados.length);
+         //alert(resultados[i].nombre);
+         for (var i = 0; i < resultados.length; i++) {
+         
+         cuerpo = cuerpo
+         + "<tr><td style=' text-align: left'>" + resultados[i].nombre + "</td>"
+         + " <td style=' text-align: right'>" + resultados[i].valor + "</td></tr>";
+         
+         }
+         ;
+         
+         var pie = "</tbody></table>";
+         
+         $('#distribucionPoblacional').append(titulo + cabecera + cuerpo + pie);
+         });
+         }
+         });*/
+
+
+        /****************************************/
+        /*Funcion para consultar infraestructura*/
+        /****************************************/
+        $("#infraestructura").css("display", "none");
+        $("#menosInfraestructura").hide();
+        $("#menosInfraestructura").click(function(event) {
+            event.preventDefault();
+            $("#infraestructura").hide();
+            $("#moreInfraestructura").show();
+            $("#menosInfraestructura").hide();
+        });
+        $("#moreInfraestructura").click(function(event) {
+            $("#moreInfraestructura").hide();
+            $("#menosInfraestructura").show();
+            $("#infraestructura").show();
+        });
+        $.ajax({
+            url: "cadena.txt",
+            dataType: "text",
+            success: function(data) {
+                ipserver = data;
+                /*Se realiza la consulta a nivel de canton y con la informacion se arma la tabla*/
+                //  var datos = ipserver + "/SWSISEcuador/webresources/infraestructura/canton/" + codigo_prv + "/" + codigo_ciu;
+                //var datos = "http://localhost:8080/SWSISEcuador/webresources/infraestructura/parroquia/" + codigo_prv + "/" + codigo_ciu + "/" + codigo_par;
+                var datos = ipserver + "/SWSISEcuador/webresources/infraestructura/parroquia/" + codigo_prv + "/" + codigo_ciu + "/" + codigo_par;
+
+
+                $.getJSON(datos, function(resultados) {
+                    $('#infraestructura').html("");
+
+                    var titulo = "<div class='tituloTablas'>"
+                            + "<span> Oferta de Servicios parroquia " + resultados[0].dpa + "</span></div>";
+
+                    $('#moreInfraestructura').html(titulo + "<p>Ver más...</p>");
+
+                    /*Se setea la cabecera*/
+                    var cabecera = "<table><thead><tr><td style=' text-align: center' rowspan='2'><p>Ministerios</p></td>"
+                            + "<td colspan='2'style=' text-align: center'>Infraestructura actual</td></tr><tr><td style=' text-align: center'>Tipo</td>"
+                            + "<td style=' text-align: center'>Unidades</td></tr></thead>";
+
+                    var cuerpo = "<tbody>";
+
+                    // alert(resultados[0].canton);
+
+                    $.each(resultados, function() {
+
+                        /*Se agrupan las filas y las columnas para dar formato a la tabla*/
+                        cuerpo = cuerpo + "<td style=' text-align: center' rowspan='" + this.lista.length + "'>" + this.institucion + "</td>"
+                                + "<td style=' text-align: left'>" + this.lista[0].nombre_infraestructura + "</td>"
+                                + " <td style=' text-align: right'>" + this.lista[0].valor + "</td></tr>";
+                        for (var i = 1; i < this.lista.length; i++) {
+                            cuerpo = cuerpo
+                                    + "<tr><td style=' text-align: left'>" + this.lista[i].nombre_infraestructura + "</td>"
+                                    + " <td style=' text-align: right'>" + this.lista[i].valor + "</td></tr>";
+                        }
+                    });
+                    var pie = "</tr></tbody></table>";
+
+                    $('#infraestructura').append(titulo + cabecera + cuerpo + pie);
+                });
+            }
+        });
+
+
+
+
 
         //para consultar en la base de datos de observatorio se requiere que sea string provincia = 17 y canton = 05
         var codigoProvincia;
@@ -786,6 +854,115 @@ function init() {
             //alert("else");
         }
 
+        //realiza la grafica en higchrt de la infraestructura
+        function graficar(resultados, divGrafica) {
+
+            if (resultados.provincoia !== null) {
+                // $('#graficaViviendas').html("");
+                //alert(resultados.nombreIndicador);
+
+                /*
+                 * Gráfico en HighCharts
+                 */
+                $(divGrafica).highcharts({
+                    chart: {
+                        type: 'column',
+                        style: {
+                            fontFamily: 'Helvetica' // default font
+
+                        }
+                    },
+                    title: {
+                        text: resultados.nombreIndicador
+                    },
+                    subtitle: {
+                        text: resultados.fuenteIndicador + "/" + resultados.institucionFuente
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    xAxis: {
+                        categories: resultados.valoresXIndicador,
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Cantidad'
+                        }
+                    },
+                    plotOptions: {
+                        column: {
+                            stacking: 'normal',
+                            dataLabels: {
+                                enabled: true,
+                                color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                            }
+                        }
+                    },
+                    series: []
+                });
+                // Creación dinámica de series
+                var chart = $(divGrafica).highcharts();
+                for (var i = 0; i < resultados.valoresYIndicador.length; i++) {
+                    var nombre = resultados.valoresYIndicador[i].name;
+                    /*chart.addSeries({
+                     name: nombre,
+                     data: resultados.valoresYIndicador[i].data
+                     
+                     });*/
+                    //Terminada
+                    if (resultados.valoresYIndicador[i].codigo === '1') {
+                        chart.addSeries({
+                            name: nombre,
+                            data: resultados.valoresYIndicador[i].data,
+                            color: '#90ed7d'
+                        });
+                    }
+                    //En ejecucion
+                    if (resultados.valoresYIndicador[i].codigo === '2') {
+                        chart.addSeries({
+                            name: nombre,
+                            data: resultados.valoresYIndicador[i].data,
+                            color: '#7cb5ec'
+                        });
+                    }
+
+                    //Suspendida
+                    if (resultados.valoresYIndicador[i].codigo === '4') {
+                        chart.addSeries({
+                            name: nombre,
+                            data: resultados.valoresYIndicador[i].data,
+                            color: '#434348'
+
+                        });
+                    }
+
+
+                }
+                chart.tooltip.refresh(chart.series[0].data[resultados.valoresXIndicador.length - 1]);
+            }
+        }
+
+        $("#tablaInfraestructuraNueva").css("display", "none");
+        $("#graficoInfraestructuraNueva").css("display", "none");
+        $("#menosInfraestructuraNueva").hide();
+        $("#menosInfraestructuraNueva").click(function(event) {
+            event.preventDefault();
+            $("#tablaInfraestructuraNueva").hide();
+            //$("#graficoInfraestructuraNueva").hide();
+            $("#graficoInfraestructuraNueva").html("");
+            $("#moreInfraestructuraNueva").show();
+            $("#menosInfraestructuraNueva").hide();
+        });
+        $("#moreInfraestructuraNueva").click(function(event) {
+            $("#moreInfraestructuraNueva").hide();
+            $("#menosInfraestructuraNueva").show();
+            $("#tablaInfraestructuraNueva").show();
+            $("#graficoInfraestructuraNueva").show();
+            divGrafica = '#graficoInfraestructuraNueva';
+            graficar(obrasNacional, divGrafica);
+        });
+
         /****************************************/
         /*Funcion para crear tabla Infraestructura NUEVA obras del sector Nacional*/
         /****************************************/
@@ -798,162 +975,64 @@ function init() {
                 ipserver = data;
                 var datos = ipserver + "/WSObservatorio/webresources/infraestructura/obras";
                 $.getJSON(datos, function(resultados) {
-                    if (resultados.provincia !== null) {
-                        //alert(resultados.nombreIndicador);
-                        $('#tablaInfraestructuraNueva').html("");
+                    //alert("una");
+                    obrasNacional = resultados;
+                    //alert(resultados.nombreIndicador);
+                    $('#tablaInfraestructuraNueva').html("");
 
-                        var titulo = "<div class='tituloTablas'>"
-                                + "<span> Infraestructura Social Emblemática Nacional (Período 2007-2015)" + resultados.provincia + "</span></div>";
+                    var titulo = "<div class='tituloTablas'>"
+                            + "<span> Infraestructura Social Emblemática Nacional (período 2007-2015)" + resultados.provincia + "</span></div>";
 
-                        /*Se setea la cabecera*/
-                        var cabecera = "<table><thead><tr><td style=' text-align: center' rowspan='2'><p>SECTOR</p></td>"
-                                + "<td colspan='" + (resultados.valoresYIndicador.length + 1) + "'style=' text-align: center'>ESTADO DE LA OBRA</td></tr><tr>";
-                        for (var i = 0; i < resultados.valoresYIndicador.length; i++) {
-                            cabecera = cabecera + "<td style=' text-align: center'>" + resultados.valoresYIndicador[i].name + "</td>"
-                        }
-                        cabecera = cabecera + "<td style=' text-align: center'>TOTAL</td></tr></thead>";
-                        var cuerpo = "<tbody>";
-                        //datos del estado de la obra por institucion
-                        for (var i = 0; i < resultados.valoresXIndicador.length; i++) {
-                            cuerpo = cuerpo + "<tr><td style=' text-align: left'><a href= InfraestructuraNueva.html?" + "-1" + "&" + "-1" + "&" + "-1" + "&" + resultados.valoresXClaveValor[i].codigo + "&" + "-1" + ">" + resultados.valoresXClaveValor[i].valor + "</a></td>"
-                            var sum = 0;
-                            for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
-                                if (resultados.valoresYIndicador[j].data[i] !== null) {
-                                    cuerpo = cuerpo + "<td style=' text-align: right'><a href= InfraestructuraNueva.html?" + "-1" + "&" + "-1" + "&" + "-1" + "&" + resultados.valoresXClaveValor[i].codigo + "&" + resultados.valoresYIndicador[j].codigo + ">" + resultados.valoresYIndicador[j].data[i] + "</a></td>"
-                                    //cuerpo = cuerpo + "<td style=' text-align: left'>" + resultados.valoresYIndicador[j].data[i] + "</td>"
-                                    sum = sum + resultados.valoresYIndicador[j].data[i];
-                                } else {
-                                    cuerpo = cuerpo + "<td style=' text-align: right'> </td>"
-                                }
-                            }
-                            cuerpo = cuerpo + "<td style=' text-align: right'>" + sum + " </td>"
-                            cuerpo = cuerpo + "</tr>";
-                        }
-
-                        // Obtener los totales generales
-                        cuerpo = cuerpo + "<tr><td style=' text-align: left'><a href= InfraestructuraNueva.html?" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1>Total General</td></a>";
-                        //alert(resultados.valoresYIndicador[0].data.length)
-                        var totalGeneral = 0;
+                    $('#moreInfraestructuraNueva').html(titulo + "<p>Ver más...</p>");
+                    /*Se setea la cabecera*/
+                    var cabecera = "<table><thead><tr><td style=' text-align: center' rowspan='2'><p>SECTOR</p></td>"
+                            + "<td colspan='" + (resultados.valoresYIndicador.length + 1) + "'style=' text-align: center'>ESTADO DE LA OBRA</td></tr><tr>";
+                    for (var i = 0; i < resultados.valoresYIndicador.length; i++) {
+                        cabecera = cabecera + "<td style=' text-align: center'>" + resultados.valoresYIndicador[i].name + "</td>"
+                    }
+                    cabecera = cabecera + "<td style=' text-align: center'>TOTAL</td></tr></thead>";
+                    var cuerpo = "<tbody>";
+                    //datos del estado de la obra por institucion
+                    for (var i = 0; i < resultados.valoresXIndicador.length; i++) {
+                        cuerpo = cuerpo + "<tr><td style=' text-align: left'><a href= InfraestructuraNueva.html?" + "-1" + "&" + "-1" + "&" + "-1" + "&" + resultados.valoresXClaveValor[i].codigo + "&" + "-1" + ">" + resultados.valoresXClaveValor[i].valor + "</a></td>"
+                        var sum = 0;
                         for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
-                            var totalColumna = 0;
-                            for (var h = 0; h < resultados.valoresYIndicador[j].data.length; h++) {
-                                if (resultados.valoresYIndicador[j].data[h] !== null) {
-                                    totalColumna = totalColumna + resultados.valoresYIndicador[j].data[h];
-                                    totalGeneral = totalGeneral + resultados.valoresYIndicador[j].data[h];
-                                }
+                            if (resultados.valoresYIndicador[j].data[i] !== null) {
+                                cuerpo = cuerpo + "<td style=' text-align: right'><a href= InfraestructuraNueva.html?" + "-1" + "&" + "-1" + "&" + "-1" + "&" + resultados.valoresXClaveValor[i].codigo + "&" + resultados.valoresYIndicador[j].codigo + ">" + resultados.valoresYIndicador[j].data[i] + "</a></td>"
+                                //cuerpo = cuerpo + "<td style=' text-align: left'>" + resultados.valoresYIndicador[j].data[i] + "</td>"
+                                sum = sum + resultados.valoresYIndicador[j].data[i];
+                            } else {
+                                cuerpo = cuerpo + "<td style=' text-align: right'> </td>"
                             }
-                            cuerpo = cuerpo + "<td style=' text-align: right'>" + totalColumna + "</td>"
                         }
-                        cuerpo = cuerpo + "<td style=' text-align: right'>" + totalGeneral + "</td>"
+                        cuerpo = cuerpo + "<td style=' text-align: right'>" + sum + " </td>"
                         cuerpo = cuerpo + "</tr>";
-                        var pie = "</tbody></table>";
-                        $('#tablaInfraestructuraNueva').append(titulo + cabecera + cuerpo + pie);
-
                     }
-                });
-            }});
 
-        //fin
-
-
-        /****************************************/
-        /*Funcion para crear graficas Infraestructura */
-        /****************************************/
-        $.ajax({
-            url: "cadenaInfraestructura.txt",
-            dataType: "text",
-            success: function(data) {
-                //var datos = "http://192.168.50.76:8080/WSObservatorio/webresources/infraestructura/obras/" + codigoProvincia;
-                ipserver = data;
-                var datos = ipserver + "/WSObservatorio/webresources/infraestructura/obras/";
-                $.getJSON(datos, function(resultados) {
-                    if (resultados.provincia !== null) {
-                        // $('#graficaViviendas').html("");
-                        //alert(resultados.nombreIndicador);
-
-                        /*
-                         * Gráfico en HighCharts
-                         */
-                        $('#graficoInfraestructuraNueva').highcharts({
-                            chart: {
-                                type: 'column',
-                                style: {
-                                    fontFamily: 'Helvetica' // default font
-
-                                }
-                            },
-                            title: {
-                                text: resultados.nombreIndicador
-                            },
-                            subtitle: {
-                                text: resultados.fuenteIndicador + "/" + resultados.institucionFuente
-                            },
-                            credits: {
-                                enabled: false
-                            },
-                            xAxis: {
-                                categories: resultados.valoresXIndicador,
-                            },
-                            yAxis: {
-                                min: 0,
-                                title: {
-                                    text: 'Cantidad'
-                                }
-                            },
-                            plotOptions: {
-                                column: {
-                                    stacking: 'normal',
-                                    dataLabels: {
-                                        enabled: true,
-                                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
-                                    }
-                                }
-                            },
-                            series: []
-                        });
-                        // Creación dinámica de series
-                        var chart = $('#graficoInfraestructuraNueva').highcharts();
-                        for (var i = 0; i < resultados.valoresYIndicador.length; i++) {
-                            var nombre = resultados.valoresYIndicador[i].name;
-                            /*chart.addSeries({
-                             name: nombre,
-                             data: resultados.valoresYIndicador[i].data
-                             
-                             });*/
-                            //Terminada
-                            if (resultados.valoresYIndicador[i].codigo === '1') {
-                                chart.addSeries({
-                                    name: nombre,
-                                    data: resultados.valoresYIndicador[i].data,
-                                    color: '#90ed7d'
-                                });
+                    // Obtener los totales generales
+                    cuerpo = cuerpo + "<tr><td style=' text-align: left'><a href= InfraestructuraNueva.html?" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1>Total General</td></a>";
+                    //alert(resultados.valoresYIndicador[0].data.length)
+                    var totalGeneral = 0;
+                    for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
+                        var totalColumna = 0;
+                        for (var h = 0; h < resultados.valoresYIndicador[j].data.length; h++) {
+                            if (resultados.valoresYIndicador[j].data[h] !== null) {
+                                totalColumna = totalColumna + resultados.valoresYIndicador[j].data[h];
+                                totalGeneral = totalGeneral + resultados.valoresYIndicador[j].data[h];
                             }
-                            //En ejecucion
-                            if (resultados.valoresYIndicador[i].codigo === '2') {
-                                chart.addSeries({
-                                    name: nombre,
-                                    data: resultados.valoresYIndicador[i].data,
-                                    color: '#7cb5ec'
-                                });
-                            }
-
-                            //Suspendida
-                            if (resultados.valoresYIndicador[i].codigo === '4') {
-                                chart.addSeries({
-                                    name: nombre,
-                                    data: resultados.valoresYIndicador[i].data,
-                                    color: '#434348'
-
-                                });
-                            }
-
-
                         }
-                        chart.tooltip.refresh(chart.series[0].data[resultados.valoresXIndicador.length - 1]);
+                        cuerpo = cuerpo + "<td style=' text-align: right'>" + totalColumna + "</td>"
                     }
+                    cuerpo = cuerpo + "<td style=' text-align: right'>" + totalGeneral + "</td>"
+                    cuerpo = cuerpo + "</tr>";
+                    var pie = "</tbody></table>";
+                    $('#tablaInfraestructuraNueva').append(titulo + cabecera + cuerpo + pie);
+
+                    //grafica
+                    //divGrafica = '#graficoInfraestructuraNueva';
+                    //graficar(obrasNacional,divGrafica );
 
                 });
-                //alert("hola");
             }});
 
         //fin
@@ -961,6 +1040,27 @@ function init() {
         /****************************************/
         /*Funcion para crear tabla Infraestructura nueva obras del sector  PROVINCIA CANTON*/
         /****************************************/
+        //para ocultar y mostrar leer mas... y leer menos...
+        $("#tablaInfraestructuraNuevaProvinciaCanton").css("display", "none");
+        $("#graficoInfraestructuraNuevaProvinciaCanton").css("display", "none");
+        $("#menosInfraestructuraNuevaProvinciaCanton").hide();
+        $("#menosInfraestructuraNuevaProvinciaCanton").click(function(event) {
+            event.preventDefault();
+            $("#tablaInfraestructuraNuevaProvinciaCanton").hide();
+            //$("#graficoInfraestructuraNueva").hide();
+            $("#graficoInfraestructuraNuevaProvinciaCanton").html("");
+            $("#moreInfraestructuraNuevaProvinciaCanton").show();
+            $("#menosInfraestructuraNuevaProvinciaCanton").hide();
+        });
+
+        $("#moreInfraestructuraNuevaProvinciaCanton").click(function(event) {
+            $("#moreInfraestructuraNuevaProvinciaCanton").hide();
+            $("#menosInfraestructuraNuevaProvinciaCanton").show();
+            $("#tablaInfraestructuraNuevaProvinciaCanton").show();
+            $("#graficoInfraestructuraNuevaProvinciaCanton").show();
+            divGrafica = '#graficoInfraestructuraNuevaProvinciaCanton';
+            graficar(obrasCantonal, divGrafica);
+        });
         $.ajax({
             url: "cadenaInfraestructura.txt",
             dataType: "text",
@@ -969,157 +1069,61 @@ function init() {
                 ipserver = data;
                 var datos = ipserver + "/WSObservatorio/webresources/infraestructura/obras/" + codigoProvincia + "/" + codigoCanton;
                 $.getJSON(datos, function(resultados) {
-                    if (resultados.provincia !== null) {
-                        //alert(resultados.nombreIndicador);
-                        $('#tablaInfraestructuraNuevaProvinciaCanton').html("");
+                    obrasCantonal = resultados;
+                    //alert(resultados.nombreIndicador);
+                    $('#tablaInfraestructuraNuevaProvinciaCanton').html("");
 
-                        var titulo = "<div class='tituloTablas'>"
-                                + "<span> Infraestructura Social Emblemática cantón " + resultados.canton + " (período 2007-2015)</span></div>";
+                    var titulo = "<div class='tituloTablas'>"
+                            + "<span> Infraestructura Social Emblemática cantón " + resultados.canton + " (período 2007-2015)</span></div>";
 
-                        /*Se setea la cabecera*/
-                        var cabecera = "<table><thead><tr><td style=' text-align: center' rowspan='2'><p>SECTOR</p></td>"
-                                + "<td colspan='" + (resultados.valoresYIndicador.length + 1) + "'style=' text-align: center'>ESTADO DE LA OBRA</td></tr><tr>";
-                        for (var i = 0; i < resultados.valoresYIndicador.length; i++) {
-                            cabecera = cabecera + "<td style=' text-align: center'>" + resultados.valoresYIndicador[i].name + "</td>"
-                        }
-                        cabecera = cabecera + "<td style=' text-align: center'>TOTAL</td></tr></thead>";
-                        var cuerpo = "<tbody>";
-                        //datos del estado de la obra por institucion
-                        for (var i = 0; i < resultados.valoresXIndicador.length; i++) {
-                            cuerpo = cuerpo + "<tr><td style=' text-align: left'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + "-1" + "&" + resultados.valoresXClaveValor[i].codigo + "&" + "-1" + ">" + resultados.valoresXClaveValor[i].valor + "</a></td>"
-                            var sum = 0;
-                            for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
-                                if (resultados.valoresYIndicador[j].data[i] !== null) {
-                                    cuerpo = cuerpo + "<td style=' text-align: right'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + "-1" + "&" + resultados.valoresXClaveValor[i].codigo + "&" + resultados.valoresYIndicador[j].codigo + ">" + resultados.valoresYIndicador[j].data[i] + "</a></td>"
-                                    //cuerpo = cuerpo + "<td style=' text-align: left'>" + resultados.valoresYIndicador[j].data[i] + "</td>"
-                                    sum = sum + resultados.valoresYIndicador[j].data[i];
-                                } else {
-                                    cuerpo = cuerpo + "<td style=' text-align: right'> </td>"
-                                }
-                            }
-                            cuerpo = cuerpo + "<td style=' text-align: right'>" + sum + " </td>"
-                            cuerpo = cuerpo + "</tr>";
-                        }
+                    $('#moreInfraestructuraNuevaProvinciaCanton').html(titulo + "<p>Ver más...</p>");
 
-                        // Obtener los totales generales
-                        cuerpo = cuerpo + "<tr><td style=' text-align: left'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + "-1" + "&" + "-1>Total General</td></a>";
-                        //alert(resultados.valoresYIndicador[0].data.length)
-                        var totalGeneral = 0;
+                    /*Se setea la cabecera*/
+                    var cabecera = "<table><thead><tr><td style=' text-align: center' rowspan='2'><p>SECTOR</p></td>"
+                            + "<td colspan='" + (resultados.valoresYIndicador.length + 1) + "'style=' text-align: center'>ESTADO DE LA OBRA</td></tr><tr>";
+                    for (var i = 0; i < resultados.valoresYIndicador.length; i++) {
+                        cabecera = cabecera + "<td style=' text-align: center'>" + resultados.valoresYIndicador[i].name + "</td>"
+                    }
+                    cabecera = cabecera + "<td style=' text-align: center'>TOTAL</td></tr></thead>";
+                    var cuerpo = "<tbody>";
+                    //datos del estado de la obra por institucion
+                    for (var i = 0; i < resultados.valoresXIndicador.length; i++) {
+                        cuerpo = cuerpo + "<tr><td style=' text-align: left'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + "-1" + "&" + resultados.valoresXClaveValor[i].codigo + "&" + "-1" + ">" + resultados.valoresXClaveValor[i].valor + "</a></td>"
+                        var sum = 0;
                         for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
-                            var totalColumna = 0;
-                            for (var h = 0; h < resultados.valoresYIndicador[j].data.length; h++) {
-                                if (resultados.valoresYIndicador[j].data[h] !== null) {
-                                    totalColumna = totalColumna + resultados.valoresYIndicador[j].data[h];
-                                    totalGeneral = totalGeneral + resultados.valoresYIndicador[j].data[h];
-                                }
+                            if (resultados.valoresYIndicador[j].data[i] !== null) {
+                                cuerpo = cuerpo + "<td style=' text-align: right'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + "-1" + "&" + resultados.valoresXClaveValor[i].codigo + "&" + resultados.valoresYIndicador[j].codigo + ">" + resultados.valoresYIndicador[j].data[i] + "</a></td>"
+                                //cuerpo = cuerpo + "<td style=' text-align: left'>" + resultados.valoresYIndicador[j].data[i] + "</td>"
+                                sum = sum + resultados.valoresYIndicador[j].data[i];
+                            } else {
+                                cuerpo = cuerpo + "<td style=' text-align: right'> </td>"
                             }
-                            cuerpo = cuerpo + "<td style=' text-align: right'>" + totalColumna + "</td>"
                         }
-                        cuerpo = cuerpo + "<td style=' text-align: right'>" + totalGeneral + "</td>"
+                        cuerpo = cuerpo + "<td style=' text-align: right'>" + sum + " </td>"
                         cuerpo = cuerpo + "</tr>";
-                        var pie = "</tbody></table>";
-                        $('#tablaInfraestructuraNuevaProvinciaCanton').append(titulo + cabecera + cuerpo + pie);
-
                     }
-                });
-            }});
 
-        //fin
-
-
-        /****************************************/
-        /*Funcion para crear graficas Infraestructura */
-        /****************************************/
-        $.ajax({
-            url: "cadenaInfraestructura.txt",
-            dataType: "text",
-            success: function(data) {
-                ipserver = data;
-                var datos = ipserver + "/WSObservatorio/webresources/infraestructura/obras/" + codigoProvincia + "/" + codigoCanton;
-                $.getJSON(datos, function(resultados) {
-                    if (resultados.provincia !== null) {
-                        // $('#graficaViviendas').html("");
-                        //alert(resultados.nombreIndicador);
-
-                        /*
-                         * Gráfico en HighCharts
-                         */
-                        $('#graficoInfraestructuraNuevaProvinciaCanton').highcharts({
-                            chart: {
-                                type: 'column',
-                                style: {
-                                    fontFamily: 'Helvetica' // default font
-
-                                }
-                            },
-                            title: {
-                                text: resultados.nombreIndicador
-                            },
-                            subtitle: {
-                                text: resultados.fuenteIndicador + "/" + resultados.institucionFuente
-                            },
-                            credits: {
-                                enabled: false
-                            },
-                            xAxis: {
-                                categories: resultados.valoresXIndicador,
-                            },
-                            yAxis: {
-                                min: 0,
-                                title: {
-                                    text: 'Cantidad'
-                                }
-                            },
-                            plotOptions: {
-                                column: {
-                                    stacking: 'normal',
-                                    dataLabels: {
-                                        enabled: true,
-                                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
-                                    }
-                                }
-                            },
-                            series: []
-                        });
-                        // Creación dinámica de series
-                        var chart = $('#graficoInfraestructuraNuevaProvinciaCanton').highcharts();
-                        for (var i = 0; i < resultados.valoresYIndicador.length; i++) {
-                            var nombre = resultados.valoresYIndicador[i].name;
-                            /*chart.addSeries({
-                             name: nombre,
-                             data: resultados.valoresYIndicador[i].data
-                             
-                             });*/
-                            //Terminada
-                            if (resultados.valoresYIndicador[i].codigo === '1') {
-                                chart.addSeries({
-                                    name: nombre,
-                                    data: resultados.valoresYIndicador[i].data,
-                                    color: '#90ed7d'
-                                });
+                    // Obtener los totales generales
+                    cuerpo = cuerpo + "<tr><td style=' text-align: left'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + "-1" + "&" + "-1>Total General</td></a>";
+                    //alert(resultados.valoresYIndicador[0].data.length)
+                    var totalGeneral = 0;
+                    for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
+                        var totalColumna = 0;
+                        for (var h = 0; h < resultados.valoresYIndicador[j].data.length; h++) {
+                            if (resultados.valoresYIndicador[j].data[h] !== null) {
+                                totalColumna = totalColumna + resultados.valoresYIndicador[j].data[h];
+                                totalGeneral = totalGeneral + resultados.valoresYIndicador[j].data[h];
                             }
-                            //En ejecucion
-                            if (resultados.valoresYIndicador[i].codigo === '2') {
-                                chart.addSeries({
-                                    name: nombre,
-                                    data: resultados.valoresYIndicador[i].data,
-                                    color: '#7cb5ec'
-                                });
-                            }
-
-                            //Suspendida
-                            if (resultados.valoresYIndicador[i].codigo === '4') {
-                                chart.addSeries({
-                                    name: nombre,
-                                    data: resultados.valoresYIndicador[i].data,
-                                    color: '#434348'
-
-                                });
-                            }
-
                         }
-                        chart.tooltip.refresh(chart.series[0].data[resultados.valoresXIndicador.length - 1]);
+                        cuerpo = cuerpo + "<td style=' text-align: right'>" + totalColumna + "</td>"
                     }
+                    cuerpo = cuerpo + "<td style=' text-align: right'>" + totalGeneral + "</td>"
+                    cuerpo = cuerpo + "</tr>";
+                    var pie = "</tbody></table>";
+                    $('#tablaInfraestructuraNuevaProvinciaCanton').append(titulo + cabecera + cuerpo + pie);
+                    //grafica
+                    //divGrafica = '#graficoInfraestructuraNuevaProvinciaCanton';
+                    //graficar(obrasCantonal,divGrafica );
 
                 });
             }});
@@ -1130,6 +1134,27 @@ function init() {
         /****************************************/
         /*Funcion para crear tabla Infraestructura nueva PROVINCIA Y CANTON Y PARROQUIA*/
         /****************************************/
+        //para ocultar y mostrar leer mas... y leer menos...
+        $("#tablaInfraestructuraNuevaProvinciaCantonParroquia").css("display", "none");
+        $("#graficoInfraestructuraNuevaProvinciaCantonParroquia").css("display", "none");
+        $("#menosInfraestructuraNuevaProvinciaCantonParroquia").hide();
+        $("#menosInfraestructuraNuevaProvinciaCantonParroquia").click(function(event) {
+            event.preventDefault();
+            $("#tablaInfraestructuraNuevaProvinciaCantonParroquia").hide();
+            //$("#graficoInfraestructuraNueva").hide();
+            $("#graficoInfraestructuraNuevaProvinciaCantonParroquia").html("");
+            $("#moreInfraestructuraNuevaProvinciaCantonParroquia").show();
+            $("#menosInfraestructuraNuevaProvinciaCantonParroquia").hide();
+        });
+
+        $("#moreInfraestructuraNuevaProvinciaCantonParroquia").click(function(event) {
+            $("#moreInfraestructuraNuevaProvinciaCantonParroquia").hide();
+            $("#menosInfraestructuraNuevaProvinciaCantonParroquia").show();
+            $("#tablaInfraestructuraNuevaProvinciaCantonParroquia").show();
+            $("#graficoInfraestructuraNuevaProvinciaCantonParroquia").show();
+            divGrafica = '#graficoInfraestructuraNuevaProvinciaCantonParroquia';
+            graficar(obrasParroquial, divGrafica);
+        });
         $.ajax({
             url: "cadenaInfraestructura.txt",
             dataType: "text",
@@ -1138,160 +1163,66 @@ function init() {
                 ipserver = data;
                 var datos = ipserver + "/WSObservatorio/webresources/infraestructura/obras/" + codigoProvincia + "/" + codigoCanton + "/" + codigoParroquia;
                 $.getJSON(datos, function(resultados) {
-                    if (resultados.provincia !== null) {
-                        //alert(resultados.nombreIndicador);
-                        $('#tablaInfraestructuraNuevaProvinciaCantonParroquia').html("");
+                    obrasParroquial = resultados;
+                    //alert(resultados.nombreIndicador);
+                    $('#tablaInfraestructuraNuevaProvinciaCantonParroquia').html("");
 
-                        var titulo = "<div class='tituloTablas'>"
-                                + "<span> Infraestructura Social Emblemática parroquia " + resultados.parroquia + " (período 2007-2015)</span></div>";
+                    var titulo = "<div class='tituloTablas'>"
+                            + "<span> Infraestructura Social Emblemática parroquia " + resultados.parroquia + " (período 2007-2015)</span></div>";
 
-                        /*Se setea la cabecera*/
-                        var cabecera = "<table><thead><tr><td style=' text-align: center' rowspan='2'><p>SECTOR</p></td>"
-                                + "<td colspan='" + (resultados.valoresYIndicador.length + 1) + "'style=' text-align: center'>ESTADO DE LA OBRA</td></tr><tr>";
-                        for (var i = 0; i < resultados.valoresYIndicador.length; i++) {
-                            cabecera = cabecera + "<td style=' text-align: center'>" + resultados.valoresYIndicador[i].name + "</td>"
-                        }
-                        cabecera = cabecera + "<td style=' text-align: center'>TOTAL</td></tr></thead>";
-                        var cuerpo = "<tbody>";
-                        //datos del estado de la obra por institucion
-                        for (var i = 0; i < resultados.valoresXIndicador.length; i++) {
-                            cuerpo = cuerpo + "<tr><td style=' text-align: left'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + codigoParroquia + "&" + resultados.valoresXClaveValor[i].codigo + "&" + "-1" + ">" + resultados.valoresXClaveValor[i].valor + "</a></td>"
-                            var sum = 0;
-                            for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
-                                if (resultados.valoresYIndicador[j].data[i] !== null) {
-                                    //cuerpo = cuerpo + "<td style=' text-align: left'>" + resultados.valoresYIndicador[j].data[i] + "</td>"
-                                    cuerpo = cuerpo + "<td style=' text-align: left'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + codigoParroquia + "&" + resultados.valoresXClaveValor[i].codigo + "&" + resultados.valoresYIndicador[j].codigo + ">" + resultados.valoresYIndicador[j].data[i] + "</a></td>"
-                                    sum = sum + resultados.valoresYIndicador[j].data[i];
-                                } else {
-                                    cuerpo = cuerpo + "<td style=' text-align: right'> </td>"
-                                }
-                            }
-                            cuerpo = cuerpo + "<td style=' text-align: right'>" + sum + " </td>"
-                            cuerpo = cuerpo + "</tr>";
-                        }
+                    $('#moreInfraestructuraNuevaProvinciaCantonParroquia').html(titulo + "<p>Ver más...</p>");
 
-                        // Obtener los totales generales
-                        cuerpo = cuerpo + "<tr><td style=' text-align: left'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + codigoParroquia + "&" + "-1>Total General</td></a>";
-                        //alert(resultados.valoresYIndicador[0].data.length)
-                        var totalGeneral = 0;
+                    /*Se setea la cabecera*/
+                    var cabecera = "<table><thead><tr><td style=' text-align: center' rowspan='2'><p>SECTOR</p></td>"
+                            + "<td colspan='" + (resultados.valoresYIndicador.length + 1) + "'style=' text-align: center'>ESTADO DE LA OBRA</td></tr><tr>";
+                    for (var i = 0; i < resultados.valoresYIndicador.length; i++) {
+                        cabecera = cabecera + "<td style=' text-align: center'>" + resultados.valoresYIndicador[i].name + "</td>"
+                    }
+                    cabecera = cabecera + "<td style=' text-align: center'>TOTAL</td></tr></thead>";
+                    var cuerpo = "<tbody>";
+                    //datos del estado de la obra por institucion
+                    for (var i = 0; i < resultados.valoresXIndicador.length; i++) {
+                        cuerpo = cuerpo + "<tr><td style=' text-align: left'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + codigoParroquia + "&" + resultados.valoresXClaveValor[i].codigo + "&" + "-1" + ">" + resultados.valoresXClaveValor[i].valor + "</a></td>"
+                        var sum = 0;
                         for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
-                            var totalColumna = 0;
-                            for (var h = 0; h < resultados.valoresYIndicador[j].data.length; h++) {
-                                if (resultados.valoresYIndicador[j].data[h] !== null) {
-                                    totalColumna = totalColumna + resultados.valoresYIndicador[j].data[h];
-                                    totalGeneral = totalGeneral + resultados.valoresYIndicador[j].data[h];
-                                }
+                            if (resultados.valoresYIndicador[j].data[i] !== null) {
+                                //cuerpo = cuerpo + "<td style=' text-align: left'>" + resultados.valoresYIndicador[j].data[i] + "</td>"
+                                cuerpo = cuerpo + "<td style=' text-align: right'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + codigoParroquia + "&" + resultados.valoresXClaveValor[i].codigo + "&" + resultados.valoresYIndicador[j].codigo + ">" + resultados.valoresYIndicador[j].data[i] + "</a></td>"
+                                sum = sum + resultados.valoresYIndicador[j].data[i];
+                            } else {
+                                cuerpo = cuerpo + "<td style=' text-align: right'> </td>"
                             }
-                            cuerpo = cuerpo + "<td style=' text-align: right'>" + totalColumna + "</td>"
                         }
-                        cuerpo = cuerpo + "<td style=' text-align: right'>" + totalGeneral + "</td>"
+                        cuerpo = cuerpo + "<td style=' text-align: right'>" + sum + " </td>"
                         cuerpo = cuerpo + "</tr>";
-                        var pie = "</tbody></table>";
-                        $('#tablaInfraestructuraNuevaProvinciaCantonParroquia').append(titulo + cabecera + cuerpo + pie);
-
                     }
-                });
-            }});
 
-        //fin
-
-
-        /****************************************/
-        /*Funcion para crear graficas Infraestructura */
-        /****************************************/
-        $.ajax({
-            url: "cadenaInfraestructura.txt",
-            dataType: "text",
-            success: function(data) {
-                //var datos = "http://192.168.50.76:8080/WSObservatorio/webresources/infraestructura/obras/" + codigoProvincia + "/" + codigoCanton + "/" + codigoParroquia;
-                ipserver = data;
-                var datos = ipserver + "/WSObservatorio/webresources/infraestructura/obras/" + codigoProvincia + "/" + codigoCanton + "/" + codigoParroquia;
-                $.getJSON(datos, function(resultados) {
-                    if (resultados.provincia !== null) {
-
-                        /*
-                         * Gráfico en HighCharts
-                         */
-                        $('#graficoInfraestructuraNuevaProvinciaCantonParroquia').highcharts({
-                            chart: {
-                                type: 'column',
-                                style: {
-                                    fontFamily: 'Helvetica' // default font
-
-                                }
-                            },
-                            title: {
-                                text: resultados.nombreIndicador
-                            },
-                            subtitle: {
-                                text: resultados.fuenteIndicador + "/" + resultados.institucionFuente
-                            },
-                            credits: {
-                                enabled: false
-                            },
-                            xAxis: {
-                                categories: resultados.valoresXIndicador,
-                            },
-                            yAxis: {
-                                min: 0,
-                                title: {
-                                    text: 'Cantidad'
-                                }
-                            },
-                            plotOptions: {
-                                column: {
-                                    stacking: 'normal',
-                                    dataLabels: {
-                                        enabled: true,
-                                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
-                                    }
-                                }
-                            },
-                            series: []
-                        });
-                        // Creación dinámica de series
-                        var chart = $('#graficoInfraestructuraNuevaProvinciaCantonParroquia').highcharts();
-                        for (var i = 0; i < resultados.valoresYIndicador.length; i++) {
-                            var nombre = resultados.valoresYIndicador[i].name;
-                            /*chart.addSeries({
-                             name: nombre,
-                             data: resultados.valoresYIndicador[i].data
-                             
-                             });*/
-                            //Terminada
-                            if (resultados.valoresYIndicador[i].codigo === '1') {
-                                chart.addSeries({
-                                    name: nombre,
-                                    data: resultados.valoresYIndicador[i].data,
-                                    color: '#90ed7d'
-                                });
-                            }
-                            //En ejecucion
-                            if (resultados.valoresYIndicador[i].codigo === '2') {
-                                chart.addSeries({
-                                    name: nombre,
-                                    data: resultados.valoresYIndicador[i].data,
-                                    color: '#7cb5ec'
-                                });
-                            }
-
-                            //Suspendida
-                            if (resultados.valoresYIndicador[i].codigo === '4') {
-                                chart.addSeries({
-                                    name: nombre,
-                                    data: resultados.valoresYIndicador[i].data,
-                                    color: '#434348'
-
-                                });
+                    // Obtener los totales generales
+                    cuerpo = cuerpo + "<tr><td style=' text-align: left'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + codigoParroquia + "&" + "-1>Total General</td></a>";
+                    //alert(resultados.valoresYIndicador[0].data.length)
+                    var totalGeneral = 0;
+                    for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
+                        var totalColumna = 0;
+                        for (var h = 0; h < resultados.valoresYIndicador[j].data.length; h++) {
+                            if (resultados.valoresYIndicador[j].data[h] !== null) {
+                                totalColumna = totalColumna + resultados.valoresYIndicador[j].data[h];
+                                totalGeneral = totalGeneral + resultados.valoresYIndicador[j].data[h];
                             }
                         }
-                        chart.tooltip.refresh(chart.series[0].data[resultados.valoresXIndicador.length - 1]);
+                        cuerpo = cuerpo + "<td style=' text-align: right'>" + totalColumna + "</td>"
                     }
-
+                    cuerpo = cuerpo + "<td style=' text-align: right'>" + totalGeneral + "</td>"
+                    cuerpo = cuerpo + "</tr>";
+                    var pie = "</tbody></table>";
+                    $('#tablaInfraestructuraNuevaProvinciaCantonParroquia').append(titulo + cabecera + cuerpo + pie);
+                    //grafica
+                    //divGrafica = '#graficoInfraestructuraNuevaProvinciaCantonParroquia';
+                    //graficar(obrasParroquial,divGrafica );
                 });
             }});
 
         //fin
+
 
 
     }
