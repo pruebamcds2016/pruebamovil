@@ -2,8 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-function ViewModelIndicador() {
-    alert("loreitta");
-}
+$(document).ready(function() {
+ 
+    $('#example').dataTable();
+});
+
 
 

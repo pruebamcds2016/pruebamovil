@@ -6,22 +6,58 @@ and open the template in the editor.
 <html>
     <head>
         <title></title>
-        <script type="text/javascript" src="../js/libs/sortable/sortable.js"> </script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="jquery.dataTables.min.js"></script>
+
+
     </head>
     <body onLoad="init();">
-        <table class="sortable" id="mitbla">
-            <tr>
-                <th>Nombre</th>
-            </tr>
-            <tr>
-                <td>a</td>
-            </tr>
-            <tr>
-                <td>z</td>
-            </tr>
-        </table>
-        
-        
+        <div id="a">
+
+            <table id="example" class="display" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Office</th>
+                        <th>Age</th>
+                        <th>Start date</th>
+                        <th>Salary</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Tiger Nixon</td>
+                        <td>System Architect</td>
+                        <td>Edinburgh</td>
+                        <td>61</td>
+                        <td>2011/04/25</td>
+                        <td>$320,800</td>
+                    </tr>
+                    <tr>
+                        <td>Garrett Winters</td>
+                        <td>Accountant</td>
+                        <td>Tokyo</td>
+                        <td>63</td>
+                        <td>2011/07/25</td>
+                        <td>$170,750</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Airi Satou</td>
+                        <td>Accountant</td>
+                        <td>Tokyo</td>
+                        <td>33</td>
+                        <td>2008/11/28</td>
+                        <td>$162,700</td>
+                    </tr>
+            </table>
+        </div>
+
+
+        <script src="prueba.js"></script>
+
     </body>
 </html>
