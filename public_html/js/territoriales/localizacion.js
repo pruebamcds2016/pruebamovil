@@ -1164,7 +1164,7 @@ function init() {
                         $("#tablaInfraestructuraNuevaProvinciaCanton").show();
                         $("#graficoInfraestructuraNuevaProvinciaCanton").show();
                         divGrafica = '#graficoInfraestructuraNuevaProvinciaCanton';
-                        graficar(obrasProvincial, divGrafica);
+                        graficar(obrasCantonal, divGrafica);
                     });
                     $.ajax({
                         url: "cadenaInfraestructura.txt",
