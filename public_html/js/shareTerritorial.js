@@ -36,9 +36,10 @@ $(document).ready(function() {
 
     var pageTitle = document.title; //HTML page title
     if (elem.length > 3) {
-        var pageUrl = 'http://192.168.50.76:8383/share/' + url + '?' + id_provincia + '&' + id_canton + '&' + id_parroquia+ '&' + id_institucion + '&' + id_estado;
+        //var pageUrl = 'http://192.168.50.76:8383/share/' + url + '?' + id_provincia + '&' + id_canton + '&' + id_parroquia+ '&' + id_institucion + '&' + id_estado;
+        var pageUrl = 'http://192.168.10.54/share/public_html/' + url + '?' + id_provincia + '&' + id_canton + '&' + id_parroquia+ '&' + id_institucion + '&' + id_estado;
     } else {
-        var pageUrl = 'http://192.168.50.76:8383/share/' + url + '?' + id_provincia + '&' + id_canton + '&' + id_parroquia;
+        var pageUrl = 'http://192.168.10.54/share/public_html/' + url + '?' + id_provincia + '&' + id_canton + '&' + id_parroquia;
     }
 
     //Location of the page

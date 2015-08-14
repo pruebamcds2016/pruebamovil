@@ -21,7 +21,7 @@ $(document).ready(function() {
         case "2":
             url = "relvGrafica.html";
             break;
-        case "4":
+        case "4":0
             url = "grafica.html";
             break;
         default:
@@ -29,7 +29,7 @@ $(document).ready(function() {
     }*/
 
     var pageTitle = document.title + " - SISEcuador "; //HTML page title
-    var pageUrl = 'http://192.168.50.76:8383/share/' + url + '?' + id_tema + '&' + id_ib + '&' + id_subtema; //Location of the page
+    var pageUrl = 'http://192.168.10.54/share/public_html/' + url + '?' + id_tema + '&' + id_ib + '&' + id_subtema; //Location of the page
     var openLink = '';
 
     //$('#btnWhatsApp').attr("href","whatsapp://send?text=Compartiendo informacion desde "+encodeURIComponent(pageUrl));
