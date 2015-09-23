@@ -461,7 +461,8 @@ function init() {
                         }});
 
                     //POBLACION POR CICLO DE VIDA
-                    $("#divCicloVida").css("display", "none");
+                    //$("#divCicloVida").css("display", "none");
+                    $("#tituloCicloVida").css("display", "none");
                     $("#moreCicloVida").toggle(function() {
                         $("#tituloCicloVida").css("display", "none");
                         $(this).text("Ver menos...").siblings("#divCicloVida").show();
@@ -667,7 +668,9 @@ function init() {
                     /****************************************/
                     //Ocultar y mostrar leer mas... y leer menos...
 
-                    $("#distribucionGeografica").css("display", "none");
+                    //$("#distribucionGeografica").css("display", "none");
+                    $("#tituloDistribucionGeografica").css("display", "none");
+                    
                     $("#moreDistribucionGeografica").toggle(function() {
                         $("#tituloDistribucionGeografica").css("display", "none");
                         $(this).text("Ver menos...").siblings("#distribucionGeografica").show();
@@ -733,7 +736,9 @@ function init() {
                     /*Funcion para consultar Distribucion Poblacional*/
                     /*************************************************/
                     //Ocultar y mostrar leer mas... y leer menos...
-                    $("#distribucionPoblacional").css("display", "none");
+                   // $("#distribucionPoblacional").css("display", "none");
+                    $("#tituloDistribucionPoblacional").css("display", "none");
+                    
                     $("#moreDistribucionPoblacional").toggle(function() {
                         $("#tituloDistribucionPoblacional").css("display", "none");
                         $(this).text("Ver menos...").siblings("#distribucionPoblacional").show();
@@ -789,7 +794,8 @@ function init() {
                     /*Funcion para consultar infraestructura*/
                     /****************************************/
                     //Ocultar y mostrar leer mas... y leer menos...
-                    $("#infraestructura").css("display", "none");
+                    //$("#infraestructura").css("display", "none");
+                    $("#tituloInfraestructura").css("display", "none");
                     $("#moreInfraestructura").toggle(function() {
                         $("#tituloInfraestructura").css("display", "none");
                         $(this).text("Ver menos...").siblings("#infraestructura").show();
