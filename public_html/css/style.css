@@ -685,7 +685,7 @@ li.active a, li.active a:hover {
     width: 100%;
     border-spacing: 2px;
     font-size: 14px;
-    text-align: center;
+    text-align: left;
 }
 
 .infoUbicacion table thead tr{

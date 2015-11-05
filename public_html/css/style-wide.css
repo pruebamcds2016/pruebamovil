@@ -145,10 +145,10 @@ Otros componentes
     width: 100%; 
     margin-left: 0px !important;
     height:350px; 
-    margin-top: 50px !important;;
+    margin-top: 0px !important;;
 }
 /*Propiedades para las consultas territoriales*/
-
+                                                                  
 .infoTerritorial{
     font-size: 15px;
 }

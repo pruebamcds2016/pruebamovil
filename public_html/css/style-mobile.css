@@ -155,7 +155,8 @@ Otros componentes
     height:200px; 
 }
 
-/*Propiedad responsiva para la ubicacion del mapa y del logo de "cargando"*/
+/*Propiedad responsiva para la ubicacion del 
+y del logo de "cargando"*/
 @media  screen and (min-width : 321px) {
     .loadingPag{
 

@@ -187,7 +187,7 @@ Otros componentes
 /*Div que contiene el mapa en las consultas territoriales*/
 
 #miMapa{
-    width: 65%; 
+    width: 100%; 
     height:350px; 
 }
 /* Divs que contienen las graficas mostradas en la consulta territorial*/
