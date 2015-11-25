@@ -12,7 +12,8 @@ $(document).ready(function() {
         id_canton = elem[1];
         id_parroquia = elem[2];
         id_institucion = elem[3];
-        id_estado = elem[4];
+        id_tipologia = elem[4];
+        id_estado = elem[5];
 
     }
     //Cuando en la url tien maas de 3 parametros en la url
@@ -32,14 +33,15 @@ $(document).ready(function() {
         }
 
     }
-
-
+    
+    var ip = 'http://192.168.10.54/share/public_html/'; //ip pruebas
+    //var ip = 'http://192.168.50.76:8383/share/'; //mi pc
     var pageTitle = document.title; //HTML page title
     if (elem.length > 3) {
         //var pageUrl = 'http://192.168.50.76:8383/share/' + url + '?' + id_provincia + '&' + id_canton + '&' + id_parroquia+ '&' + id_institucion + '&' + id_estado;
-        var pageUrl = 'http://192.168.10.54/share/public_html/' + url + '?' + id_provincia + '&' + id_canton + '&' + id_parroquia+ '&' + id_institucion + '&' + id_estado;
+        var pageUrl = ip + url + '?' + id_provincia + '&' + id_canton + '&' + id_parroquia+ '&' + id_institucion + '&' + id_tipologia + '&' + id_estado;
     } else {
-        var pageUrl = 'http://192.168.10.54/share/public_html/' + url + '?' + id_provincia + '&' + id_canton + '&' + id_parroquia;
+        var pageUrl = ip + url + '?' + id_provincia + '&' + id_canton + '&' + id_parroquia;
     }
 
     //Location of the page

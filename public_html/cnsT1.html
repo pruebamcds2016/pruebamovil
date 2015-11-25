@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="css/cabeceras/cabeceraTt.css">
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/jquery-ui/jquery-ui-1.10.4.custom.css">
-
+        
 
     </head>
     <body onLoad="init();">
@@ -39,7 +39,6 @@
                     </nav>
                 </section>
 
-                <!-- CONTENIDO -->
                 <!-- Contenido -->
                 <section class="9u" id="content">
 
@@ -51,7 +50,7 @@
                             <li><a href="#tab4">Infraestructura</a></li>
                         </ul> 
                         <div class="tab-content">
-                            <div id="tab1" class="tab active">
+                            <div id="tab1" class="active">
 
                                 <div class ="loadingPag" >
                                     <div class="absoluta">Espere un momento</div>
@@ -73,10 +72,13 @@
 
                                 <div class="infoTerritorial">
                                     <!-- Informacion general-->
-                                    <div id="divInformacionGeneral"></div>
-                                    <div id='divPoblacion'></div>
-
+                                    <center>
+                                        <div id="divInformacionGeneral"></div>
+                                        <div id='divPoblacion'></div>  
+                                    </center>
+                                    
                                 </div>
+                                <br>
 
                             </div>
 
@@ -88,36 +90,38 @@
 
                                 <div class="infoTerritorial">
                                     <!-- POblacio por ciclo de vida-->
-                                    <br>
-                                    <div id="tituloCicloVida"></div>
+                                    <div id="menosCicloVida"></div>
+                                    <div id="moreCicloVida"></div>
                                     <div id="divCicloVida"></div>
-                                    <div id="moreCicloVida">Ver menos...</div>
+                                    <br>
 
                                     <!-- Indicador General-->
-                                    <br>
-                                    <div id="moreIndicadorGeneral" href="#" style="text-decoration:none" > 
-                                    </div>
-                                    <div id="divIndicadorGeneral"></div>
-                                    <div id='divVivienda'></div>
-                                    <div id="menosIndicadorGeneral" href="#" style="text-decoration:none" > 
-                                        Ver menos
-                                    </div>
+                                    <div id="menosIndicadorGeneral"></div>
+                                    <div id="moreIndicadorGeneral"></div>
+                                    <center>
+                                        <div id ="todoIndicadorGeneral">
+                                            <div id="divIndicadorGeneral"></div>
+                                            <br>
+                                            <div id='divVivienda'></div>
+                                            <br>
+                                        </div>
+                                    </center>
+
+
 
                                     <!-- Distribucion geografica-->
-                                    <br>
-                                    <div id="tituloDistribucionGeografica"></div>
+                                    <div id="menosDistribucionGeografica"></div>
+                                    <div id="moreDistribucionGeografica"></div>
                                     <div id="distribucionGeografica"></div>
-                                    <div id="moreDistribucionGeografica">Ver menos......</div>
+                                    <br>
 
                                     <!-- Distribucion poblacional-->
-                                    <br>
-                                    <div id="tituloDistribucionPoblacional"></div>
+                                    <div id="menosDistribucionPoblacional"></div>
+                                    <div id="moreDistribucionPoblacional"></div>
                                     <div id="distribucionPoblacional"></div>
-                                    <div id="moreDistribucionPoblacional">Ver menos......
-                                    </div>
-
                                 </div>
-
+                                <br>
+                                <br>
                             </div>
 
                             <div id="tab3" class="tab">
@@ -128,17 +132,17 @@
                                 <div class="infoTerritorial">
 
                                     <!-- Infraestructura-->
-                                    <br>
-                                    <div id="tituloInfraestructura"></div>
+                                    <div id="menosInfraestructura"></div>
+                                    <div id="moreInfraestructura"></div>
                                     <div id="infraestructura"></div>
-                                    <div id="moreInfraestructura">Ver menos...
-                                    </div>
-
-
                                 </div>
+                                <br>
+                                <br>
                             </div>
 
+
                             <div id="tab4" class="tab">
+
                                 <div class="nombreIndicador"></div>
                                 <div class ="loadingPag" >
                                     <div class="absoluta">Espere un momento</div>
@@ -146,41 +150,53 @@
                                 <div class="infoTerritorial">
 
                                     <!-- Infraestructura a Nivel Nacional-->
-                                    <br>
-                                    <div id="moreInfraestructuraNueva" href="#" style="text-decoration:none" > 
-                                    </div>
-                                    <div id="tablaInfraestructuraNueva"></div>
-                                    <br>
-                                    <div id="graficoInfraestructuraNueva"></div>
-                                    <div id="menosInfraestructuraNueva" href="#" style="text-decoration:none" > 
-                                        Ver menos
-                                    </div>
+                                    <div id="menosInfraestructuraNueva" href="#" style="text-decoration:none"></div>
+                                    <div id="moreInfraestructuraNueva" href="#" style="text-decoration:none"></div>
+                                    <center>
+                                        <div id ="todoInfraestructuraNueva">
+                                            <div id="tablaInfraestructuraNueva"></div>
+                                            <br>
+                                            <div id="graficoPieInfraestructuraNueva"></div>
+                                            <br>
+                                            <div id="graficoInfraestructuraNueva"></div>
+                                            <br>
+                                        </div>
+                                    </center>
+
+
 
 
                                     <!-- Infraestructura a Nivel Provincia-->
-                                    <div id="moreInfraestructuraNuevaProvincia" href="#" style="text-decoration:none" > 
+                                    <div id="menosInfraestructuraNuevaProvincia" href="#" style="text-decoration:none"></div>
+                                    <div id="moreInfraestructuraNuevaProvincia" href="#" style="text-decoration:none"></div>
+                                    <center>
+                                        <div id ="todoInfraestructuraNuevaProvincia">
+                                            <div id="tablaInfraestructuraNuevaProvincia"></div>
+                                            <br>
+                                            <div id="graficoPieInfraestructuraNuevaProvincia"></div>
+                                            <br>
+                                            <div id="graficoInfraestructuraNuevaProvincia"></div>
+                                            <br>
+                                        </div>
+                                    </center>
 
-                                    </div>
-                                    <div id="tablaInfraestructuraNuevaProvincia"></div>
-                                    <br>
-                                    <div id="graficoInfraestructuraNuevaProvincia"></div>
-                                    <div id="menosInfraestructuraNuevaProvincia" href="#" style="text-decoration:none" > 
-                                        Ver menos
-                                    </div>
 
 
                                     <!-- Infraestructura a Nivel Canton-->
-                                    <div id="moreInfraestructuraNuevaProvinciaCanton" href="#" style="text-decoration:none" > 
-
-                                    </div>
-                                    <div id="tablaInfraestructuraNuevaProvinciaCanton"></div>
-                                    <br>
-                                    <div id="graficoInfraestructuraNuevaProvinciaCanton"></div>
-                                    <div id="menosInfraestructuraNuevaProvinciaCanton" href="#" style="text-decoration:none" > 
-                                        Ver menos
-                                    </div>
-
+                                    <div id="menosInfraestructuraNuevaProvinciaCanton" href="#" style="text-decoration:none"></div>
+                                    <div id="moreInfraestructuraNuevaProvinciaCanton" href="#" style="text-decoration:none"></div>
+                                    <center>
+                                        <div id ="todoInfraestructuraNuevaProvinciaCanton">
+                                            <div id="tablaInfraestructuraNuevaProvinciaCanton"></div>
+                                            <br>
+                                            <div id="graficoPieInfraestructuraNuevaProvinciaCanton"></div>
+                                            <br>
+                                            <div id="graficoInfraestructuraNuevaProvinciaCanton"></div>
+                                        </div>
+                                    </center>
                                 </div>
+                                <br>
+                                <br>
 
                             </div>
                         </div>

@@ -52,8 +52,7 @@ window._skel_panels_config = {
             width: '100%',
             height: 50,
             html: '<a href="javascript:history.back();" class="icon-left"></a>' +
-                    '<a href="#" class="toggle compartirT" data-action="togglePanel" data-args="bottomPanel"></a>' +
-                    '<a href="javascript:history.forward();" class="icon-right"></a>'
+                    '<a href="#" class="toggle compartirT" data-action="togglePanel" data-args="bottomPanel"></a>'
         },
         leftPanelButton: {
             breakpoints: 'wide,narrow,narrower,mobile',

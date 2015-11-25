@@ -13,6 +13,7 @@
         <script src="js/libs/jquery-ui/jquery-ui.js"></script>
         <script type="text/javascript" src="js/libs/OpenLayers/OpenLayers.js"></script>
         <script src="js/shareTerritorial.js"></script>
+        <script src="js/tabsgrafica.js"></script>
         <link rel="stylesheet" href="css/cabeceras/cabeceraTt.css">
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/jquery-ui/jquery-ui-1.10.4.custom.css">
@@ -36,128 +37,164 @@
 
                     </nav>
                 </section>
+
                 <!-- Contenido -->
                 <section class="9u" id="content">
 
-                    <div id="labelUbicacion"></div>
-                    <div class="infoUbicacion">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th style="text-align: center; font-family: hheavy">Cantón</th>
-                                    <th style="text-align: center; font-family: hheavy">Parroquia</th>
+                    <div class="tabs">
+                        <ul class="tab-links">
+                            <li class="active"><a href="#tab1">Ubicación</a></li>
+                            <li><a href="#tab2">Indicadores</a></li>
+                            <li><a href="#tab3">Oferta Social</a></li>
+                            <li><a href="#tab4">Infraestructura</a></li>
+                        </ul> 
+                        <div class="tab-content">
+                            <div id="tab1" class="active">
 
-                                </tr>
-                            </thead>
-                            <tbody>
+                                <div class ="loadingPag" >
+                                    <div class="absoluta">Espere un momento</div>
+                                </div>
 
-                                <tr>
 
-                                    <td> <div class="canton"></div></td>
+                                <div class="infoUbicacion" >
+                                    <table>
+                                        <tr>
+                                            <td> <div id="provincia"></div></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div id="miMapa">
 
-                                    <td><div class="parroquia"></div></td>
-                                </tr>
-                            </tbody>
-                        </table>
+
+                                </div>
+
+
+                                <div class="infoTerritorial">
+                                    <!-- Informacion general-->
+                                    <center>
+                                        <div id="divInformacionGeneral"></div>
+                                        <div id='divPoblacion'></div>  
+                                    </center>
+                                </div>
+                                <br>
+
+                            </div>
+
+                            <div id="tab2" class="tab">
+
+                                <div class ="loadingPag" >
+                                    <div class="absoluta">Espere un momento</div>
+                                </div>
+
+                                <div class="infoTerritorial">
+                                    <!-- POblacio por ciclo de vida-->
+                                    <div id="menosCicloVida"></div>
+                                    <div id="moreCicloVida"></div>
+                                    <div id="divCicloVida"></div>
+                                    <br>
+
+                                    <!-- Indicador General-->
+                                    <div id="menosIndicadorGeneral"></div>
+                                    <div id="moreIndicadorGeneral"></div>
+                                    <center>
+                                        <div id ="todoIndicadorGeneral">
+                                            <div id="divIndicadorGeneral"></div>
+                                            <br>
+                                            <div id='divVivienda'></div>
+                                            <br>
+                                        </div>
+                                    </center>
+
+
+
+                                    <!-- Distribucion geografica-->
+                                    <div id="menosDistribucionGeografica"></div>
+                                    <div id="moreDistribucionGeografica"></div>
+                                    <div id="distribucionGeografica"></div>
+                                    <br>
+
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+
+                            <div id="tab3" class="tab">
+
+                                <div class ="loadingPag" >
+                                    <div class="absoluta">Espere un momento</div>
+                                </div>
+                                <div class="infoTerritorial">
+
+                                    <!-- Infraestructura-->
+                                    <div id="menosInfraestructura"></div>
+                                    <div id="moreInfraestructura"></div>
+                                    <div id="infraestructura"></div>
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+
+
+                            <div id="tab4" class="tab">
+
+                                <div class="nombreIndicador"></div>
+                                <div class ="loadingPag" >
+                                    <div class="absoluta">Espere un momento</div>
+                                </div>
+                                <div class="infoTerritorial">
+
+                                    <!-- Infraestructura a Nivel Nacional-->
+                                    <div id="menosInfraestructuraNueva" href="#" style="text-decoration:none"></div>
+                                    <div id="moreInfraestructuraNueva" href="#" style="text-decoration:none"></div>
+                                    <center>
+                                        <div id ="todoInfraestructuraNueva">
+                                            <div id="tablaInfraestructuraNueva"></div>
+                                            <br>
+                                            <div id="graficoPieInfraestructuraNueva"></div>
+                                            <br>
+                                            <div id="graficoInfraestructuraNueva"></div>
+                                            <br>
+                                        </div>
+                                    </center>
+
+                                    <!-- Infraestructura a Nivel Canton-->
+                                    <div id="menosInfraestructuraNuevaProvinciaCanton" href="#" style="text-decoration:none"></div>
+                                    <div id="moreInfraestructuraNuevaProvinciaCanton" href="#" style="text-decoration:none"></div>
+                                    <center>
+                                        <div id ="todoInfraestructuraNuevaProvinciaCanton">
+                                            <div id="tablaInfraestructuraNuevaProvinciaCanton"></div>
+                                            <br>
+                                            <div id="graficoPieInfraestructuraNuevaProvinciaCanton"></div>
+                                            <br>
+                                            <div id="graficoInfraestructuraNuevaProvinciaCanton"></div>
+                                        </div>
+                                    </center>
+                                    
+                                    <!-- Infraestructura a Nivel Parroquia-->
+                                    <div id="menosInfraestructuraNuevaProvinciaCantonParroquia" href="#" style="text-decoration:none"></div>
+                                    <div id="moreInfraestructuraNuevaProvinciaCantonParroquia" href="#" style="text-decoration:none"></div>
+                                    <center>
+                                        <div id ="todoInfraestructuraNuevaProvinciaCantonParroquia">
+                                            <div id="tablaInfraestructuraNuevaProvinciaCantonParroquia"></div>
+                                            <br>
+                                            <div id="graficoPieInfraestructuraNuevaProvinciaCantonParroquia"></div>
+                                            <br>
+                                            <div id="graficoInfraestructuraNuevaProvinciaCantonParroquia"></div>
+                                        </div>
+                                    </center>
+                                    
+                                </div>
+                                <br>
+                                <br>
+
+                            </div>
+                        </div>
                     </div>
-                    <div id="miMapa">
+                    <script src="js/highcharts/highcharts.js"></script>
 
+                    <script src="js/territoriales/paramParroquia.js"></script>
 
-
-                    </div>
-                    <div class ="loadingPag" >
-                        <div class="absoluta">Espere un momento</div>
-                    </div>
-
-                    <br>
-                    <div class="infoTerritorial">
-                        <!-- Informacion general-->
-                        <div id="divInformacionGeneral"></div>
-                        <div id='divPoblacion'></div>
-
-                        <!-- POblacio por ciclo de vida-->
-                        <br>
-                        <div id="moreCicloVida" href="#" style="text-decoration:none" > 
-                        </div>
-                        <div id="divCicloVida"></div>
-                        <div id="menosCicloVida" href="#" style="text-decoration:none" > 
-                            Ver menos
-                        </div>
-
-                        <!-- Indicador General-->
-                        <br>
-                        <div id="moreIndicadorGeneral" href="#" style="text-decoration:none" > 
-                        </div>
-                        <div id="divIndicadorGeneral"></div>
-                        <div id='divVivienda'></div>
-                        <div id="menosIndicadorGeneral" href="#" style="text-decoration:none" > 
-                            Ver menos
-                        </div>
-
-                        <!-- Distribucion geografica-->
-                        <br>
-                        <div id="moreDistribucionGeografica" href="#" style="text-decoration:none" > 
-                        </div>
-                        <div id="distribucionGeografica"></div>
-                        <div id="menosDistribucionGeografica" href="#" style="text-decoration:none" > 
-                            Ver menos
-                        </div>
-
-
-                        <!-- Infraestructura-->
-                        <br>
-                        <div id="moreInfraestructura" href="#" style="text-decoration:none" > 
-                        </div>
-                        <div id="infraestructura"></div>
-                        <div id="menosInfraestructura" href="#" style="text-decoration:none" > 
-                            Ver menos
-                        </div>
-
-
-                        <!-- Infraestructura a Nivel Nacional-->
-                        <br>
-                        <div id="moreInfraestructuraNueva" href="#" style="text-decoration:none" > 
-                        </div>
-                        <div id="tablaInfraestructuraNueva"></div>
-                        <br>
-                        <div id="graficoInfraestructuraNueva"></div>
-                        <div id="menosInfraestructuraNueva" href="#" style="text-decoration:none" > 
-                            Ver menos
-                        </div>
-
-
-                        <!-- Infraestructura a Nivel Canton-->
-                        <div id="moreInfraestructuraNuevaProvinciaCanton" href="#" style="text-decoration:none" > 
-                        </div>
-                        <div id="tablaInfraestructuraNuevaProvinciaCanton"></div>
-                        <br>
-                        <div id="graficoInfraestructuraNuevaProvinciaCanton"></div>
-                        <div id="menosInfraestructuraNuevaProvinciaCanton" href="#" style="text-decoration:none" > 
-                            Ver menos
-                        </div>
-
-                        
-                        <!-- Infraestructura a Nivel Parroquia-->
-                        <div id="moreInfraestructuraNuevaProvinciaCantonParroquia" href="#" style="text-decoration:none" > 
-                        </div>
-                        <br>
-                        <div id="tablaInfraestructuraNuevaProvinciaCantonParroquia"></div>
-                        <br>
-                        <div id="graficoInfraestructuraNuevaProvinciaCantonParroquia"></div>
-                        <div id="menosInfraestructuraNuevaProvinciaCantonParroquia" href="#" style="text-decoration:none" > 
-                            Ver menos
-                        </div>
-
-                        <script src="js/highcharts/highcharts.js"></script>
-
-                        <script src="js/territoriales/paramParroquia.js"></script>
-
-                        <script src="js/navegadorPI.js"></script>
-
-
-                    </div>
-                    <br>
-
+                    <script src="js/navegadorPI.js"></script>
                 </section>
                 <!-- Barra derecha -->
                 <section class="3u" id="right-sidebar">
