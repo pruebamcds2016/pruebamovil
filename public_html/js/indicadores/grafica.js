@@ -73,6 +73,7 @@ function ViewModelGrafica() {
                 $(".lblAnio").html(result.anio_indicador);
                 $(".nombreIndicador").html(result.nombre_indicador + " (" + result.anio_indicador + ")");
                 $("#labelTool").html('&nbsp;' + result.titulo_tablaDatos);
+                //$("#labelTool").html('&nbsp;' + result.etiquetaY_indicador);
 
                 //alert(result.titulo_tablaDatos);
                 /***********INICIO GRAFICAR LA TABLA DINAMICAMENTE*/
@@ -89,28 +90,37 @@ function ViewModelGrafica() {
                 cabecera = cabecera + "</tr></thead><tbody>";
                 var cuerpo = "";
                 var tabla = "";
-                //alert(result.valoresX_indicador.length);
                 for (var i = 0; i < result.valoresX_indicador.length; i++) {
-                    if (result.valoresX_indicador[i] === "2017") {
-                        cuerpo = "<tr><td><center>" + result.valoresX_indicador[i] + "- meta </center></td>";
-                    }
-                    else {
-                        cuerpo = "<tr><td><center>" + result.valoresX_indicador[i] + "</center></td>";
-                    }
-
-
+                    //si tiene al menos un dato en ese eje x se muestra en la tabla el año caso contrario no se visualiza el año
+                    var cont = 0;
                     for (var j = 0; j < result.valoresY_indicador.length; j++) {
-                        if (result.valoresY_indicador[j].data[i] !== null) {
-
-                            cuerpo = cuerpo + "<td><center>" + format(result.valoresY_indicador[j].data[i]) + " </center></td>";
-                        } else {
-                            cuerpo = cuerpo + "<td> </td>";
+                        if (result.valoresY_indicador[j].data[i] === null) {
+                            cont++;
+                        }
+                    }
+                    if (cont !== result.valoresY_indicador.length) {
+                        if (result.valoresX_indicador[i] === "2017") {
+                            cuerpo = "<tr><td><center>" + result.valoresX_indicador[i] + "- meta </center></td>";
+                        }
+                        else {
+                            cuerpo = "<tr><td><center>" + result.valoresX_indicador[i] + "</center></td>";
                         }
 
+
+                        for (var j = 0; j < result.valoresY_indicador.length; j++) {
+                            if (result.valoresY_indicador[j].data[i] !== null) {
+
+                                cuerpo = cuerpo + "<td><center>" + format(result.valoresY_indicador[j].data[i], result.numero_decimales) + " </center></td>";
+                            } else {
+                                cuerpo = cuerpo + "<td> </td>";
+                            }
+
+                        }
+
+                        cuerpo = cuerpo + "</tr>";
+                        tabla = tabla + cuerpo;
                     }
 
-                    cuerpo = cuerpo + "</tr>";
-                    tabla = tabla + cuerpo;
 
                 }
 
@@ -139,127 +149,6 @@ function ViewModelGrafica() {
 
 
                 /***********FIN GRAFICAR LA TABLA DINAMICAMENTE*/
-
-
-
-                /***********INICIO  GRAFICAR LA TABLA ESTATICO*/
-
-                //encabezado2:'lore';
-                //para formar el encabezado de la tabla
-                /*for (var h = 0; h < result.valoresY_indicador.length; h++) {
-                 $(".encabezado" + h).html(result.valoresY_indicador[h].name);
-                 
-                 }*/
-
-                /**
-                 * Función para paginación tabla datos
-                 */
-
-
-                //lleno los años
-                /*for (var j = 0; j < result.valoresX_indicador.length; j++) {
-                 if (result.valoresX_indicador[j] === "2017") {
-                 
-                 principal.ejemploLista.push({
-                 dato1: result.valoresX_indicador[j] + "- meta",
-                 dato2: "",
-                 dato3: "",
-                 dato4: ""
-                 //dato3: format(datoR[j], result.numero_decimales)
-                 });
-                 
-                 } else {
-                 
-                 principal.ejemploLista.push({
-                 dato1: result.valoresX_indicador[j],
-                 dato2: "",
-                 dato3: "",
-                 dato4: ""
-                 });
-                 
-                 }
-                 }*/
-                //alert(result.valoresY_indicador[0].data[1]);
-
-
-                /*
-                 var totalDesglose = result.valoresY_indicador.length;
-                 //alert(totalDesglose);
-                 for (var j = 0; j < result.valoresX_indicador.length; j++) {
-                 
-                 if (totalDesglose === 3) {
-                 if (result.valoresX_indicador[j] === "2017") {
-                 
-                 principal.ejemploLista.push({
-                 dato1: result.valoresX_indicador[j] + "- meta",
-                 dato2: format(result.valoresY_indicador[0].data[j], result.numero_decimales),
-                 dato3: format(result.valoresY_indicador[1].data[j], result.numero_decimales),
-                 dato4: format(result.valoresY_indicador[2].data[j], result.numero_decimales)
-                 });
-                 
-                 
-                 } else {
-                 
-                 principal.ejemploLista.push({
-                 dato1: result.valoresX_indicador[j],
-                 dato2: format(result.valoresY_indicador[0].data[j], result.numero_decimales),
-                 dato3: format(result.valoresY_indicador[1].data[j], result.numero_decimales),
-                 dato4: format(result.valoresY_indicador[2].data[j], result.numero_decimales)
-                 });
-                 
-                 }
-                 } else {
-                 if (totalDesglose === 2) {
-                 if (result.valoresX_indicador[j] === "2017") {
-                 
-                 principal.ejemploLista.push({
-                 dato1: result.valoresX_indicador[j] + "- meta",
-                 dato2: format(result.valoresY_indicador[0].data[j], result.numero_decimales),
-                 dato3: format(result.valoresY_indicador[1].data[j], result.numero_decimales),
-                 dato4: ""
-                 });
-                 
-                 
-                 } else {
-                 
-                 principal.ejemploLista.push({
-                 dato1: result.valoresX_indicador[j],
-                 dato2: format(result.valoresY_indicador[0].data[j], result.numero_decimales),
-                 dato3: format(result.valoresY_indicador[1].data[j], result.numero_decimales),
-                 dato4: ""
-                 });
-                 
-                 }
-                 } else {
-                 if (totalDesglose === 1) {
-                 if (result.valoresX_indicador[j] === "2017") {
-                 
-                 principal.ejemploLista.push({
-                 dato1: result.valoresX_indicador[j] + "- meta",
-                 dato2: format(result.valoresY_indicador[0].data[j], result.numero_decimales),
-                 dato3: "",
-                 dato4: ""
-                 });
-                 
-                 
-                 } else {
-                 
-                 principal.ejemploLista.push({
-                 dato1: result.valoresX_indicador[j],
-                 dato2: format(result.valoresY_indicador[0].data[j], result.numero_decimales),
-                 dato3: "",
-                 dato4: ""
-                 });
-                 
-                 }
-                 }
-                 }
-                 
-                 }
-                 
-                 }*/
-
-                /***********FIN  GRAFICAR LA TABLA ESTATICO*/
 
                 //Los valores que se necesitan son arrays
                 var valoresX = result.valoresX_indicador;
