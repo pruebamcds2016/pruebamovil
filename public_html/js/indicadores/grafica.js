@@ -72,8 +72,8 @@ function ViewModelGrafica() {
                 $(".lblFuente").html(result.fuente_indicador + " - " + result.institucion_fuente);
                 $(".lblAnio").html(result.anio_indicador);
                 $(".nombreIndicador").html(result.nombre_indicador + " (" + result.anio_indicador + ")");
-                $("#labelTool").html('&nbsp;' + result.titulo_tablaDatos);
-                //$("#labelTool").html('&nbsp;' + result.etiquetaY_indicador);
+                //$("#labelTool").html('&nbsp;' + result.titulo_tablaDatos);
+                $("#labelTool").html('&nbsp;' + result.etiquetaY_indicador);
 
                 //alert(result.titulo_tablaDatos);
                 /***********INICIO GRAFICAR LA TABLA DINAMICAMENTE*/
