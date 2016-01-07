@@ -249,7 +249,7 @@ function ViewModelIndicador() {
                         var titulo = "<div class='tituloTablas'>" + "<span> Infraestructura social emblemática (período 2007-2015) - " + resultados[0].entidadRequiriente + " </span></div>";
 
                         /*Se setea la cabecera*/
-                        var cabecera = "<table id='tabla1'><thead><tr><td style=' text-align: center'><u>N°</u></td><td style=' text-align: center'><u>Cantón</u></td><td style=' text-align: center'><u>Parroquia</u></td>"
+                        var cabecera = "<table id='tabla3'><thead><tr><td style=' text-align: center'><u>N°</u></td><td style=' text-align: center'><u>Cantón</u></td><td style=' text-align: center'><u>Parroquia</u></td>"
                                 + "<td style='text-align: center'><u>Tipología</u></td><td style=' text-align: center'><u>Categoria</u></td><td style=' text-align: center'><u>Capacidad</u></td><td style=' text-align: center'><u>Establecimiento</u></td><td style=' text-align: center'><u>Intervención</u></td><td style=' text-align: center'><u>Obra</u></td><td style=' text-align: center'><u>Ejecutor</u></td></tr></thead>";
                         //+ "<td style='text-align: center'>Tipología</td><td style=' text-align: center'>Categoria</td><td style=' text-align: center'>Capacidad</td><td style=' text-align: center'>Establecimiento</td><td style=' text-align: center'>Intervención</td><td style=' text-align: center'>Descripción</td><td style=' text-align: center'>Obra</td><td style=' text-align: center'>Ejecutor</td><td style=' text-align: center'>Avance</td><td style=' text-align: center'>Fecha Entrega</td></tr></thead>";
 
@@ -285,7 +285,7 @@ function ViewModelIndicador() {
                         //alert(titulo + cabecera + cuerpo + pie);
                         $('#tablaDetalleInfraestructuraEstadoObra').append(titulo + cabecera + cuerpo + pie);
 
-                        $('#tabla1').dataTable({
+                        $('#tabla3').dataTable({
                             "bPaginate": false,
                             "bLengthChange": false,
                             "bFilter": true,
@@ -338,7 +338,7 @@ function ViewModelIndicador() {
                         var titulo = "<div class='tituloTablas'>" + "<span> Infraestructura social emblemática (período 2007-2015) - " + resultados[0].entidadRequiriente + " </span></div>";
 
                         /*Se setea la cabecera*/
-                        var cabecera = "<table id='tabla2'><thead><tr><td style=' text-align: center'><u>N°</u></td>"
+                        var cabecera = "<table id='tabla4'><thead><tr><td style=' text-align: center'><u>N°</u></td>"
                                 + "<td style='text-align: center'><u>Tipología</u></td><td style=' text-align: center'><u>Categoria</u></td><td style=' text-align: center'><u>Capacidad</u></td><td style=' text-align: center'><u>Establecimiento</u></td><td style=' text-align: center'><u>Intervención</u></td><td style=' text-align: center'><u>Obra</u></td><td style=' text-align: center'><u>Ejecutor</u></td></tr></thead>";
                         //+ "<td style='text-align: center'>Tipología</td><td style=' text-align: center'>Categoria</td><td style=' text-align: center'>Capacidad</td><td style=' text-align: center'>Establecimiento</td><td style=' text-align: center'>Intervención</td><td style=' text-align: center'>Descripción</td><td style=' text-align: center'>Obra</td><td style=' text-align: center'>Ejecutor</td><td style=' text-align: center'>Avance</td><td style=' text-align: center'>Fecha Entrega</td></tr></thead>";
 
@@ -370,7 +370,7 @@ function ViewModelIndicador() {
 
                         var pie = "</tbody>";
                         $('#tablaDetalleInfraestructuraEstadoObra').append(titulo + cabecera + cuerpo + pie);
-                        $('#tabla2').dataTable({
+                        $('#tabla4').dataTable({
                             "bPaginate": false,
                             "bLengthChange": false,
                             "bFilter": true,
@@ -419,7 +419,7 @@ function ViewModelIndicador() {
                         var titulo = "<div class='tituloTablas'>" + "<span> Infraestructura social emblemática (período 2007-2015) - " + resultados[0].entidadRequiriente + " - " + resultados[0].estadoObra + " </span></div>";
 
                         /*Se setea la cabecera*/
-                        var cabecera = "<table id='tabla3'><thead><tr><td style=' text-align: center'><u>N°</u></td><td style=' text-align: center'><u>Cantón</u></td><td style=' text-align: center'><u>Parroquia</u></td>"
+                        var cabecera = "<table id='tabla5'><thead><tr><td style=' text-align: center'><u>N°</u></td><td style=' text-align: center'><u>Cantón</u></td><td style=' text-align: center'><u>Parroquia</u></td>"
                                 + "<td style='text-align: center'><u>Tipología</u></td><td style=' text-align: center'><u>Categoria</u></td><td style=' text-align: center'><u>Capacidad</u></td><td style=' text-align: center'><u>Establecimiento</u></td><td style=' text-align: center'><u>Intervención</u></td><td style=' text-align: center'><u>Ejecutor</u></td></tr></thead>";
                         //+ "<td style='text-align: center'>Tipología</td><td style=' text-align: center'>Categoria</td><td style=' text-align: center'>Capacidad</td><td style=' text-align: center'>Establecimiento</td><td style=' text-align: center'>Intervención</td><td style=' text-align: center'>Descripción</td><td style=' text-align: center'>Obra</td><td style=' text-align: center'>Ejecutor</td><td style=' text-align: center'>Avance</td><td style=' text-align: center'>Fecha Entrega</td></tr></thead>";
 
@@ -453,7 +453,7 @@ function ViewModelIndicador() {
 
                         var pie = "</tbody>";
                         $('#tablaDetalleInfraestructuraEstadoObra').append(titulo + cabecera + cuerpo + pie);
-                        $('#tabla3').dataTable({
+                        $('#tabla5').dataTable({
                             "bPaginate": false,
                             "bLengthChange": false,
                             "bFilter": true,
@@ -506,7 +506,7 @@ function ViewModelIndicador() {
                         var titulo = "<div class='tituloTablas'>" + "<span> Infraestructura social emblemática (período 2007-2015) - " + resultados[0].entidadRequiriente + " - " + resultados[0].estadoObra + " </span></div>";
 
                         /*Se setea la cabecera*/
-                        var cabecera = "<table id='tabla4'><thead><tr><td style=' text-align: center'><u>N°</u></td>"
+                        var cabecera = "<table id='tabla6'><thead><tr><td style=' text-align: center'><u>N°</u></td>"
                                 + "<td style='text-align: center'><u>Tipología</u></td><td style=' text-align: center'><u>Categoria</u></td><td style=' text-align: center'><u>Capacidad</u></td><td style=' text-align: center'><u>Establecimiento</u></td><td style=' text-align: center'><u>Intervención</u></td><td style=' text-align: center'><u>Ejecutor</u></td></tr></thead>";
                         //+ "<td style='text-align: center'>Tipología</td><td style=' text-align: center'>Categoria</td><td style=' text-align: center'>Capacidad</td><td style=' text-align: center'>Establecimiento</td><td style=' text-align: center'>Intervención</td><td style=' text-align: center'>Descripción</td><td style=' text-align: center'>Obra</td><td style=' text-align: center'>Ejecutor</td><td style=' text-align: center'>Avance</td><td style=' text-align: center'>Fecha Entrega</td></tr></thead>";
 
@@ -538,7 +538,7 @@ function ViewModelIndicador() {
 
                         var pie = "</tbody>";
                         $('#tablaDetalleInfraestructuraEstadoObra').append(titulo + cabecera + cuerpo + pie);
-                        $('#tabla4').dataTable({
+                        $('#tabla6').dataTable({
                             "bPaginate": false,
                             "bLengthChange": false,
                             "bFilter": true,
@@ -590,7 +590,7 @@ function ViewModelIndicador() {
                         var titulo = "<div class='tituloTablas'>" + "<span> Infraestructura social emblemática (período 2007-2015) </span></div>";
 
                         /*Se setea la cabecera*/
-                        var cabecera = "<table id='tabla5'><thead><tr><td style=' text-align: center'><u>N°</u></td><td style=' text-align: center'><u>Cantón</u></td><td style=' text-align: center'><u>Parroquia</u></td><td style=' text-align: center'><u>Entidad</u></td>"
+                        var cabecera = "<table id='tabla7'><thead><tr><td style=' text-align: center'><u>N°</u></td><td style=' text-align: center'><u>Cantón</u></td><td style=' text-align: center'><u>Parroquia</u></td><td style=' text-align: center'><u>Entidad</u></td>"
                                 + "<td style='text-align: center'><u>Tipología</u></td><td style=' text-align: center'><u>Categoria</u></td><td style=' text-align: center'><u>Capacidad</u></td><td style=' text-align: center'><u>Establecimiento</u></td><td style=' text-align: center'><u>Intervención</u></td><td style=' text-align: center'><u>Obra</u></td><td style=' text-align: center'><u>Ejecutor</u></td></tr></thead>";
                         //+ "<td style='text-align: center'>Tipología</td><td style=' text-align: center'>Categoria</td><td style=' text-align: center'>Capacidad</td><td style=' text-align: center'>Establecimiento</td><td style=' text-align: center'>Intervención</td><td style=' text-align: center'>Descripción</td><td style=' text-align: center'>Obra</td><td style=' text-align: center'>Ejecutor</td><td style=' text-align: center'>Avance</td><td style=' text-align: center'>Fecha Entrega</td></tr></thead>";
 
@@ -619,7 +619,7 @@ function ViewModelIndicador() {
 
                         var pie = "</tbody>";
                         $('#tablaDetalleInfraestructuraEstadoObra').append(titulo + cabecera + cuerpo + pie);
-                        $('#tabla5').dataTable({
+                        $('#tabla7').dataTable({
                             "bPaginate": false,
                             "bLengthChange": false,
                             "bFilter": true,
@@ -672,7 +672,7 @@ function ViewModelIndicador() {
                         var titulo = "<div class='tituloTablas'>" + "<span> Infraestructura social emblemática (período 2007-2015) </span></div>";
 
                         /*Se setea la cabecera*/
-                        var cabecera = "<table id='tabla6'><thead><tr><td style=' text-align: center'><u>N°</u></td><td style=' text-align: center'><u>Entidad</u></td>"
+                        var cabecera = "<table id='tabla8'><thead><tr><td style=' text-align: center'><u>N°</u></td><td style=' text-align: center'><u>Entidad</u></td>"
                                 + "<td style='text-align: center'><u>Tipología</u></td><td style=' text-align: center'><u>Categoria</u></td><td style=' text-align: center'><u>Capacidad</u></td><td style=' text-align: center'><u>Establecimiento</u></td><td style=' text-align: center'><u>Intervención</u></td><td style=' text-align: center'><u>Obra</u></td><td style=' text-align: center'><u>Ejecutor</u></td></tr></thead>";
                         //+ "<td style='text-align: center'>Tipología</td><td style=' text-align: center'>Categoria</td><td style=' text-align: center'>Capacidad</td><td style=' text-align: center'>Establecimiento</td><td style=' text-align: center'>Intervención</td><td style=' text-align: center'>Descripción</td><td style=' text-align: center'>Obra</td><td style=' text-align: center'>Ejecutor</td><td style=' text-align: center'>Avance</td><td style=' text-align: center'>Fecha Entrega</td></tr></thead>";
 
@@ -704,7 +704,7 @@ function ViewModelIndicador() {
 
                         var pie = "</tbody>";
                         $('#tablaDetalleInfraestructuraEstadoObra').append(titulo + cabecera + cuerpo + pie);
-                        $('#tabla6').dataTable({
+                        $('#tabla8').dataTable({
                             "bPaginate": false,
                             "bLengthChange": false,
                             "bFilter": true,
@@ -833,7 +833,7 @@ function ViewModelIndicador() {
                     var titulo = "<div class='tituloTablas'>" + "<span> Infraestructura social emblemática (período 2007-2015) - " + resultados[0].entidadRequiriente + " </span></div>";
 
                     /*Se setea la cabecera*/
-                    var cabecera = "<table id='tabla9'><thead><tr><td style=' text-align: center'><u>N°</u></td><td style=' text-align: center'><u>Provincia</u></td><td style=' text-align: center'><u>Cantón</u></td><td style=' text-align: center'><u>Parroquia</u></td>"
+                    var cabecera = "<table id='tabla10'><thead><tr><td style=' text-align: center'><u>N°</u></td><td style=' text-align: center'><u>Provincia</u></td><td style=' text-align: center'><u>Cantón</u></td><td style=' text-align: center'><u>Parroquia</u></td>"
                             + "<td style='text-align: center'><u>Tipología</u></td><td style=' text-align: center'><u>Categoria</u></td><td style=' text-align: center'><u>Capacidad</u></td><td style=' text-align: center'><u>Establecimiento</u></td><td style=' text-align: center'><u>Intervención</u></td><td style=' text-align: center'><u>Obra</u></td><td style=' text-align: center'><u>Ejecutor</u></td></tr></thead>";
                     //+ "<td style='text-align: center'>Tipología</td><td style=' text-align: center'>Categoria</td><td style=' text-align: center'>Capacidad</td><td style=' text-align: center'>Establecimiento</td><td style=' text-align: center'>Intervención</td><td style=' text-align: center'>Descripción</td><td style=' text-align: center'>Obra</td><td style=' text-align: center'>Ejecutor</td><td style=' text-align: center'>Avance</td><td style=' text-align: center'>Fecha Entrega</td></tr></thead>";
 
@@ -866,7 +866,7 @@ function ViewModelIndicador() {
                     var pie = "</tbody>";
 
                     $('#tablaDetalleInfraestructuraEstadoObra').append(titulo + cabecera + cuerpo + pie);
-                    $('#tabla99').dataTable({
+                    $('#tabla10').dataTable({
                         "bPaginate": false,
                         "bLengthChange": false,
                         "bFilter": true,
@@ -915,7 +915,7 @@ function ViewModelIndicador() {
                     var titulo = "<div class='tituloTablas'>" + "<span> Infraestructura social emblemática (período 2007-2015) - " + resultados[0].entidadRequiriente + "-" + resultados[0].estadoObra + " </span></div>";
 
                     /*Se setea la cabecera*/
-                    var cabecera = "<table id='tabla7'><thead><tr><td style=' text-align: center'><u>N°</u></td><td style=' text-align: center'><u>Provincia</u></td><td style=' text-align: center'><u>Cantón</u></td><td style=' text-align: center'><u>Parroquia</u></td>"
+                    var cabecera = "<table id='tabla11'><thead><tr><td style=' text-align: center'><u>N°</u></td><td style=' text-align: center'><u>Provincia</u></td><td style=' text-align: center'><u>Cantón</u></td><td style=' text-align: center'><u>Parroquia</u></td>"
                             + "<td style='text-align: center'><u>Tipología</u></td><td style=' text-align: center'><u>Categoria</u></td><td style=' text-align: center'><u>Capacidad</u></td><td style=' text-align: center'><u>Establecimiento</u></td><td style=' text-align: center'><u>Intervención</u></td><td style=' text-align: center'><u>Ejecutor</u></td></tr></thead>";
                     //+ "<td style='text-align: center'>Tipología</td><td style=' text-align: center'>Categoria</td><td style=' text-align: center'>Capacidad</td><td style=' text-align: center'>Establecimiento</td><td style=' text-align: center'>Intervención</td><td style=' text-align: center'>Descripción</td><td style=' text-align: center'>Obra</td><td style=' text-align: center'>Ejecutor</td><td style=' text-align: center'>Avance</td><td style=' text-align: center'>Fecha Entrega</td></tr></thead>";
 
@@ -945,7 +945,7 @@ function ViewModelIndicador() {
 
                     var pie = "</tbody>";
                     $('#tablaDetalleInfraestructuraEstadoObra').append(titulo + cabecera + cuerpo + pie);
-                    $('#tabla7').dataTable({
+                    $('#tabla11').dataTable({
                         "bPaginate": false,
                         "bLengthChange": false,
                         "bFilter": true,
@@ -993,7 +993,7 @@ function ViewModelIndicador() {
                     var titulo = "<div class='tituloTablas'>" + "<span> Infraestructura social emblemática (período 2007-2015) </span></div>";
 
                     /*Se setea la cabecera*/
-                    var cabecera = "<table id='tabla8'><thead><tr><td style=' text-align: center'><u>N°</u></td><td style=' text-align: center'><u>Provincia</u></td><td style=' text-align: center'><u>Cantón</u></td><td style=' text-align: center'><u>Parroquia</u></td><td style=' text-align: center'><u>Entidad</u></td>"
+                    var cabecera = "<table id='tabla12'><thead><tr><td style=' text-align: center'><u>N°</u></td><td style=' text-align: center'><u>Provincia</u></td><td style=' text-align: center'><u>Cantón</u></td><td style=' text-align: center'><u>Parroquia</u></td><td style=' text-align: center'><u>Entidad</u></td>"
                             + "<td style='text-align: center'><u>Tipología</u></td><td style=' text-align: center'><u>Categoria</u></td><td style=' text-align: center'><u>Capacidad</u></td><td style=' text-align: center'><u>Establecimiento</u></td><td style=' text-align: center'><u>Intervención</u></td><td style=' text-align: center'><u>Obra</u></td><td style=' text-align: center'><u>Ejecutor</u></td></tr></thead>";
                     //+ "<td style='text-align: center'>Tipología</td><td style=' text-align: center'>Categoria</td><td style=' text-align: center'>Capacidad</td><td style=' text-align: center'>Establecimiento</td><td style=' text-align: center'>Intervención</td><td style=' text-align: center'>Descripción</td><td style=' text-align: center'>Obra</td><td style=' text-align: center'>Ejecutor</td><td style=' text-align: center'>Avance</td><td style=' text-align: center'>Fecha Entrega</td></tr></thead>";
 
@@ -1023,7 +1023,7 @@ function ViewModelIndicador() {
 
                     var pie = "</tbody>";
                     $('#tablaDetalleInfraestructuraEstadoObra').append(titulo + cabecera + cuerpo + pie);
-                    $('#tabla8').dataTable({
+                    $('#tabla12').dataTable({
                         "bPaginate": false,
                         "bLengthChange": false,
                         "bFilter": true,
