@@ -17,6 +17,7 @@ var obrasNacional;
 var obrasProvincial;
 var obrasCantonal;
 var divGrafica;
+//var listaValidarDPA;
 
 
 
@@ -147,6 +148,7 @@ function init() {
         /*Se toman las coordenadas*/
         lat = position.coords.latitude;
         lng = position.coords.longitude;
+        
         var lnglat = new OpenLayers.LonLat(lng, lat).transform(
                 new OpenLayers.Projection("EPSG:4326"),
                 mapa.getProjectionObject());
@@ -214,6 +216,22 @@ function init() {
         self.cantonSeleccionado = ko.observable();
         self.parrSeleccionada = ko.observable();
 
+        /*Casos para validar la dpa 2010 y 2012*/
+        /*$.ajax({
+            url: "cadena.txt",
+            dataType: "text",
+            success: function(data) {
+                ipserver = data;
+                //devuelve las provincias a nivel nacional
+                var cadena = ipserver + "/SWSISEcuador/webresources/ridpa/validarDPA";
+                //Se almacena la cadena json en la variable result
+                $.getJSON(cadena, function(result) {
+                    //Se recorre el arreglo
+                    //alert(result);
+                    listaValidarDPA = result;
+                });
+            }
+        });*/
 
         /*Funcion ajax para llenar los combos de busqueda*/
         $.ajax({
@@ -406,7 +424,7 @@ function init() {
                             var datos = ipserver + "/SWSISEcuador/webresources/territorial/consultaGraficaPoblacion/" + codigo_prv + "/" + codigo_ciu;
                             $.getJSON(datos, function(resultados) {
                                 //  $('#container').html("");
-                                //alert(resultados)
+                                //alert(resultados.valoresX_indicador)
                                 /*
                                  * Gráfico en HighCharts
                                  */
@@ -727,11 +745,11 @@ function init() {
                                     /*Se agrupan las filas y las columnas para dar formato a la tabla*/
                                     cuerpo = cuerpo + "<td style=' text-align: center' rowspan='" + this.lista.length + "'>" + this.distrito + "</td>"
                                             + "<td style=' text-align: left'>" + this.lista[0].nombre + "</td>"
-                                            + " <td style=' text-align: right'>" + this.lista[0].valor + "</td></tr>";
+                                            + " <td style=' text-align: right'>" + format(this.lista[0].valor) + "</td></tr>";
                                     for (var i = 1; i < this.lista.length; i++) {
                                         cuerpo = cuerpo
                                                 + "<tr><td style=' text-align: left'>" + this.lista[i].nombre + "</td>"
-                                                + " <td style=' text-align: right'>" + this.lista[i].valor + "</td></tr>";
+                                                + " <td style=' text-align: right'>" + format(this.lista[i].valor) + "</td></tr>";
                                     }
                                 });
                                 var pie = "</tbody></table>";
@@ -788,7 +806,7 @@ function init() {
 
                                 /*Se setea la cabecera*/
                                 var cabecera = "<table><thead><tr><td style=' text-align: center'><p>Cantón</p></td>\n\
-                                <td style=' text-align: center'><p>Poblacion</p></td></tr></thead>";
+                                <td style=' text-align: center'><p>Población</p></td></tr></thead>";
 
                                 var cuerpo = "<tbody>";
                                 //alert(resultados.length);
@@ -797,7 +815,7 @@ function init() {
 
                                     cuerpo = cuerpo
                                             + "<tr><td style=' text-align: left'>" + resultados[i].nombre + "</td>"
-                                            + " <td style=' text-align: right'>" + resultados[i].valor + "</td></tr>";
+                                            + " <td style=' text-align: right'>" + format(resultados[i].valor) + "</td></tr>";
 
                                 }
                                 ;
@@ -837,8 +855,9 @@ function init() {
                             //  var datos = ipserver + "/SWSISEcuador/webresources/infraestructura/canton/" + codigo_prv + "/" + codigo_ciu;
                             //var datos = "http://localhost:8080/SWSISEcuador/webresources/infraestructura/canton/" + codigo_prv + "/" + codigo_ciu;
                             var datos = ipserver + "/SWSISEcuador/webresources/infraestructura/canton/" + codigo_prv + "/" + codigo_ciu;
-
+                            //alert(datos);
                             $.getJSON(datos, function(resultados) {
+                                //alert(resultados);
                                 $('#infraestructura').html("");
 
                                 var titulo = "<div class='tituloTablas'>"
@@ -1013,7 +1032,11 @@ function init() {
                                                     }
                                                 }
                                             }
-                                            cuerpo = cuerpo + "<td style=' text-align: right'>" + sum + " </td>"
+                                            if (sum === 0) {
+                                                cuerpo = cuerpo + "<td style=' text-align: right'>" + sum + " </td>"
+                                            } else {
+                                                cuerpo = cuerpo + "<td style=' text-align: right'><a href= InfraestructuraNueva.html?" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + resultados.valoresXClaveValor[i].codigo + "&" + "-1" + ">" + sum + "</a></td>";
+                                            }
 
                                             for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
                                                 var codigo = parseInt(resultados.valoresYIndicador[j].codigo);
@@ -1023,7 +1046,7 @@ function init() {
                                                         //cuerpo = cuerpo + "<td style=' text-align: left'>" + resultados.valoresYIndicador[j].data[i] + "</td>"
                                                         //sum = sum + resultados.valoresYIndicador[j].data[i];
                                                     } else {
-                                                        cuerpo = cuerpo + "<td style=' text-align: right'> </td>"
+                                                        cuerpo = cuerpo + "<td style=' text-align: right'> </td>";
                                                     }
                                                 }
                                             }
@@ -1035,7 +1058,7 @@ function init() {
 
 
                                     // Obtener los totales generales
-                                    cuerpo = cuerpo + "<tr><td style=' text-align: left' colspan='2'><a href= InfraestructuraNueva.html?" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1>Total General</td></a>";
+                                    cuerpo = cuerpo + "<tr><td style=' text-align: left' colspan='2'><a href= InfraestructuraNueva.html?" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1>Total General</a></td>";
                                     //alert(resultados.valoresYIndicador[0].data.length)
                                     var totalGeneral = 0;
                                     for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
@@ -1048,10 +1071,14 @@ function init() {
                                                     totalGeneral = totalGeneral + resultados.valoresYIndicador[j].data[h];
                                                 }
                                             }
-                                            cuerpo = cuerpo + "<td style=' text-align: right'>" + totalColumna + "</td>"
+                                            cuerpo = cuerpo + "<td style=' text-align: right'><a href= InfraestructuraNueva.html?" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + resultados.valoresYIndicador[j].codigo + ">" + totalColumna + "</a></td>"
                                         }
                                     }
-                                    cuerpo = cuerpo + "<td style=' text-align: right'>" + totalGeneral + "</td>"
+                                    if (totalGeneral === 0) {
+                                        cuerpo = cuerpo + "<td style=' text-align: right'>" + totalGeneral + "</td>";
+                                    } else {
+                                        cuerpo = cuerpo + "<td style=' text-align: right'><a href= InfraestructuraNueva.html?" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1>" + totalGeneral + "</a></td>";
+                                    }
                                     for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
                                         var totalColumna = 0;
                                         var codigo = parseInt(resultados.valoresYIndicador[j].codigo);
@@ -1201,8 +1228,11 @@ function init() {
                                                     }
                                                 }
                                             }
-                                            cuerpo = cuerpo + "<td style=' text-align: right'>" + sum + " </td>"
-
+                                            if (sum === 0) {
+                                                cuerpo = cuerpo + "<td style=' text-align: right'>" + sum + " </td>"
+                                            } else {
+                                                cuerpo = cuerpo + "<td style=' text-align: right'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + resultados.valoresXClaveValor[i].codigo + "&" + "-1" + ">" + sum + "</a></td>";
+                                            }
                                             for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
                                                 var codigo = parseInt(resultados.valoresYIndicador[j].codigo);
                                                 if (codigo === 1) {
@@ -1236,10 +1266,14 @@ function init() {
                                                     totalGeneral = totalGeneral + resultados.valoresYIndicador[j].data[h];
                                                 }
                                             }
-                                            cuerpo = cuerpo + "<td style=' text-align: right'>" + totalColumna + "</td>"
+                                            cuerpo = cuerpo + "<td style=' text-align: right'> <a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + resultados.valoresYIndicador[j].codigo + ">" + totalColumna + "</a></td>"
                                         }
                                     }
-                                    cuerpo = cuerpo + "<td style=' text-align: right'>" + totalGeneral + "</td>"
+                                    if (totalGeneral === 0) {
+                                        cuerpo = cuerpo + "<td style=' text-align: right'>" + totalGeneral + "</td>";
+                                    } else {
+                                        cuerpo = cuerpo + "<td style=' text-align: right'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1>" + totalGeneral + "</a></td>"
+                                    }
                                     for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
                                         var totalColumna = 0;
                                         var codigo = parseInt(resultados.valoresYIndicador[j].codigo);
@@ -1390,8 +1424,11 @@ function init() {
                                                     }
                                                 }
                                             }
-                                            cuerpo = cuerpo + "<td style=' text-align: right'>" + sum + " </td>"
-
+                                            if (sum === 0) {
+                                                cuerpo = cuerpo + "<td style=' text-align: right'>" + sum + " </td>"
+                                            } else {
+                                                cuerpo = cuerpo + "<td style=' text-align: right'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + "-1" + "&" + "-1" + "&" + resultados.valoresXClaveValor[i].codigo + "&" + "-1" + ">" + sum + "</a></td>";
+                                            }
                                             for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
                                                 var codigo = parseInt(resultados.valoresYIndicador[j].codigo);
                                                 if (codigo === 1) {
@@ -1425,10 +1462,14 @@ function init() {
                                                     totalGeneral = totalGeneral + resultados.valoresYIndicador[j].data[h];
                                                 }
                                             }
-                                            cuerpo = cuerpo + "<td style=' text-align: right'>" + totalColumna + "</td>"
+                                            cuerpo = cuerpo + "<td style=' text-align: right'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + resultados.valoresYIndicador[j].codigo + ">" + totalColumna + "</a></td>"
                                         }
                                     }
-                                    cuerpo = cuerpo + "<td style=' text-align: right'>" + totalGeneral + "</td>"
+                                    if (totalGeneral === 0) {
+                                        cuerpo = cuerpo + "<td style=' text-align: right'>" + totalGeneral + "</td>";
+                                    } else {
+                                        cuerpo = cuerpo + "<td style=' text-align: right'> <a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1>" + totalGeneral + "</a></td>";
+                                    }
                                     for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
                                         var totalColumna = 0;
                                         var codigo = parseInt(resultados.valoresYIndicador[j].codigo);
@@ -1561,88 +1602,133 @@ function init() {
                     //realiza la grafica en higchrt de la infraestructura
                     function graficar(resultados, divGrafica, titulo) {
 
-                        // $('#graficaViviendas').html("");
-                        //alert(resultados.nombreIndicador);
-
-                        /*
-                         * Gráfico en HighCharts
-                         */
-                        $(divGrafica).highcharts({
-                            chart: {
-                                type: 'column',
-                                style: {
-                                    fontFamily: 'Helvetica' // default font
-
+                        var listaEjecucion = null;
+                        var listaTerminada = null;
+                        var estadoEjecutada = 0;
+                        var estadoTerminada = 0;
+                        //alert(resultados.valoresYIndicador.length);
+                        for (var i = 0; i < resultados.valoresYIndicador.length; i++) {
+                            if (resultados.valoresYIndicador[i].codigo === '2') {
+                                //alert("ejecutadas");
+                                listaEjecucion = resultados.valoresYIndicador[i].data;
+                                estadoEjecutada = 1;
+                            }
+                            if (resultados.valoresYIndicador[i].codigo === '4') {
+                                //alert("terminadas");
+                                listaTerminada = resultados.valoresYIndicador[i].data;
+                                estadoTerminada = 1;
+                            }
+                        }
+                        //cuadno haya datos en las dos listas y eliminar los null
+                        if ((estadoEjecutada === 1) && (estadoTerminada === 1)) {
+                            for (var i = 0; i < listaEjecucion.length; i++) {
+                                if ((listaEjecucion[i] === null) && (listaTerminada[i] === null)) {
+                                    listaEjecucion.splice(i, 1);
+                                    listaTerminada.splice(i, 1);
                                 }
-                            },
-                            title: {
-                                text: titulo
-                            },
-                            subtitle: {
-                                text: resultados.fuenteIndicador
-                            },
-                            credits: {
-                                enabled: false
-                            },
-                            xAxis: {
-                                categories: resultados.valoresXIndicador
-                            },
-                            yAxis: {
-                                min: 0,
-                                title: {
-                                    text: 'Cantidad'
-                                }
-                            },
-                            plotOptions: {
-                                column: {
-                                    stacking: 'normal',
-                                    dataLabels: {
-                                        enabled: true,
-                                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                            }
+                        } else {
+                            //cuando haya datos solo en la lista e ejecucion y eliminar los null
+                            if (estadoEjecutada === 1) {
+                                for (var i = 0; i < listaEjecucion.length; i++) {
+                                    if (listaEjecucion[i] === null) {
+                                        listaEjecucion.splice(i, 1);
                                     }
                                 }
-                            },
-                            series: []
-                        });
-                        // Creación dinámica de series
-                        var chart = $(divGrafica).highcharts();
-                        for (var i = 0; i < resultados.valoresYIndicador.length; i++) {
-                            var nombre = resultados.valoresYIndicador[i].name;
-                            /*chart.addSeries({
-                             name: nombre,
-                             data: resultados.valoresYIndicador[i].data
-                             
-                             });*/
-                            //palnificada
-                            /*if (resultados.valoresYIndicador[i].codigo === '1') {
-                             chart.addSeries({
-                             name: nombre,
-                             data: resultados.valoresYIndicador[i].data,
-                             color: '#90ed7d'
-                             });
-                             }*/
-                            //En ejecucion
-                            if (resultados.valoresYIndicador[i].codigo === '2') {
-                                chart.addSeries({
-                                    name: nombre,
-                                    data: resultados.valoresYIndicador[i].data,
-                                    color: '#98df8a'
-                                });
+                            } else {
+                                //cuando haya datos solo en la lista terminada y eliminar los null
+                                if (estadoTerminada === 1) {
+                                    for (var i = 0; i < listaTerminada.length; i++) {
+                                        if (listaTerminada[i] === null) {
+                                            listaTerminada.splice(i, 1);
+                                        }
+                                    }
+
+                                }
                             }
-
-                            //Terminada
-                            if (resultados.valoresYIndicador[i].codigo === '4') {
-                                chart.addSeries({
-                                    name: nombre,
-                                    data: resultados.valoresYIndicador[i].data,
-                                    color: '#2ca02c'
-
-                                });
-                            }
-
                         }
-                        //chart.tooltip.refresh(chart.series[0].data[resultados.valoresXIndicador.length - 1]);
+                        if ((estadoEjecutada === 1) || (estadoTerminada === 1)) {
+                            /*
+                             * Gráfico en HighCharts
+                             */
+                            $(divGrafica).highcharts({
+                                chart: {
+                                    type: 'column',
+                                    style: {
+                                        fontFamily: 'Helvetica' // default font
 
+                                    }
+                                },
+                                title: {
+                                    text: titulo
+                                },
+                                subtitle: {
+                                    text: resultados.fuenteIndicador
+                                },
+                                credits: {
+                                    enabled: false
+                                },
+                                xAxis: {
+                                    categories: resultados.valoresXIndicador
+                                },
+                                yAxis: {
+                                    min: 0,
+                                    title: {
+                                        text: 'Cantidad'
+                                    }
+                                },
+                                plotOptions: {
+                                    column: {
+                                        stacking: 'normal',
+                                        dataLabels: {
+                                            enabled: true,
+                                            color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                                        }
+                                    }
+                                },
+                                series: []
+                            });
+                            // Creación dinámica de series
+                            var chart = $(divGrafica).highcharts();
+                            for (var i = 0; i < resultados.valoresYIndicador.length; i++) {
+                                var nombre = resultados.valoresYIndicador[i].name;
+                                /*chart.addSeries({
+                                 name: nombre,
+                                 data: resultados.valoresYIndicador[i].data
+                                 
+                                 });*/
+                                //palnificada
+                                /*if (resultados.valoresYIndicador[i].codigo === '1') {
+                                 chart.addSeries({
+                                 name: nombre,
+                                 data: resultados.valoresYIndicador[i].data,
+                                 color: '#90ed7d'
+                                 });
+                                 }*/
+                                //En ejecucion
+                                if (resultados.valoresYIndicador[i].codigo === '2') {
+                                    chart.addSeries({
+                                        name: nombre,
+                                        //data: resultados.valoresYIndicador[i].data,
+                                        data: listaEjecucion,
+                                        color: '#98df8a'
+                                    });
+                                }
+
+                                //Terminada
+                                if (resultados.valoresYIndicador[i].codigo === '4') {
+                                    chart.addSeries({
+                                        name: nombre,
+                                        //data: resultados.valoresYIndicador[i].data,
+                                        data: listaTerminada,
+                                        color: '#2ca02c'
+
+                                    });
+                                }
+
+                            }
+                            //chart.tooltip.refresh(chart.series[0].data[resultados.valoresXIndicador.length - 1]);
+                        }
                     }
                     //fin
 

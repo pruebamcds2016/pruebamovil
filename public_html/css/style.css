@@ -747,6 +747,7 @@ li.active a, li.active a:hover {
 .infoTerritorial table td{
     
     text-align: right;
+    vertical-align: middle;
     
 }
 

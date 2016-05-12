@@ -16,6 +16,7 @@ var obrasNacional;
 var obrasProvincial;
 var obrasCantonal;
 var divGrafica;
+//var listaValidarDPA;
 
 
 /*Funcion init() ubicada en el Onload de la pagina*/
@@ -57,7 +58,7 @@ function init() {
 
     //var apiKey = "AqTGBsziZHIJYYxgivLBf0hVdrAk9mWO5cQcb8Yux8sW5M8c8opEC2lZqKR1ZZXf";
     var apiKey = "ApzF8URqpsJu0SQpIv9mBKa26rBDJmbg-YrYQmZn_rbmXKwSqpoUhGLV9lFH3nNy";//key de bing
-    
+
 
     layerBase = new OpenLayers.Layer.Bing({
         name: "Calles",
@@ -71,8 +72,6 @@ function init() {
     mapa.addLayer(layerBase);
     /*Se oculta el mapa hasta que se cargue toda la información*/
     $("#miMapa").css("display", "none");
-
-
 
     /******************************************************************/
     /*Funcion Knockout.js para mostrar la informacion******************/
@@ -216,6 +215,20 @@ function init() {
         /************************************/
         /*Funcion para consultar indicadores*/
         /***********************************/
+        /*var codigo_prv1;
+        var codigo_ciu1;
+        if (codigo_prv.length === 1) {
+            codigo_prv1 = "0" + codigo_prv;
+        } else {
+            codigo_prv1 = codigo_prv;
+        }
+        if (codigo_ciu.length === 3) {
+            codigo_ciu1 = "0" + codigo_ciu;
+            
+        } else {
+            codigo_ciu1 = codigo_ciu;
+        }*/
+        
         var codigo_prv1;
         var codigo_ciu1;
         if (codigo_prv.length === 1) {
@@ -237,7 +250,7 @@ function init() {
             success: function(data) {
                 ipserver = data;
                 var cadena = ipserver + "/WSMapas/webresources/territorial/" + codigo_prv1 + "/" + codigo_ciu1;
-
+                //alert(cadena);
                 $.getJSON(cadena, function(result) {
                     //alert(result);
                     var consulta = result[0];
@@ -288,9 +301,9 @@ function init() {
                     //$(".canton").html(nombre_ciu);
                     $("#provincia").html("Usted se encuentra en: " + nombre_prv + " - " + nombre_ciu);
                 });
-                
+
                 $("#labelUbicacion").html('La ubicación seleccionada es: &nbsp;');
-                
+
                 $(".infoUbicacion").css("display", "block");
                 $("#labelUbicacion").css("display", "block");
 
@@ -681,11 +694,11 @@ function init() {
                         /*Se agrupan las filas y las columnas para dar formato a la tabla*/
                         cuerpo = cuerpo + "<td style=' text-align: center' rowspan='" + this.lista.length + "'>" + this.distrito + "</td>"
                                 + "<td style=' text-align: left'>" + this.lista[0].nombre + "</td>"
-                                + " <td style=' text-align: right'>" + this.lista[0].valor + "</td></tr>";
+                                + " <td style=' text-align: right'>" + format(this.lista[0].valor) + "</td></tr>";
                         for (var i = 1; i < this.lista.length; i++) {
                             cuerpo = cuerpo
                                     + "<tr><td style=' text-align: left'>" + this.lista[i].nombre + "</td>"
-                                    + " <td style=' text-align: right'>" + this.lista[i].valor + "</td></tr>";
+                                    + " <td style=' text-align: right'>" + format(this.lista[i].valor) + "</td></tr>";
                         }
                     });
                     var pie = "</tbody></table>";
@@ -743,7 +756,7 @@ function init() {
 
                     /*Se setea la cabecera*/
                     var cabecera = "<table><thead><tr><td style=' text-align: center'><p>Cantón</p></td>\n\
-                                <td style=' text-align: center'><p>Poblacion</p></td></tr></thead>";
+                                <td style=' text-align: center'><p>Población</p></td></tr></thead>";
 
                     var cuerpo = "<tbody>";
                     //alert(resultados.length);
@@ -752,7 +765,7 @@ function init() {
 
                         cuerpo = cuerpo
                                 + "<tr><td style=' text-align: left'>" + resultados[i].nombre + "</td>"
-                                + " <td style=' text-align: right'>" + resultados[i].valor + "</td></tr>";
+                                + " <td style=' text-align: right'>" + format(resultados[i].valor) + "</td></tr>";
 
                     }
                     ;
@@ -839,13 +852,13 @@ function init() {
         //para consultar en la base de datos de observatorio se requiere que sea string provincia = 17 y canton = 05
         var codigoProvincia;
         var codigoCanton;
-        if (codigo_prv.length === 1) {
+        if (String(codigo_prv).length === 1) {
             codigoProvincia = "0" + codigo_prv;
         } else {
             codigoProvincia = codigo_prv;
         }
         //alert(String(codigo_ciu));
-        if (codigo_ciu.length === 1) {
+        if (String(codigo_ciu).length === 1) {
             codigoCanton = "0" + codigo_ciu;
             //alert("ok")
             //codigo_ciu1 = codigo_prv1 + codigo_ciu1;
@@ -943,7 +956,12 @@ function init() {
                                         }
                                     }
                                 }
-                                cuerpo = cuerpo + "<td style=' text-align: right'>" + sum + " </td>"
+                                if (sum === 0) {
+                                    cuerpo = cuerpo + "<td style=' text-align: right'>" + sum + " </td>"
+                                } else {
+                                    cuerpo = cuerpo + "<td style=' text-align: right'><a href= InfraestructuraNueva.html?" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + resultados.valoresXClaveValor[i].codigo + "&" + "-1" + ">" + sum + "</a></td>";
+                                }
+
 
                                 for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
                                     var codigo = parseInt(resultados.valoresYIndicador[j].codigo);
@@ -953,7 +971,7 @@ function init() {
                                             //cuerpo = cuerpo + "<td style=' text-align: left'>" + resultados.valoresYIndicador[j].data[i] + "</td>"
                                             //sum = sum + resultados.valoresYIndicador[j].data[i];
                                         } else {
-                                            cuerpo = cuerpo + "<td style=' text-align: right'> </td>"
+                                            cuerpo = cuerpo + "<td style=' text-align: right'> </td>";
                                         }
                                     }
                                 }
@@ -965,7 +983,7 @@ function init() {
 
 
                         // Obtener los totales generales
-                        cuerpo = cuerpo + "<tr><td style=' text-align: left' colspan='2'><a href= InfraestructuraNueva.html?" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1>Total General</td></a>";
+                        cuerpo = cuerpo + "<tr><td style=' text-align: left' colspan='2'><a href= InfraestructuraNueva.html?" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1>Total General</a></td>";
                         //alert(resultados.valoresYIndicador[0].data.length)
                         var totalGeneral = 0;
                         for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
@@ -978,10 +996,14 @@ function init() {
                                         totalGeneral = totalGeneral + resultados.valoresYIndicador[j].data[h];
                                     }
                                 }
-                                cuerpo = cuerpo + "<td style=' text-align: right'>" + totalColumna + "</td>"
+                                cuerpo = cuerpo + "<td style=' text-align: right'><a href= InfraestructuraNueva.html?" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + resultados.valoresYIndicador[j].codigo + ">" + totalColumna + "</a></td>"
                             }
                         }
-                        cuerpo = cuerpo + "<td style=' text-align: right'>" + totalGeneral + "</td>"
+                        if (totalGeneral === 0) {
+                            cuerpo = cuerpo + "<td style=' text-align: right'>" + totalGeneral + "</td>";
+                        } else {
+                            cuerpo = cuerpo + "<td style=' text-align: right'><a href= InfraestructuraNueva.html?" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1>" + totalGeneral + "</a></td>";
+                        }
                         for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
                             var totalColumna = 0;
                             var codigo = parseInt(resultados.valoresYIndicador[j].codigo);
@@ -1016,8 +1038,7 @@ function init() {
 
         //fin
 
-
-        /****************************************/
+        /**************************************.........**/
         /*Funcion para crear tabla Infraestructura NUEVA obras del sector  PROVINCIA */
         /****************************************/
         $("#moreInfraestructuraNuevaProvincia").css("display", "none");
@@ -1109,7 +1130,11 @@ function init() {
                                         }
                                     }
                                 }
-                                cuerpo = cuerpo + "<td style=' text-align: right'>" + sum + " </td>"
+                                if (sum === 0) {
+                                    cuerpo = cuerpo + "<td style=' text-align: right'>" + sum + " </td>"
+                                } else {
+                                    cuerpo = cuerpo + "<td style=' text-align: right'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + resultados.valoresXClaveValor[i].codigo + "&" + "-1" + ">" + sum + "</a></td>";
+                                }
 
                                 for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
                                     var codigo = parseInt(resultados.valoresYIndicador[j].codigo);
@@ -1144,10 +1169,14 @@ function init() {
                                         totalGeneral = totalGeneral + resultados.valoresYIndicador[j].data[h];
                                     }
                                 }
-                                cuerpo = cuerpo + "<td style=' text-align: right'>" + totalColumna + "</td>"
+                                cuerpo = cuerpo + "<td style=' text-align: right'> <a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + resultados.valoresYIndicador[j].codigo + ">" + totalColumna + "</a></td>"
                             }
                         }
-                        cuerpo = cuerpo + "<td style=' text-align: right'>" + totalGeneral + "</td>"
+                        if (totalGeneral === 0) {
+                            cuerpo = cuerpo + "<td style=' text-align: right'>" + totalGeneral + "</td>";
+                        } else {
+                            cuerpo = cuerpo + "<td style=' text-align: right'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1>" + totalGeneral + "</a></td>"
+                        }
                         for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
                             var totalColumna = 0;
                             var codigo = parseInt(resultados.valoresYIndicador[j].codigo);
@@ -1181,6 +1210,211 @@ function init() {
             }});
 
         //fin
+
+      /*
+        //Casos para validar la dpa 2010 y 2012
+        $.ajax({
+            url: "cadena.txt",
+            dataType: "text",
+            success: function(data) {
+                ipserver = data;
+                //devuelve las provincias a nivel nacional
+                var cadena = ipserver + "/SWSISEcuador/webresources/ridpa/validarDPA";
+                //Se almacena la cadena json en la variable result
+                $.getJSON(cadena, function(result) {
+                    //Se recorre el arreglo
+                    var codigoProvinciaValidardpa2010;
+                    var codigoProvinciaValidardpa2012;
+                    var codigoCantonValidardpa2012;
+                    //alert(result[i].codigo_provincia_dpa2010);
+                    for (var i = 0; i < result.length; i++) {
+                        if (codigoProvincia === result[i].codigo_provincia_dpa2010) {
+                            codigoProvinciaValidardpa2010 = result[i].codigo_provincia_dpa2010;
+                            codigoProvinciaValidardpa2012 = result[i].codigo_provincia_dpa2012;
+                            codigoCantonValidardpa2012 = result[i].codigo_canton_dpa2012;
+                        }
+                    }
+                    if (codigoProvinciaValidardpa2010 === "08"){
+                        dpaVAlidar(codigoProvinciaValidardpa2012, codigoCantonValidardpa2012 );
+                    }
+                    
+                });
+            }
+        });
+
+        function dpaVAlidar(codigoProvinciaValidardpa2012, codigoCantonValidardpa2012) {
+            
+            $("#moreInfraestructuraNuevaProvinciaCanton").css("display", "none");
+            $("#menosInfraestructuraNuevaProvinciaCanton").click(function(event) {
+                $("#menosInfraestructuraNuevaProvinciaCanton").hide();
+                $("#moreInfraestructuraNuevaProvinciaCanton").show();
+                $("#todoInfraestructuraNuevaProvinciaCanton").hide();
+                event.preventDefault();
+            });
+
+            $("#moreInfraestructuraNuevaProvinciaCanton").click(function(event) {
+                $("#menosInfraestructuraNuevaProvinciaCanton").show();
+                $("#moreInfraestructuraNuevaProvinciaCanton").hide();
+                $("#todoInfraestructuraNuevaProvinciaCanton").show();
+                event.preventDefault();
+            });
+            $.ajax({
+                url: "cadenaInfraestructura.txt",
+                dataType: "text",
+                success: function(data) {
+                    //Se realiza la consulta a nivel de canton y con la informacion se arma la tabla
+                    //var datos = "http://192.168.50.76:8080/WSObservatorio/webresources/infraestructura/obras/" + codigoProvincia;
+                    ipserver = data;
+                    var datos = ipserver + "/WSObservatorio/webresources/infraestructura/obras/" + codigoProvinciaValidardpa2012 + "/" + codigoCantonValidardpa2012;
+                    //alert(datos);
+                    $.getJSON(datos, function(resultados) {
+                        //alert(resultados.valoresYIndicador.length);
+                        if (resultados.valoresYIndicador.length > 0) {
+                            obrasCantonal = resultados;
+                            //alert(resultados);
+                            $('#tablaInfraestructuraNuevaProvinciaCanton').html("");
+
+                            var titulo = "<div class='tituloTablas'>"
+                                    + "<span> Infraestructura Social Emblemática cantón " + resultados.canton + " (período 2007-2015)</span></div>";
+
+                            var tituloMenos = "<div class='tituloTablas'>"
+                                    + "<span><a href='#' style='text-decoration:none'> <font size='3' color='black'> - &nbsp;&nbsp;  Infraestructura Social Emblemática cantón " + resultados.canton + " (período 2007-2015)</font></a></span></div>";
+
+                            var tituloMore = "<div class='tituloTablas'>"
+                                    + "<span><a href='#' style='text-decoration:none'> <font size='3' color='black'> + &nbsp;&nbsp;  Infraestructura Social Emblemática cantón " + resultados.canton + " (período 2007-2015)</font></a></span></div>";
+                            $('#nota').html("En la DPA 2012 el cantón la concordia pertenece a la provincia de Santo Domingo");
+                            $('#menosInfraestructuraNuevaProvinciaCanton').html(tituloMenos);
+                            $('#moreInfraestructuraNuevaProvinciaCanton').html(tituloMore);
+                            //Se setea la cabecera
+                            var cabecera = "<table><thead><tr><td style=' text-align: center' rowspan='2'><p>SECTOR</p></td><td style=' text-align: center' rowspan='2'><p>TIPOLOGIA</p></td>"
+                                    + "<td colspan='" + (resultados.valoresYIndicador.length + 1) + "'style=' text-align: center'>ESTADO DE LA OBRA</td></tr><tr>";
+
+                            for (var i = 0; i < resultados.valoresYIndicador.length; i++) {
+                                var codigo = parseInt(resultados.valoresYIndicador[i].codigo);
+                                if (codigo !== 1) {
+                                    cabecera = cabecera + "<td style=' text-align: center'>" + resultados.valoresYIndicador[i].name + "</td>"
+                                }
+                            }
+                            cabecera = cabecera + "<td style=' text-align: center'>TOTAL</td>";
+                            //completa la cabecera con la columna planificada
+                            for (var i = 0; i < resultados.valoresYIndicador.length; i++) {
+                                var codigo = parseInt(resultados.valoresYIndicador[i].codigo);
+                                if (codigo === 1) {
+                                    cabecera = cabecera + "<td style=' text-align: center'>" + resultados.valoresYIndicador[i].name + "</td>"
+                                }
+                            }
+                            cabecera = cabecera + "</tr></thead>";
+                            var cuerpo = "<tbody>";
+                            //datos del estado de la obra por institucion
+                            var i = 0;
+                            //alert(resultados.listaSectores[0].totalTipologiaXSector);
+                            for (var k = 0; k < resultados.listaSectores.length; k++) {
+
+                                cuerpo = cuerpo + "<tr><td style=' text-align: left' rowspan=" + resultados.listaSectores[k].totalTipologiaXSector + "><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + "-1" + "&" + resultados.listaSectores[k].idSector + "&" + "-1" + "&" + "-1" + ">" + resultados.listaSectores[k].sector + "</a></td>"
+                                var cont = 0;
+                                //alert(resultados.listaSectores[k].totalTipologiaXSector);
+                                while (cont < parseInt(resultados.listaSectores[k].totalTipologiaXSector)) {
+                                    if (cont === 0) {
+                                        cuerpo = cuerpo + "<td style=' text-align: left'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + "-1" + "&" + "-1" + "&" + resultados.valoresXClaveValor[i].codigo + "&" + "-1" + ">" + resultados.valoresXClaveValor[i].valor + "</a></td>";
+                                    } else {
+                                        cuerpo = cuerpo + "<tr><td style=' text-align: left'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + "-1" + "&" + "-1" + "&" + resultados.valoresXClaveValor[i].codigo + "&" + "-1" + ">" + resultados.valoresXClaveValor[i].valor + "</a></td>";
+                                    }
+
+                                    var sum = 0;
+                                    //alert(resultados.valoresYIndicador[0].codigo );
+                                    for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
+                                        var codigo = parseInt(resultados.valoresYIndicador[j].codigo);
+                                        if (codigo !== 1) {
+                                            //alert(resultados.valoresYIndicador[j].codigo );
+                                            if (resultados.valoresYIndicador[j].data[i] !== null) {
+                                                cuerpo = cuerpo + "<td style=' text-align: right'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + "-1" + "&" + "-1" + "&" + resultados.valoresXClaveValor[i].codigo + "&" + resultados.valoresYIndicador[j].codigo + ">" + resultados.valoresYIndicador[j].data[i] + "</a></td>"
+                                                //cuerpo = cuerpo + "<td style=' text-align: left'>" + resultados.valoresYIndicador[j].data[i] + "</td>"
+                                                sum = sum + resultados.valoresYIndicador[j].data[i];
+                                            } else {
+                                                cuerpo = cuerpo + "<td style=' text-align: right'> </td>";
+                                            }
+                                        }
+                                    }
+                                    if (sum === 0) {
+                                        cuerpo = cuerpo + "<td style=' text-align: right'>" + sum + " </td>"
+                                    } else {
+                                        cuerpo = cuerpo + "<td style=' text-align: right'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + "-1" + "&" + "-1" + "&" + resultados.valoresXClaveValor[i].codigo + "&" + "-1" + ">" + sum + "</a></td>";
+                                    }
+
+                                    for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
+                                        var codigo = parseInt(resultados.valoresYIndicador[j].codigo);
+                                        if (codigo === 1) {
+                                            if (resultados.valoresYIndicador[j].data[i] !== null) {
+                                                cuerpo = cuerpo + "<td style=' text-align: right'>" + resultados.valoresYIndicador[j].data[i] + "</td>";
+                                                //cuerpo = cuerpo + "<td style=' text-align: left'>" + resultados.valoresYIndicador[j].data[i] + "</td>"
+                                                //sum = sum + resultados.valoresYIndicador[j].data[i];
+                                            } else {
+                                                cuerpo = cuerpo + "<td style=' text-align: right'> </td>"
+                                            }
+                                        }
+                                    }
+                                    cuerpo = cuerpo + "</tr>";
+                                    i++;
+                                    cont++;
+                                }
+                            }
+
+
+                            // Obtener los totales generales
+                            cuerpo = cuerpo + "<tr><td style=' text-align: left' colspan='2'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1>Total General</td></a>";
+                            //alert(resultados.valoresYIndicador[0].data.length)
+                            var totalGeneral = 0;
+                            for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
+                                var totalColumna = 0;
+                                var codigo = parseInt(resultados.valoresYIndicador[j].codigo);
+                                if (codigo !== 1) {
+                                    for (var h = 0; h < resultados.valoresYIndicador[j].data.length; h++) {
+                                        if (resultados.valoresYIndicador[j].data[h] !== null) {
+                                            totalColumna = totalColumna + resultados.valoresYIndicador[j].data[h];
+                                            totalGeneral = totalGeneral + resultados.valoresYIndicador[j].data[h];
+                                        }
+                                    }
+                                    cuerpo = cuerpo + "<td style=' text-align: right'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + resultados.valoresYIndicador[j].codigo + ">" + totalColumna + "</a></td>"
+                                }
+                            }
+                            if (totalGeneral === 0) {
+                                cuerpo = cuerpo + "<td style=' text-align: right'>" + totalGeneral + "</td>";
+                            } else {
+                                cuerpo = cuerpo + "<td style=' text-align: right'> <a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1>" + totalGeneral + "</a></td>";
+                            }
+                            for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
+                                var totalColumna = 0;
+                                var codigo = parseInt(resultados.valoresYIndicador[j].codigo);
+                                if (codigo === 1) {
+                                    for (var h = 0; h < resultados.valoresYIndicador[j].data.length; h++) {
+                                        if (resultados.valoresYIndicador[j].data[h] !== null) {
+                                            totalColumna = totalColumna + resultados.valoresYIndicador[j].data[h];
+                                            totalGeneral = totalGeneral + resultados.valoresYIndicador[j].data[h];
+                                        }
+                                    }
+                                    cuerpo = cuerpo + "<td style=' text-align: right'>" + totalColumna + "</td>"
+                                }
+                            }
+
+                            cuerpo = cuerpo + "</tr>";
+                            var pie = "</tbody></table>";
+
+                            $('#tablaInfraestructuraNuevaProvinciaCanton').append(cabecera + cuerpo + pie);
+                            //$('#tablaInfraestructuraNueva').append(titulo + cabecera + cuerpo + pie);
+
+                            //grafica de barras
+                            divGrafica = '#graficoInfraestructuraNuevaProvinciaCanton';
+                            graficar(obrasCantonal, divGrafica, titulo);
+
+                            //grafica de pastel
+                            divGraficaPie = '#graficoPieInfraestructuraNuevaProvinciaCanton';
+                            graficarPastel(obrasCantonal, divGraficaPie, titulo);
+
+                        }
+                    });
+                }});
+            //fin             
+        }*/
 
         /****************************************/
         /*Funcion para crear tabla Infraestructura nueva obras del sector  PROVINCIA CANTON*/
@@ -1276,7 +1510,11 @@ function init() {
                                         }
                                     }
                                 }
-                                cuerpo = cuerpo + "<td style=' text-align: right'>" + sum + " </td>"
+                                if (sum === 0) {
+                                    cuerpo = cuerpo + "<td style=' text-align: right'>" + sum + " </td>"
+                                } else {
+                                    cuerpo = cuerpo + "<td style=' text-align: right'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + "-1" + "&" + "-1" + "&" + resultados.valoresXClaveValor[i].codigo + "&" + "-1" + ">" + sum + "</a></td>";
+                                }
 
                                 for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
                                     var codigo = parseInt(resultados.valoresYIndicador[j].codigo);
@@ -1311,10 +1549,14 @@ function init() {
                                         totalGeneral = totalGeneral + resultados.valoresYIndicador[j].data[h];
                                     }
                                 }
-                                cuerpo = cuerpo + "<td style=' text-align: right'>" + totalColumna + "</td>"
+                                cuerpo = cuerpo + "<td style=' text-align: right'><a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + resultados.valoresYIndicador[j].codigo + ">" + totalColumna + "</a></td>"
                             }
                         }
-                        cuerpo = cuerpo + "<td style=' text-align: right'>" + totalGeneral + "</td>"
+                        if (totalGeneral === 0) {
+                            cuerpo = cuerpo + "<td style=' text-align: right'>" + totalGeneral + "</td>";
+                        } else {
+                            cuerpo = cuerpo + "<td style=' text-align: right'> <a href= InfraestructuraNueva.html?" + codigoProvincia + "&" + codigoCanton + "&" + "-1" + "&" + "-1" + "&" + "-1" + "&" + "-1>" + totalGeneral + "</a></td>";
+                        }
                         for (var j = 0; j < resultados.valoresYIndicador.length; j++) {
                             var totalColumna = 0;
                             var codigo = parseInt(resultados.valoresYIndicador[j].codigo);
@@ -1447,88 +1689,133 @@ function init() {
         //realiza la grafica en higchrt de la infraestructura
         function graficar(resultados, divGrafica, titulo) {
 
-            // $('#graficaViviendas').html("");
-            //alert(resultados.nombreIndicador);
-
-            /*
-             * Gráfico en HighCharts
-             */
-            $(divGrafica).highcharts({
-                chart: {
-                    type: 'column',
-                    style: {
-                        fontFamily: 'Helvetica' // default font
-
+            var listaEjecucion = null;
+            var listaTerminada = null;
+            var estadoEjecutada = 0;
+            var estadoTerminada = 0;
+            //alert(resultados.valoresYIndicador.length);
+            for (var i = 0; i < resultados.valoresYIndicador.length; i++) {
+                if (resultados.valoresYIndicador[i].codigo === '2') {
+                    //alert("ejecutadas");
+                    listaEjecucion = resultados.valoresYIndicador[i].data;
+                    estadoEjecutada = 1;
+                }
+                if (resultados.valoresYIndicador[i].codigo === '4') {
+                    //alert("terminadas");
+                    listaTerminada = resultados.valoresYIndicador[i].data;
+                    estadoTerminada = 1;
+                }
+            }
+            //cuadno haya datos en las dos listas y eliminar los null
+            if ((estadoEjecutada === 1) && (estadoTerminada === 1)) {
+                for (var i = 0; i < listaEjecucion.length; i++) {
+                    if ((listaEjecucion[i] === null) && (listaTerminada[i] === null)) {
+                        listaEjecucion.splice(i, 1);
+                        listaTerminada.splice(i, 1);
                     }
-                },
-                title: {
-                    text: titulo
-                },
-                subtitle: {
-                    text: resultados.fuenteIndicador
-                },
-                credits: {
-                    enabled: false
-                },
-                xAxis: {
-                    categories: resultados.valoresXIndicador
-                },
-                yAxis: {
-                    min: 0,
-                    title: {
-                        text: 'Cantidad'
-                    }
-                },
-                plotOptions: {
-                    column: {
-                        stacking: 'normal',
-                        dataLabels: {
-                            enabled: true,
-                            color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                }
+            } else {
+                //cuando haya datos solo en la lista e ejecucion y eliminar los null
+                if (estadoEjecutada === 1) {
+                    for (var i = 0; i < listaEjecucion.length; i++) {
+                        if (listaEjecucion[i] === null) {
+                            listaEjecucion.splice(i, 1);
                         }
                     }
-                },
-                series: []
-            });
-            // Creación dinámica de series
-            var chart = $(divGrafica).highcharts();
-            for (var i = 0; i < resultados.valoresYIndicador.length; i++) {
-                var nombre = resultados.valoresYIndicador[i].name;
-                /*chart.addSeries({
-                 name: nombre,
-                 data: resultados.valoresYIndicador[i].data
-                 
-                 });*/
-                //palnificada
-                /*if (resultados.valoresYIndicador[i].codigo === '1') {
-                 chart.addSeries({
-                 name: nombre,
-                 data: resultados.valoresYIndicador[i].data,
-                 color: '#90ed7d'
-                 });
-                 }*/
-                //En ejecucion
-                if (resultados.valoresYIndicador[i].codigo === '2') {
-                    chart.addSeries({
-                        name: nombre,
-                        data: resultados.valoresYIndicador[i].data,
-                        color: '#98df8a'
-                    });
+                } else {
+                    //cuando haya datos solo en la lista terminada y eliminar los null
+                    if (estadoTerminada === 1) {
+                        for (var i = 0; i < listaTerminada.length; i++) {
+                            if (listaTerminada[i] === null) {
+                                listaTerminada.splice(i, 1);
+                            }
+                        }
+
+                    }
                 }
-
-                //Terminada
-                if (resultados.valoresYIndicador[i].codigo === '4') {
-                    chart.addSeries({
-                        name: nombre,
-                        data: resultados.valoresYIndicador[i].data,
-                        color: '#2ca02c'
-
-                    });
-                }
-
             }
-            //chart.tooltip.refresh(chart.series[0].data[resultados.valoresXIndicador.length - 1]);
+            if ((estadoEjecutada === 1) || (estadoTerminada === 1)) {
+                /*
+                 * Gráfico en HighCharts
+                 */
+                $(divGrafica).highcharts({
+                    chart: {
+                        type: 'column',
+                        style: {
+                            fontFamily: 'Helvetica' // default font
 
+                        }
+                    },
+                    title: {
+                        text: titulo
+                    },
+                    subtitle: {
+                        text: resultados.fuenteIndicador
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    xAxis: {
+                        categories: resultados.valoresXIndicador
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Cantidad'
+                        }
+                    },
+                    plotOptions: {
+                        column: {
+                            stacking: 'normal',
+                            dataLabels: {
+                                enabled: true,
+                                color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                            }
+                        }
+                    },
+                    series: []
+                });
+                // Creación dinámica de series
+                var chart = $(divGrafica).highcharts();
+                for (var i = 0; i < resultados.valoresYIndicador.length; i++) {
+                    var nombre = resultados.valoresYIndicador[i].name;
+                    /*chart.addSeries({
+                     name: nombre,
+                     data: resultados.valoresYIndicador[i].data
+                     
+                     });*/
+                    //palnificada
+                    /*if (resultados.valoresYIndicador[i].codigo === '1') {
+                     chart.addSeries({
+                     name: nombre,
+                     data: resultados.valoresYIndicador[i].data,
+                     color: '#90ed7d'
+                     });
+                     }*/
+                    //En ejecucion
+                    if (resultados.valoresYIndicador[i].codigo === '2') {
+                        chart.addSeries({
+                            name: nombre,
+                            //data: resultados.valoresYIndicador[i].data,
+                            data: listaEjecucion,
+                            color: '#98df8a'
+                        });
+                    }
+
+                    //Terminada
+                    if (resultados.valoresYIndicador[i].codigo === '4') {
+                        chart.addSeries({
+                            name: nombre,
+                            //data: resultados.valoresYIndicador[i].data,
+                            data: listaTerminada,
+                            color: '#2ca02c'
+
+                        });
+                    }
+
+                }
+                //chart.tooltip.refresh(chart.series[0].data[resultados.valoresXIndicador.length - 1]);
+            }
         }
         //fin
 
