@@ -29,7 +29,7 @@ $(document).ready(function() {
     }*/
 
     var pageTitle = document.title + " - SISEcuador "; //HTML page title
-    var pageUrl = 'http://192.168.10.3/share/public_html/' + url + '?' + id_tema + '&' + id_ib + '&' + id_subtema; //Location of the page
+    var pageUrl = 'http://192.168.10.3/sharePruebas/share/public_html/' + url + '?' + id_tema + '&' + id_ib + '&' + id_subtema; //Location of the page
     var openLink = '';
 
     //$('#btnWhatsApp').attr("href","whatsapp://send?text=Compartiendo informacion desde "+encodeURIComponent(pageUrl));
