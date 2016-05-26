@@ -100,17 +100,17 @@ function ViewModelGrafica() {
                     }
                     if (cont !== result.valoresY_indicador.length) {
                         if (result.valoresX_indicador[i] === "2017") {
-                            cuerpo = "<tr><td><center>" + result.valoresX_indicador[i] + "- meta </center></td>";
+                            cuerpo = "<tr><td align=left>" + result.valoresX_indicador[i] + "- meta </td>";
                         }
                         else {
-                            cuerpo = "<tr><td><center>" + result.valoresX_indicador[i] + "</center></td>";
+                            cuerpo = "<tr><td align=left>" + result.valoresX_indicador[i] + "</td>";
                         }
 
 
                         for (var j = 0; j < result.valoresY_indicador.length; j++) {
                             if (result.valoresY_indicador[j].data[i] !== null) {
 
-                                cuerpo = cuerpo + "<td><center>" + format(result.valoresY_indicador[j].data[i], result.numero_decimales) + " </center></td>";
+                                cuerpo = cuerpo + "<td align=right>" + format(result.valoresY_indicador[j].data[i], result.numero_decimales) + " </td>";
                             } else {
                                 cuerpo = cuerpo + "<td> </td>";
                             }

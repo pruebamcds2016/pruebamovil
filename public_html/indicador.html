@@ -34,11 +34,47 @@
                 <!-- Contenido -->
                 <section class="9u" id="content">
 
+                    <script>
+                        var tema;
+                        if (location.search.substr(1)) {
+                            Variable = location.search.substr(1);
+                            var elem = Variable.split('&');
+                            id_tema = elem[0];
+                            id_ib = elem[1];
+                            id_subtema = elem[2];
+                            //alert(tema);
+                            if (id_tema === "1") {
+                                //alert("oli");
+                                document.write('<ul class="listviewSector" data-bind="foreach: ejemploLista">');
+                                document.write('<li>');
+                                document.write('<a data-bind="attr: { href: url, title: details }, text: nombreIndicador"></a>');
+                                document.write('</li>');
+                                document.write('</ul>');
+                            }
+                            if (id_tema === "2") {
+                                //alert("oli");
+                                document.write('<ul class="listviewSectorRelevantes" data-bind="foreach: ejemploLista">');
+                                document.write('<li>');
+                                document.write('<a data-bind="attr: { href: url, title: details }, text: nombreIndicador"></a>');
+                                document.write('</li>');
+                                document.write('</ul>');
+                            }
+                            if (id_tema === "4") {
+                                //alert("oli");
+                                document.write('<ul class="listviewSectorAgenda" data-bind="foreach: ejemploLista">');
+                                document.write('<li>');
+                                document.write('<a data-bind="attr: { href: url, title: details }, text: nombreIndicador"></a>');
+                                document.write('</li>');
+                                document.write('</ul>');
+                            }
+                        }
+                    </script>
+                    <!--
                     <ul class="listviewSector" data-bind="foreach: ejemploLista">
                         <li>
                             <a data-bind="attr: { href: url, title: details }, text: nombreIndicador"></a>
                         </li>
-                    </ul>
+                    </ul>-->
                     <br><br>
                     <div class ="loadingPag" >
 
