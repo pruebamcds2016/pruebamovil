@@ -644,6 +644,90 @@ li.active a, li.active a:hover {
 
 
 .listviewSector li a:hover{
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#D56E8F), to( #FFFFFF));/*Chrome y Safari*/
+    background-image: -moz-linear-gradient(top center, #D56E8F, #FFFFFF);/*Firefox*/
+    background-image: -o-linear-gradient(top, #D56E8F, #FFFFFF);/*Opera*/
+    background-image: linear-gradient(top, #D56E8F, #FFFFFF);/*Estandar por defecto*/
+    font-weight: bold;
+    font-size:15px;
+    font-family:hbold;
+    padding-left: 15px
+}
+
+
+.listviewSectorRelevantes{
+    /*background-image: -webkit-gradient(linear, left top, left bottom, from(#E5396F), to( #E3E3E3));Chrome y Safari
+    background-image: -moz-linear-gradient(top center, #E5396F, #E3E3E3);Firefox
+    background-image: -o-linear-gradient(top, #E5396F, #E3E3E3);Opera
+    background-image: linear-gradient(top, #E5396F, #E3E3E3);Estandar por defecto*/
+    font-size:15px;
+    font-family:hlight;
+    list-style: none;
+
+}
+
+.listviewSectorRelevantes li{
+
+    /* background: url(images/indicadores-siise.png);*/
+    background-position: right;
+    background-repeat: no-repeat; 
+    border-bottom: 1px solid #BFBFBF;
+
+}
+
+.listviewSectorRelevantes li a{
+    text-decoration: none;
+    display:block;
+    padding: 15px;
+    cursor:pointer;
+    color: #000;
+}
+
+.listviewSectorRelevantes li a:hover{
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#F0740F), to( #FFFFFF));/*Chrome y Safari*/
+    background-image: -moz-linear-gradient(top center, #F0740F, #FFFFFF);/*Firefox*/
+    background-image: -o-linear-gradient(top, #F0740F, #FFFFFF);/*Opera*/
+    background-image: linear-gradient(top, #F0740F, #FFFFFF);/*Estandar por defecto*/
+    font-weight: bold;
+    font-size:15px;
+    font-family:hbold;
+    padding-left: 15px
+}
+
+
+.listviewSectorAgenda{
+    /*background-image: -webkit-gradient(linear, left top, left bottom, from(#E5396F), to( #E3E3E3));Chrome y Safari
+    background-image: -moz-linear-gradient(top center, #E5396F, #E3E3E3);Firefox
+    background-image: -o-linear-gradient(top, #E5396F, #E3E3E3);Opera
+    background-image: linear-gradient(top, #E5396F, #E3E3E3);Estandar por defecto*/
+    font-size:15px;
+    font-family:hlight;
+    list-style: none;
+
+}
+
+.listviewSectorAgenda li{
+
+    /* background: url(images/indicadores-siise.png);*/
+    background-position: right;
+    background-repeat: no-repeat; 
+    border-bottom: 1px solid #BFBFBF;
+
+}
+
+.listviewSectorAgenda li a{
+    text-decoration: none;
+    display:block;
+    padding: 15px;
+    cursor:pointer;
+    color: #000;
+}
+
+.listviewSectorAgenda li a:hover{
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#F00F1B), to( #FFFFFF));/*Chrome y Safari*/
+    background-image: -moz-linear-gradient(top center, #F00F1B, #FFFFFF);/*Firefox*/
+    background-image: -o-linear-gradient(top, #F00F1B, #FFFFFF);/*Opera*/
+    background-image: linear-gradient(top, #F00F1B, #FFFFFF);/*Estandar por defecto*/
     font-weight: bold;
     font-size:15px;
     font-family:hbold;

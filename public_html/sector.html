@@ -35,6 +35,48 @@
                 </section>
                 <!-- Contenido -->
                 <section class="9u" id="content">
+                    <script>
+                        var tema;
+                        if (location.search.substr(1)) {
+                            tema = location.search.substr(1);
+                            //alert(tema);
+                            if (tema === "1") {
+                                //alert("oli");
+                                document.write('<ul style=\"margin-top:5px;\" class=\"listviewSector\" data-bind=\"foreach: ejemploLista\">');
+                                document.write('<li>');
+                                document.write('<a data-bind=\"attr: { href: url}\">');
+                                document.write('<img class=\"icon-ss\" data-bind=\"attr: { src: icon }\" />');
+                                document.write('<span data-bind=\"attr: {title: details }, text: nombreGrupo\" />');
+                                document.write('</a>');
+                                document.write('</li>');
+                                document.write('</ul>');
+                            }
+                            if (tema === "2") {
+                                //alert("oli");
+                                document.write('<ul style=\"margin-top:5px;\" class=\"listviewSectorRelevantes\" data-bind=\"foreach: ejemploLista\">');
+                                document.write('<li>');
+                                document.write('<a data-bind=\"attr: { href: url}\">');
+                                document.write('<img class=\"icon-ss\" data-bind=\"attr: { src: icon }\" />');
+                                document.write('<span data-bind=\"attr: {title: details }, text: nombreGrupo\" />');
+                                document.write('</a>');
+                                document.write('</li>');
+                                document.write('</ul>');
+                            }
+
+                            if (tema === "4") {
+                                //alert("oli");
+                                document.write('<ul style=\"margin-top:5px;\" class=\"listviewSectorAgenda\" data-bind=\"foreach: ejemploLista\">');
+                                document.write('<li>');
+                                document.write('<a data-bind=\"attr: { href: url}\">');
+                                document.write('<img class=\"icon-ss\" data-bind=\"attr: { src: icon }\" />');
+                                document.write('<span data-bind=\"attr: {title: details }, text: nombreGrupo\" />');
+                                document.write('</a>');
+                                document.write('</li>');
+                                document.write('</ul>');
+                            }
+                        }
+                    </script>
+                    <!--  
                     <ul style="margin-top:5px;" class="listviewSector" data-bind="foreach: ejemploLista">
                         <li>
                             <a data-bind="attr: { href: url}">
@@ -48,6 +90,7 @@
                         <div class="absoluta">Espere un momento</div>
                     </div>
                     <div class="absoluta" id="errorLabel">En este momento no hay información disponible.</div>
+                    -->
                 </section>
                 <!-- Barra derecha -->
                 <section class="3u" id="right-sidebar">
