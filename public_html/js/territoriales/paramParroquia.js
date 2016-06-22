@@ -1035,8 +1035,8 @@ function init() {
                         //$('#tablaInfraestructuraNueva').append(titulo + cabecera + cuerpo + pie);
 
                         //grafica de barras
-                        divGrafica = '#graficoInfraestructuraNueva';
-                        graficar(obrasNacional, divGrafica, titulo);
+                        //divGrafica = '#graficoInfraestructuraNueva';
+                        //graficar(obrasNacional, divGrafica, titulo);
 
                         //grafica de pastel
                         divGraficaPie = '#graficoPieInfraestructuraNueva';
@@ -1210,8 +1210,8 @@ function init() {
                         //$('#tablaInfraestructuraNueva').append(titulo + cabecera + cuerpo + pie);
 
                         //grafica de barras
-                        divGrafica = '#graficoInfraestructuraNuevaProvinciaCanton';
-                        graficar(obrasCantonal, divGrafica, titulo);
+                        //divGrafica = '#graficoInfraestructuraNuevaProvinciaCanton';
+                        //graficar(obrasCantonal, divGrafica, titulo);
 
                         //grafica de pastel
                         divGraficaPie = '#graficoPieInfraestructuraNuevaProvinciaCanton';
@@ -1383,8 +1383,8 @@ function init() {
                         //$('#tablaInfraestructuraNueva').append(titulo + cabecera + cuerpo + pie);
 
                         //grafica de barras
-                        divGrafica = '#graficoInfraestructuraNuevaProvinciaCantonParroquia';
-                        graficar(obrasParroquial, divGrafica, titulo);
+                        //divGrafica = '#graficoInfraestructuraNuevaProvinciaCantonParroquia';
+                        //graficar(obrasParroquial, divGrafica, titulo);
 
                         //grafica de pastel
                         divGraficaPie = '#graficoPieInfraestructuraNuevaProvinciaCantonParroquia';
