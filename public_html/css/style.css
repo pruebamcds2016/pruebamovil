@@ -642,12 +642,12 @@ li.active a, li.active a:hover {
 }
 
 
-
+/*indicadopres sociales*/
 .listviewSector li a:hover{
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#D56E8F), to( #FFFFFF));/*Chrome y Safari*/
-    background-image: -moz-linear-gradient(top center, #D56E8F, #FFFFFF);/*Firefox*/
-    background-image: -o-linear-gradient(top, #D56E8F, #FFFFFF);/*Opera*/
-    background-image: linear-gradient(top, #D56E8F, #FFFFFF);/*Estandar por defecto*/
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#D01186), to( #FFFFFF));/*Chrome y Safari*/
+    background-image: -moz-linear-gradient(top center, #D01186, #FFFFFF);/*Firefox*/
+    background-image: -o-linear-gradient(top, #D01186, #FFFFFF);/*Opera*/
+    background-image: linear-gradient(top, #D01186, #FFFFFF);/*Estandar por defecto*/
     font-weight: bold;
     font-size:15px;
     font-family:hbold;
@@ -684,10 +684,10 @@ li.active a, li.active a:hover {
 }
 
 .listviewSectorRelevantes li a:hover{
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#F0740F), to( #FFFFFF));/*Chrome y Safari*/
-    background-image: -moz-linear-gradient(top center, #F0740F, #FFFFFF);/*Firefox*/
-    background-image: -o-linear-gradient(top, #F0740F, #FFFFFF);/*Opera*/
-    background-image: linear-gradient(top, #F0740F, #FFFFFF);/*Estandar por defecto*/
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#EF970A), to( #FFFFFF));/*Chrome y Safari*/
+    background-image: -moz-linear-gradient(top center, #EF970A, #FFFFFF);/*Firefox*/
+    background-image: -o-linear-gradient(top, #EF970A, #FFFFFF);/*Opera*/
+    background-image: linear-gradient(top, #EF970A, #FFFFFF);/*Estandar por defecto*/
     font-weight: bold;
     font-size:15px;
     font-family:hbold;
@@ -724,10 +724,10 @@ li.active a, li.active a:hover {
 }
 
 .listviewSectorAgenda li a:hover{
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#F00F1B), to( #FFFFFF));/*Chrome y Safari*/
-    background-image: -moz-linear-gradient(top center, #F00F1B, #FFFFFF);/*Firefox*/
-    background-image: -o-linear-gradient(top, #F00F1B, #FFFFFF);/*Opera*/
-    background-image: linear-gradient(top, #F00F1B, #FFFFFF);/*Estandar por defecto*/
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#E3190C), to( #FFFFFF));/*Chrome y Safari*/
+    background-image: -moz-linear-gradient(top center, #E3190C, #FFFFFF);/*Firefox*/
+    background-image: -o-linear-gradient(top, #E3190C, #FFFFFF);/*Opera*/
+    background-image: linear-gradient(top, #E3190C, #FFFFFF);/*Estandar por defecto*/
     font-weight: bold;
     font-size:15px;
     font-family:hbold;
