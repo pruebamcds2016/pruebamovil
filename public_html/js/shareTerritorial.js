@@ -34,7 +34,8 @@ $(document).ready(function() {
 
     }
     
-    var ip = 'http://192.168.10.3/sharePruebas/share/public_html/'; //ip pruebas
+    //var ip = 'http://www.siise.gob.ec:8080/sharePruebas/share/public_html/'; //ip pruebas
+    var ip = 'http://www.siise.gob.ec/shareProduccionSISEcuadorv2/share/public_html/'; //ip pruebas
     //var ip = 'http://192.168.50.76:8383/share/'; //mi pc
     var pageTitle = document.title; //HTML page title
     if (elem.length > 3) {

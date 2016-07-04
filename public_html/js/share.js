@@ -29,7 +29,8 @@ $(document).ready(function() {
     }*/
 
     var pageTitle = document.title + " - SISEcuador "; //HTML page title
-    var pageUrl = 'http://192.168.10.3/sharePruebas/share/public_html/' + url + '?' + id_tema + '&' + id_ib + '&' + id_subtema; //Location of the page
+    var pageUrl = 'http://www.siise.gob.ec/shareProduccionSISEcuadorv2/share/public_html/' + url + '?' + id_tema + '&' + id_ib + '&' + id_subtema; //Location of the page
+    //var pageUrl = 'http://www.siise.gob.ec:8080/sharePruebas/share/public_html/' + url + '?' + id_tema + '&' + id_ib + '&' + id_subtema; //Location of the page
     //var pageUrl = 'http://192.168.50.76:8383/share/' + url + '?' + id_tema + '&' + id_ib + '&' + id_subtema; //Location of the page
     var openLink = '';
 
