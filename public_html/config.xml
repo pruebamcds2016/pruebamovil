@@ -16,14 +16,10 @@
         Ministerio Coordinador de Desarrollo Social
     </author>
 
-   <!-- Define app icon for each platform. -->
-    <icon src="res/icon/ios/icon-57.png"            gap:platform="ios"        width="57" height="57" />
-    <icon src="res/icon/ios/icon-72.png"            gap:platform="ios"        width="72" height="72" />
-    <icon src="res/icon/ios/icon-57-2x.png"         gap:platform="ios"        width="114" height="114" />
-    <icon src="res/icon/ios/icon-72-2x.png"         gap:platform="ios"        width="144" height="144" />
-    
+   
+
     <!-- Customize your app and platform with the preference element. -->
-    <!--<preference name="phonegap-version"           value="3.5.0" />   -->       <!-- all: current version of PhoneGap -->
+    <preference name="phonegap-version"           value="6.1.0" />         <!-- all: current version of PhoneGap -->
     <preference name="orientation"                value="default" />        <!-- all: default means both landscape and portrait are enabled -->
     <preference name="target-device"              value="universal" />      <!-- all: possible values handset, tablet, or universal -->
     <preference name="fullscreen"                 value="true" />           <!-- all: hides the status bar at the top of the screen -->
