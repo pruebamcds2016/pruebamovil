@@ -75,7 +75,7 @@
       <gap:splash src="res/drawable-port-ldpi/screen.png"       gap:platform="android" gap:qualifier="port-ldpi" />
     <gap:splash src="res/drawable-port-mdpi/screen.png"       gap:platform="android" gap:qualifier="port-mdpi" />
     <gap:splash src="res/drawable-port-hdpi/screen.png"       gap:platform="android" gap:qualifier="port-hdpi" />
-    <gap:splash src="drawable-port-xhdpi/screen.png"      gap:platform="android" gap:qualifier="port-xhdpi" />
+    <gap:splash src="res/drawable-port-xhdpi/screen.png"      gap:platform="android" gap:qualifier="port-xhdpi" />
     <gap:config-file platform="ios" parent="CFBundleShortVersionString">
     <string>100</string>
     </gap:config-file>
