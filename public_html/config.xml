@@ -17,7 +17,6 @@
     </author>
 
    
-
     <!-- Customize your app and platform with the preference element. -->
     <preference name="phonegap-version"           value="cli-5.2.0" />          <!-- all: current version of PhoneGap -->
     <preference name="orientation"                value="default" />        <!-- all: default means both landscape and portrait are enabled -->
@@ -56,6 +55,8 @@
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
+    
+    <gap:plugin name="cordova-plugin-whitelist" version="1.0.0" source="npm" />
 
     <!-- Third party plugins -->
     <!-- A list of available plugins are available at https://build.phonegap.com/plugins -->
@@ -88,7 +89,10 @@
 
         Otherwise, you can specify specific domains:
     -->
-    <access origin="*"/>
+    <!--<access origin="*"/>-->
+    
+    <!-- Network Request Whitelist-->
+    <access origin="http://www.siise.gob.ec:8080/*" subdomains="true" />
     <!--
         <access origin="http://phonegap.com" />                    - allow any secure requests to http://phonegap.com/
         <access origin="http://phonegap.com" subdomains="true" />  - same as above, but including subdomains, such as http://build.phonegap.com/
