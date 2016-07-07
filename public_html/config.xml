@@ -88,7 +88,7 @@
 
         Otherwise, you can specify specific domains:
     -->
-    <!--<access origin="*"/>-->
+    <access origin="*"/>
     
     
     <!-- 
@@ -97,11 +97,11 @@
     Network Request Whitelist-->
     <gap:plugin name="cordova-plugin-whitelist" version="1.0.0" source="npm" />
     <!-- deberías agregar el dominio al cual se hacen la solicitud de los web services.-->
-    <access origin="*.google.com" />
+    <!--<access origin="*.google.com" />
     <access origin="*.googleapis.com" />
-    <access origin="*.gstatic.com" />
+    <access origin="*.gstatic.com" />-->
     <access origin="http://www.siise.gob.ec:8080/*" subdomains="true" />
-    <!--<access origin="http://*.google.com"/>-->
+    <access origin="http://*.google.com"/>
     
     <!--
         <access origin="http://phonegap.com" />                    - allow any secure requests to http://phonegap.com/
