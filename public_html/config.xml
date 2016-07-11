@@ -67,19 +67,19 @@
     <icon src="icon.png" />
   
     <!-- iPad -->
-    <icon src="res/icon/ios/icon-72.png" gap:platform="ios"/>
-    <icon src="res/icon/ios/icon-72@2x.png" gap:platform="ios"/>
+    <icon src="res/icon/ios/icon-72.png" platform="ios"/>
+    <icon src="res/icon/ios/icon-72@2x.png" platform="ios"/>
 
     <!-- iPhone Spotlight and Settings Icon -->
-    <icon src="res/icon/ios/icon-small.png" gap:platform="ios"/>
-    <icon src="res/icon/ios/icon-small@2x.png" gap:platform="ios"/>
+    <icon src="res/icon/ios/icon-small.png" platform="ios"/>
+    <icon src="res/icon/ios/icon-small@2x.png" platform="ios"/>
 
     <!-- iPad Spotlight and Settings Icon -->
-    <icon src="res/icon/ios/icon-50.png" gap:platform="ios"/>
-    <icon src="res/icon/ios/icon-50@2x.png" gap:platform="ios"/>
+    <icon src="res/icon/ios/icon-50.png" platform="ios"/>
+    <icon src="res/icon/ios/icon-50@2x.png" platform="ios"/>
     
-    <icon src="res/icon/ios/icon-57.png" gap:platform="ios"/>
-    <icon src="res/icon/ios/icon-57@2x.png" gap:platform="ios"/>
+    <icon src="res/icon/ios/icon-57.png" platform="ios"/>
+    <icon src="res/icon/ios/icon-57@2x.png" platform="ios"/>
     
    <icon src="res/drawable-ldpi/icon.png"   gap:platform="android"    gap:qualifier="ldpi" />
     <icon src="res/drawable-mdpi/icon.png"   gap:platform="android"    gap:qualifier="mdpi" />
