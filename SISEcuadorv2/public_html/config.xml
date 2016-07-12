@@ -4,7 +4,8 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "ec.gob.desarrollosocial.rips.sisecuadormovil"
-        version   = "2.0.0">
+        version   = "2.0.0"
+        ios-CFBundleVersion="2.0.0">
 
     <name>SISEcuador </name>
 
@@ -65,6 +66,11 @@
 
     <!-- Define app icon for each platform. -->
     <icon src="icon.png" />
+    
+    <platform name="ios">
+        <icon src="res/icon/ios/icon-57.png"/>
+        <icon src="res/icon/ios/icon-57-2x.png"/>
+    </platform>
    
    <icon src="res/drawable-ldpi/icon.png"   gap:platform="android"    gap:qualifier="ldpi" />
     <icon src="res/drawable-mdpi/icon.png"   gap:platform="android"    gap:qualifier="mdpi" />
