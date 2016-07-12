@@ -65,23 +65,10 @@
 
     <!-- Define app icon for each platform. -->
     <icon src="icon.png" />
-  
-    <!-- iPad -->
-    <icon src="res/icon/ios/icon-72.png" platform="ios"/>
-    <icon src="res/icon/ios/icon-72@2x.png" platform="ios"/>
 
-    <!-- iPhone Spotlight and Settings Icon -->
-    <icon src="res/icon/ios/icon-small.png" platform="ios"/>
-    <icon src="res/icon/ios/icon-small@2x.png" platform="ios"/>
-
-    <!-- iPad Spotlight and Settings Icon -->
-    <icon src="res/icon/ios/icon-50.png" platform="ios"/>
-    <icon src="res/icon/ios/icon-50@2x.png" platform="ios"/>
+    <gap:splash src="splash/ios/icon-568h@2x.png" gap:platform="ios" width="640" height="1136" />    
     
-    <icon src="res/icon/ios/icon-57.png" platform="ios"/>
-    <icon src="res/icon/ios/icon-57@2x.png" platform="ios"/>
-    
-   <icon src="res/drawable-ldpi/icon.png"   gap:platform="android"    gap:qualifier="ldpi" />
+    <icon src="res/drawable-ldpi/icon.png"   gap:platform="android"    gap:qualifier="ldpi" />
     <icon src="res/drawable-mdpi/icon.png"   gap:platform="android"    gap:qualifier="mdpi" />
     <icon src="res/drawable-hdpi/icon.png"   gap:platform="android"    gap:qualifier="hdpi" />
     <icon src="res/drawable-xhdpi/icon.png"  gap:platform="android"    gap:qualifier="xhdpi" />
@@ -94,6 +81,7 @@
     <gap:config-file platform="ios" parent="CFBundleShortVersionString">
     <string>100</string>
     </gap:config-file>
+    
 
     <!--
         Define access to external domains.
