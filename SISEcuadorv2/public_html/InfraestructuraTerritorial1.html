@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Sistema de Información Social del Ecuador</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <!--[if lte IE 8]><script src="js/html5shiv.js" type="text/javascript"></script><![endif]-->
+        <script src="js/libs/jquery-1.9.1.min/jquery-1.9.1.min.js"></script>
+        <script src="js/libs/jquery-migrate-1.2.1.min/jquery-migrate-1.2.1.min.js"></script>
+        <script src="js/libs/jquery-ui/jquery-ui.js"></script>
+        <script src="js/libs/knockout-2.2.1/knockout-min.js"></script>
+        <script src="js/panel/configTerritorial.js"></script>
+        <script src="js/panel/skel.min.js"></script>
+        <script src="js/panel/skel-panels.min.js"></script>
+        <script src="js/libs/jquery-ui/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/libs/OpenLayers/OpenLayers.js"></script>
+        <script src="js/shareTerritorial.js"></script>
+        <script src="js/tabsgrafica.js"></script>
+        <link rel="stylesheet" href="css/cabeceras/cabeceraTt.css">
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/jquery-ui/jquery-ui-1.10.4.custom.css">
+     
+    </head>
+    <body onLoad="init();">
+
+        <div class="container">
+            <!-- Cabecera -->
+            <div id="header">
+                <div id="title">
+                    Indicadores territoriales
+                </div>
+            </div>
+            <!-- Cuerpo -->
+            <div class="row">
+                <!-- Barra izquierda -->
+                <section class="3u" id="left-sidebar">
+                    <nav id="nav">
+
+                    </nav>
+                </section>
+
+                <!-- Contenido -->
+                <section class="9u" id="content">
+
+                    <div class="tabs">
+                        <ul class="tab-links">
+                            <li class="active"><a href="#tab1">Ubicación</a></li>
+                            <li><a href="#tab2">Indicadores</a></li>
+                            <li><a href="#tab3">Oferta Social</a></li>
+                            <li><a href="#tab4">Infraestructura</a></li>
+                        </ul> 
+                        <div class="tab-content">
+                            <div id="tab1" class="active">
+
+                                <div class ="loadingPag" >
+                                    <div class="absoluta">Espere un momento</div>
+                                </div>
+
+
+                                <div class="infoUbicacion" >
+                                    <table>
+                                        <tr>
+                                            <td> <div id="provincia"></div></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div id="miMapa">
+
+
+                                </div>
+
+
+                                <div class="infoTerritorial">
+                                    <!-- Informacion general-->
+                                    <center>
+                                        <div id="divInformacionGeneral"></div>
+                                        <div id='divPoblacion'></div>  
+                                    </center>
+                                    
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+
+                            <div id="tab2" class="tab">
+
+                                <div class ="loadingPag" >
+                                    <div class="absoluta">Espere un momento</div>
+                                </div>
+
+                                <div class="infoTerritorial">
+                                    <!-- POblacio por ciclo de vida-->
+                                    <div id="menosCicloVida"></div>
+                                    <div id="moreCicloVida"></div>
+                                    <div id="divCicloVida"></div>
+                                    <br>
+
+                                    <!-- Indicador General-->
+                                    <div id="menosIndicadorGeneral"></div>
+                                    <div id="moreIndicadorGeneral"></div>
+                                    <center>
+                                        <div id ="todoIndicadorGeneral">
+                                            <div id="divIndicadorGeneral"></div>
+                                            <br>
+                                            <div id='divVivienda'></div>
+                                            <br>
+                                        </div>
+                                    </center>
+
+
+
+                                    <!-- Distribucion geografica-->
+                                    <div id="menosDistribucionGeografica"></div>
+                                    <div id="moreDistribucionGeografica"></div>
+                                    <div id="distribucionGeografica"></div>
+                                    <br>
+
+                                    <!-- Distribucion poblacional-->
+                                    <div id="menosDistribucionPoblacional"></div>
+                                    <div id="moreDistribucionPoblacional"></div>
+                                    <div id="distribucionPoblacional"></div>
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+
+                            <div id="tab3" class="tab">
+
+                                <div class ="loadingPag" >
+                                    <div class="absoluta">Espere un momento</div>
+                                </div>
+                                <div class="infoTerritorial">
+
+                                    <!-- Infraestructura-->
+                                    <div id="menosInfraestructura"></div>
+                                    <div id="moreInfraestructura"></div>
+                                    <div id="infraestructura"></div>
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+
+
+                            <div id="tab4" class="tab" >
+                                <div id="incluirPagina"></div>
+                                
+                                <div class="nombreIndicador"></div>
+                                <div class ="loadingPag" >
+                                    <div class="absoluta">Espere un momento</div>
+                                </div>
+                                <div class="infoTerritorial">
+
+                                    <!-- Infraestructura a Nivel Nacional-->
+                                    <div id="menosInfraestructuraNueva" href="#" style="text-decoration:none"></div>
+                                    <div id="moreInfraestructuraNueva" href="#" style="text-decoration:none"></div>
+                                    <center>
+                                        <div id ="todoInfraestructuraNueva">
+                                            <div id="tablaInfraestructuraNueva"></div>
+                                            <br>
+                                            <div id="graficoPieInfraestructuraNueva"></div>
+                                            <br>
+                                            <div id="graficoInfraestructuraNueva"></div>
+                                            <br>
+                                        </div>
+                                    </center>
+
+
+
+
+                                    <!-- Infraestructura a Nivel Provincia-->
+                                    <div id="menosInfraestructuraNuevaProvincia" href="#" style="text-decoration:none"></div>
+                                    <div id="moreInfraestructuraNuevaProvincia" href="#" style="text-decoration:none"></div>
+                                    <center>
+                                        <div id ="todoInfraestructuraNuevaProvincia">
+                                            <div id="tablaInfraestructuraNuevaProvincia"></div>
+                                            <br>
+                                            <div id="graficoPieInfraestructuraNuevaProvincia"></div>
+                                            <br>
+                                            <div id="graficoInfraestructuraNuevaProvincia"></div>
+                                            <br>
+                                        </div>
+                                    </center>
+
+
+
+                                    <!-- Infraestructura a Nivel Canton-->
+                                    <div id="menosInfraestructuraNuevaProvinciaCanton" href="#" style="text-decoration:none"></div>
+                                    <div id="moreInfraestructuraNuevaProvinciaCanton" href="#" style="text-decoration:none"></div>
+                                    <center>
+                                        <div id ="todoInfraestructuraNuevaProvinciaCanton">
+                                            <div id="tablaInfraestructuraNuevaProvinciaCanton"></div>
+                                            <br>
+                                            <div id="graficoPieInfraestructuraNuevaProvinciaCanton"></div>
+                                            <br>
+                                            <div id="graficoInfraestructuraNuevaProvinciaCanton"></div>
+                                        </div>
+                                    </center>
+                                </div>
+                                <br>
+                                <br>
+
+                            </div>
+                        </div>
+                    </div>
+                    <script src="js/highcharts/highcharts.js"></script>
+
+                    <script src="js/territoriales/localizacion.js"></script>
+
+                    <script src="js/navegadorPI.js"></script>
+                </section>
+
+
+                <!-- Barra derecha -->
+                <section class="3u" id="right-sidebar">
+                    <div>
+                        <select id="provinciaCombo"  data-bind="options: provincias, value: provinciaSeleccionada, optionsText : 'nombrePrv', optionsValue : 'serialPrv', optionsCaption : 'Provincia'"></select><br/>
+                        <select id="cantonCombo" data-bind="options: cantones, value: cantonSeleccionado, optionsText : 'nombreCiu', optionsValue : 'serialCiu', optionsCaption : 'Cantón'"></select><br/>
+                        <select id="parroquiaCombo" data-bind="options: parroquias, value: parrSeleccionada, optionsText : 'nombrePar', optionsValue : 'serialPar', optionsCaption : 'Parroquia'"></select><br/>
+                        <br>
+                        <form data-bind="submit: redirigir">
+
+                            <input class="btnConsultaT" type="submit" value="Consultar">
+                        </form>
+                    </div>
+
+                </section>
+            </div>
+
+        </div>
+        <!-- Bottom Panel -->
+        <div id="bottomPanel">
+            <div id="labelShare" >Compartir</div> 
+            <div class="row">
+                <div class="2u">
+                    <a class="email button-wrap" href="javascript://" ><span>E-mail</span></a>
+                </div>
+                <div class="2u">
+                    <a class="facebook button-wrap" href="javascript://" ><span>Facebook</span></a>
+                </div>
+                <div class="3u">
+                    <a class="twitter button-wrap" href="javascript://" ><span>Twitter</span></a>
+                </div>
+                <div class="3u">
+                    <a class="google button-wrap" href="javascript://" ><span>Google+</span></a>
+                </div>
+                <div class="3u">
+                    <a id="btnWhatsApp" class="whatsapp button-wrap" href="javascript://"><span>WhatsApp</span></a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

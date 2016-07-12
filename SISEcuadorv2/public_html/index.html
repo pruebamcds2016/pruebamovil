@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Sistema de Información Social del Ecuador</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="js/libs/knockout-2.2.1/knockout-min.js"></script>
+        <script src="js/libs/jquery-1.9.1.min/jquery-1.9.1.min.js"></script>
+        <link rel="stylesheet" href="css/styleIndex.css">
+        <link rel="stylesheet" href="css/normalize.min.css">
+    </head>
+    <body >
+        <header>
+
+            <table WIDTH ="100%">
+                <tbody >
+                    <tr>
+                        <td colspan="1" align="center"><div id="principal" alt="" /></td>
+                    </tr>
+                    <!-- <tr>
+                        <td align="left"><button class="btnAcerca" onclick="javascript:window.open('informacion.html','popup','width=600,height=450');"> ¡  Acerca</button></td>-->
+                        <!--<td align="right"><font color="white"> <a href="javascript:window.open('ayuda.html','popup','width=300,height=400');">Ayuda..</a></font></td>-->
+                    <!--</tr>-->
+                </tbody>
+            </table>
+
+        </header>
+        <section>
+            <ul class="listviewIndex"  data-bind="foreach: listaIndex">
+                <li>
+                    <a class="button-left"  data-bind="attr: { href: url}">
+
+                        <img class="icon-ss" data-bind="attr: { src: icon }" /><span data-bind="attr: {title: details }, text: nombreModulo" />
+                    </a>
+                </li>
+            </ul>
+            <div class ="loadingPag" >
+                <div class="absoluta">Espere un momento</div>
+            </div>
+
+            <div class="absoluta" id="errorLabel">En este momento no hay información disponible.</div>
+        </section>
+
+        <script src="js/index.js"></script>
+        <footer>
+            <table>
+                <tbody>
+                    <tr>
+                        <td> <img alt=""  src="css/images/SIISE20x20.png"/></td>
+                        <td><font color="white">Sistema de Información Social del Ecuador</font></td>
+                        <!--<td> <a href="http://www.siise.gob.ec"><font color="white">Sistema de Información Social del Ecuador</font></a></td>-->
+                        <!-- <td> <a href="help.html"><font color="white">Sistema de Información Social del Ecuador</font></a></td>-->                 
+                    </tr>
+                </tbody>
+            </table>
+        </footer> 
+
+
+    </body>
+
+</html>

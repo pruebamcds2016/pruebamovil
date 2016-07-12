@@ -1,0 +1,861 @@
+/* 
+    Document   : style-mobile
+    Created on : 04/08/2014, 09:37:00 AM
+    Author     : Adriana Romero
+    Description:
+        Hoja de estilo formato 
+        Pantallas de 768x1024 px, orientacion: portrait and landscape
+*/
+
+/*Estilo de letras Helvetica*/
+
+@font-face {
+    font-family: 'hmedium';
+    src: url('../font/helveticaneuemed-webfont.eot');
+    src: url('../font/helveticaneuemed-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../font/helveticaneuemed-webfont.woff') format('woff'),
+        url('../font/helveticaneuemed-webfont.ttf') format('truetype'),
+        url('../font/helveticaneuemed-webfont.svg#helveticaneuemedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'hnormal';
+    src: url('../font/helveticaneueout-webfont.eot');
+    src: url('../font/helveticaneueout-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../font/helveticaneueout-webfont.woff') format('woff'),
+        url('../font/helveticaneueout-webfont.ttf') format('truetype'),
+        url('../font/helveticaneueout-webfont.svg#helvnueoutlinenormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'hregular';
+    src: url('../font/helveticaneue-webfont.eot');
+    src: url('../font/helveticaneue-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../font/helveticaneue-webfont.woff') format('woff'),
+        url('../font/helveticaneue-webfont.ttf') format('truetype'),
+        url('../font/helveticaneue-webfont.svg#helveticaneueregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'hheavy';
+    src: url('../font/helveticaneuehv-webfont.eot');
+    src: url('../font/helveticaneuehv-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../font/helveticaneuehv-webfont.woff') format('woff'),
+        url('../font/helveticaneuehv-webfont.ttf') format('truetype'),
+        url('../font/helveticaneuehv-webfont.svg#helveticaneueheavy') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'hlight';
+    src: url('../font/helveticaneuelt-webfont.eot');
+    src: url('../font/helveticaneuelt-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../font/helveticaneuelt-webfont.woff') format('woff'),
+        url('../font/helveticaneuelt-webfont.ttf') format('truetype'),
+        url('../font/helveticaneuelt-webfont.svg#helveticaneuelight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'hitalic';
+    src: url('../font/helveticaneueit-webfont.eot');
+    src: url('../font/helveticaneueit-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../font/helveticaneueit-webfont.woff') format('woff'),
+        url('../font/helveticaneueit-webfont.ttf') format('truetype'),
+        url('../font/helveticaneueit-webfont.svg#helveticaneueitalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'hbold';
+    src: url('../font/helveticaneuebd-webfont.eot');
+    src: url('../font/helveticaneuebd-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../font/helveticaneuebd-webfont.woff') format('woff'),
+        url('../font/helveticaneuebd-webfont.ttf') format('truetype'),
+        url('../font/helveticaneuebd-webfont.svg#helveticaneuebold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+/************************************************************************************
+Inicializacion de los componentes
+*************************************************************************************/
+
+
+body, input, select, textarea {
+    font-family: 'hlight';
+    font-weight: 400;
+}
+
+body {
+    background: #fff;
+    color: #000;
+    line-height: 2em;
+}
+
+
+/************************************************************************************
+Cabeceta
+*************************************************************************************/
+/* Barra del titulo principal, aqui se muestra el nombre del sistema: Indicadores Sociales, Indicadores Relevantes, etc*/
+
+#titleBar {
+    font-family: hbold;
+    font-size: 16px;
+}
+
+
+
+#header{
+    font-family: hbold;
+    background: rgba(0,28,54,1);
+
+}
+
+
+/************************************************************************************
+Pie de pagina
+*************************************************************************************/
+
+
+/* Footer: Formato del pie de página */
+
+
+#footer {
+    color: #62696c;
+    text-align: center;
+    font-size: 1px;
+    line-height: 10px;
+}
+
+
+/************************************************************************************
+Paneles
+*************************************************************************************/
+
+/* Overlays: panel inferior*/
+
+#contactBar {
+
+    background: rgba(0,28,54,0.9);
+    text-align: center;
+    line-height: 60px;
+    font-size: 1.25em;
+}
+
+/*Botones en panel inferior*/
+
+#contactBar a {
+    display: inline-block;
+    margin: 0 0.85em 0.85em 0.85em;
+    color: #fff;
+
+}
+
+/* Panels: formatos generales para los paneles */
+
+#leftPanel,
+#rightPanel,
+#bottomPanel {
+    padding: 1.25em;
+}
+/* Propiedad para panel inferior */
+#bottomPanel {
+    background: #f6f6f6;
+}
+/* Propiedad para panel inferior: etiqueta <a> */
+#bottomPanel a {
+    display: block;
+    color: #000;
+    border-bottom: none;
+    line-height: 3em;
+    font-family: hlight;
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: none
+}
+
+/* Propiedad para panel inferior: etiqueta <a><span> */
+#bottomPanel a span{
+    padding-left: 40px;
+}
+/* Propiedad para panel izquierdo: etiqueta <a> */
+#leftPanel a
+{
+    display: block;
+    color: #000;
+    border-bottom: solid 1px #BFBFBF;
+    line-height: 4em;
+
+}
+
+/* Propiedad para panel derecho: etiqueta <a> */
+#rightPanel a {
+    display: block;
+    color: #000;
+    border-bottom: none;
+    line-height: 4em;
+}
+
+/* Propiedad para paneles: listas */
+
+
+#leftPanel li:first-child > a,
+#rightPanel li:first-child > a {
+    border-top: 0;
+}
+/* Nav: posicion de botones de navegacion */
+#nav a {
+    color: #000;
+    text-decoration: none;
+}
+
+/**********************************************************/
+/*Estilo para el menu compartir                            */
+/**********************************************************/
+
+
+#share a {
+    padding-bottom: 10px;
+    color: #000;
+    text-decoration: none;
+    font-family: hlight;
+    font-size: 13px;
+    font-weight: bold;
+}
+#share a span{
+    padding-left: 40px;
+
+}
+
+
+#shareTweet {
+    padding-top: 28px;
+    padding-bottom: 18px;
+    color: #000;
+    text-decoration: none;
+    border-bottom: solid 1px #BFBFBF; 
+}
+#shareWhatsapp
+{
+    padding-top: 17px;
+    padding-bottom: 15px;
+    color: #000;
+    text-decoration: none;
+    border-bottom: solid 1px #BFBFBF;
+}
+#shareWhatsappT a 
+{
+    text-decoration: none;
+}
+
+#shareMail {
+    padding-top: 17px;
+    padding-bottom: 15px;
+    color: #000;
+    text-decoration: none;
+    border-bottom: solid 1px #BFBFBF;
+}
+#shareMailT  {
+
+    margin-top: 19px;
+}
+#shareMailT a {
+
+    text-decoration: none;
+}
+
+
+#shareWhatsapp a{
+    height: 50px;
+}
+#shareMail a{
+    height: 50px;
+}
+
+
+#shareGoogle
+{
+    color: #000;
+    text-decoration: none;
+    border-bottom: solid 1px #BFBFBF;
+}
+
+
+#shareFacebook
+{
+    padding-top: 21px;
+    padding-bottom: 35px;
+    color: #000;
+    text-decoration: none;
+    border-bottom: solid 1px #BFBFBF; 
+}
+
+.compartirT{
+
+    background: url(images/icon-share.png) no-repeat;
+    width: 30px;
+    height: 30px;
+}
+
+.email{
+    background:transparent  url(images/icon-msg.png) no-repeat left !important;
+
+
+}
+
+
+.facebook{
+    background:transparent url(images/icon-facebook.png) no-repeat left !important;
+
+}
+
+.facebook:hover{     
+    background:#e3e3e3 url(images/icon-facebook.png) no-repeat left !important;
+
+}
+
+
+.twitter{
+    background:transparent url(images/icon-twitter.png) no-repeat left !important;
+
+}
+
+.twitter:hover{
+    background:#e3e3e3 url(images/icon-twitter.png) no-repeat left !important;
+
+}
+
+.google{
+    background:transparent url(images/icon-google.png) no-repeat left !important;
+
+}
+
+.google:hover{
+    background:#e3e3e3 url(images/icon-google.png) no-repeat left !important;
+
+}
+
+.whatsapp{
+    background:transparent url(images/icon-whats.png) no-repeat left !important;
+
+}
+
+
+
+
+#labelShare{
+    font-family: hbold;
+
+}
+
+
+/**********************************************************/
+/*Estilo para el autocomplete                            */
+/**********************************************************/
+
+.ui-autocomplete-input{
+    font-family:hlight;
+    font-size: 14px; 
+    width: 100%;
+    height: 28px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius:  6px;
+    border-radius:  6px;
+    background-color: #FFFFFF;
+    background-position: right;
+    color: #47565B;
+
+
+
+}
+.ui-autocomplete {
+    list-style: none;
+    position: absolute;
+
+    width: 100px;
+    font-family:hlight;
+    font-size: 14px;
+    display: block; 
+    padding-top: 20px;
+    background-color: #FBFBFB;
+    color: #141414; 
+
+}
+
+.ui-autocomplete li {
+
+    cursor: pointer;
+    padding-top: 15px;
+    border-bottom: 1px solid #7C7C7C;
+
+
+}
+
+
+.ui-autocomplete li a{
+
+    text-align: justify;
+
+}
+/************************************************************************************
+Otros componentes
+*************************************************************************************/
+
+/* Imagen de "cargando"*/
+
+.loadingPag{
+    background: url('images/ajax-loader.gif');
+    position: relative;
+    width:145px;
+    height:145px;
+}
+
+/*Ubicacion del texto "Espere un momento"*/
+.absoluta {
+    position: absolute ;
+    top:150px;
+    bottom: 0;
+    width: 140px;
+    font-family: hbold;
+    text-align: center;
+    font-size: 11px;
+}
+
+/*******************************
+/*Estilo para la tabla de datos
+********************************/
+
+#results{
+
+    font-family: hlight;
+    font-size: 13px;
+    line-height:25px;
+    width: 100%;
+     
+}
+
+#results tr:first-child td:last-child {
+    border-radius:0px 5px 0px 0px;
+}
+
+#results thead tr{
+    font-family: hlight;
+      color: #fff;
+    background-color: #9A9A9A !important;
+  
+    font-size: 15px;
+    text-align: center;
+}
+#results tr:nth-child(2n) {
+     background: #e6e6e6;
+
+}
+
+#results tr:nth-child(2n+1){
+   
+    background: #d1d1d1;
+}
+
+.estiloColumnas{
+
+    width: 4%;
+    text-align: center
+}
+/*Menu TAB: pestañas en el grafico del indicador (Grafico, Datos, Ficha)*/
+
+
+/*----- Tabs -----*/
+.tabs {
+    width:100%;
+    padding-top: 15px;
+
+}
+
+/*----- Tab Links -----*/
+/* Clearfix */
+.tab-links:after {
+    display:block;
+    clear:both;
+    content:'';
+}
+/* Clearfix */
+.tab-links li {
+    margin:0px 0px;
+    float:left;
+    list-style:none;
+    border-right: 1px solid #b0b0b0
+}
+/* Clearfix */
+.tab-links a {
+    padding:6px 26px;
+    display:inline-block;
+
+    font-size:13px;
+    font-weight:600;
+    color:#000;
+    text-decoration: none;
+    transition:all linear 0.15s;
+}
+/* Clearfix */
+.tab-links a:hover {
+
+    text-decoration:none;
+}
+li.active a{
+    border-bottom: 5px solid #A2A2A2;
+}
+li:last-child{
+    border-right: none;
+
+}
+
+li.active a, li.active a:hover {
+
+    color:#000;
+
+}
+
+/*----- Content of Tabs -----*/
+.tab-content {
+    padding:1px;
+    border-radius:3px;
+    background:#F6F6F6;
+}
+
+.tab {
+    display:none;
+}
+
+
+.tab.active {
+    display:block;
+}
+
+#definicion{
+    font-size: 15px;
+    color: #444150;
+    font-family: hmedium
+
+
+}
+.link{
+    font-size: 14px;
+}
+#ficha{
+    font-size: 15px;
+    color: #444150
+}
+
+
+#divFuente{
+    font-size: 10px;
+    line-height:15px;
+}
+
+
+.icon-left{
+    background: url(images/icon-left.png) no-repeat;
+    width: 30px;
+    height: 30px;
+    margin-top:10px !important; 
+}
+
+.icon-right{
+    background: url(images/icon-right.png) no-repeat;
+    width: 30px;
+    height: 30px;
+    margin-top:10px !important; 
+}
+
+.icon-myshare{
+    background:  url(images/icon-share.png) no-repeat !important;
+    background-position: 40px !important;
+
+}
+
+.icon-mysearch{
+    background:  url(images/icon-search.png) no-repeat  !important;
+    background-position: 40px !important;
+}
+
+.icon-siise{
+    background:  url(images/icon-siise1.png) no-repeat left  !important;
+}
+
+/**********************************************************/
+/*Estilo para las listas                                  */
+/**********************************************************/
+
+/*Listas en sectores y subsectores*/
+/*Este es el UL*/
+.listviewSector{
+
+    font-size:15px;
+    font-family:hlight;
+    list-style: none;
+
+}
+
+.listviewSector li{
+
+    /* background: url(images/indicadores-siise.png);*/
+    background-position: right;
+    background-repeat: no-repeat; 
+    border-bottom: 1px solid #BFBFBF;
+
+}
+
+.listviewSector li a{
+    text-decoration: none;
+    display:block;
+    padding: 15px;
+    cursor:pointer;
+    color: #000;
+}
+
+
+/*indicadopres sociales*/
+.listviewSector li a:hover{
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#D01186), to( #FFFFFF));/*Chrome y Safari*/
+    background-image: -moz-linear-gradient(top center, #D01186, #FFFFFF);/*Firefox*/
+    background-image: -o-linear-gradient(top, #D01186, #FFFFFF);/*Opera*/
+    background-image: linear-gradient(top, #D01186, #FFFFFF);/*Estandar por defecto*/
+    font-weight: bold;
+    font-size:15px;
+    font-family:hbold;
+    padding-left: 15px
+}
+
+
+.listviewSectorRelevantes{
+    /*background-image: -webkit-gradient(linear, left top, left bottom, from(#E5396F), to( #E3E3E3));Chrome y Safari
+    background-image: -moz-linear-gradient(top center, #E5396F, #E3E3E3);Firefox
+    background-image: -o-linear-gradient(top, #E5396F, #E3E3E3);Opera
+    background-image: linear-gradient(top, #E5396F, #E3E3E3);Estandar por defecto*/
+    font-size:15px;
+    font-family:hlight;
+    list-style: none;
+
+}
+
+.listviewSectorRelevantes li{
+
+    /* background: url(images/indicadores-siise.png);*/
+    background-position: right;
+    background-repeat: no-repeat; 
+    border-bottom: 1px solid #BFBFBF;
+
+}
+
+.listviewSectorRelevantes li a{
+    text-decoration: none;
+    display:block;
+    padding: 15px;
+    cursor:pointer;
+    color: #000;
+}
+
+.listviewSectorRelevantes li a:hover{
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#EF970A), to( #FFFFFF));/*Chrome y Safari*/
+    background-image: -moz-linear-gradient(top center, #EF970A, #FFFFFF);/*Firefox*/
+    background-image: -o-linear-gradient(top, #EF970A, #FFFFFF);/*Opera*/
+    background-image: linear-gradient(top, #EF970A, #FFFFFF);/*Estandar por defecto*/
+    font-weight: bold;
+    font-size:15px;
+    font-family:hbold;
+    padding-left: 15px
+}
+
+
+.listviewSectorAgenda{
+    /*background-image: -webkit-gradient(linear, left top, left bottom, from(#E5396F), to( #E3E3E3));Chrome y Safari
+    background-image: -moz-linear-gradient(top center, #E5396F, #E3E3E3);Firefox
+    background-image: -o-linear-gradient(top, #E5396F, #E3E3E3);Opera
+    background-image: linear-gradient(top, #E5396F, #E3E3E3);Estandar por defecto*/
+    font-size:15px;
+    font-family:hlight;
+    list-style: none;
+
+}
+
+.listviewSectorAgenda li{
+
+    /* background: url(images/indicadores-siise.png);*/
+    background-position: right;
+    background-repeat: no-repeat; 
+    border-bottom: 1px solid #BFBFBF;
+
+}
+
+.listviewSectorAgenda li a{
+    text-decoration: none;
+    display:block;
+    padding: 15px;
+    cursor:pointer;
+    color: #000;
+}
+
+.listviewSectorAgenda li a:hover{
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#E3190C), to( #FFFFFF));/*Chrome y Safari*/
+    background-image: -moz-linear-gradient(top center, #E3190C, #FFFFFF);/*Firefox*/
+    background-image: -o-linear-gradient(top, #E3190C, #FFFFFF);/*Opera*/
+    background-image: linear-gradient(top, #E3190C, #FFFFFF);/*Estandar por defecto*/
+    font-weight: bold;
+    font-size:15px;
+    font-family:hbold;
+    padding-left: 15px
+}
+
+
+#miMapa{
+    background: #f6f6f6;
+    border: 1px solid #d1d1d1;
+}
+
+.nombreIndicador{
+    font-size: 18px;
+    padding-top: 20px;
+    font-family: hlight; 
+    font-weight: bold;
+}
+
+.btnConsultaT{
+    margin-top: 30px;
+    width: 100px;
+    height: 50px;
+}
+
+.titulo-general{
+    font-family: hbold;
+}
+
+.mapaSitio{
+    font-size: 12px;
+
+    text-align: left;
+    font-family: hlight;
+    line-height: 1.4
+}
+
+.infoUbicacion table{
+    width: 100%;
+    border-spacing: 2px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.infoUbicacion table thead tr{
+    font-size: 14px;
+    text-align: center;
+}
+
+#shareTerritorial a { 
+    width: 180px;
+    height: 50px;
+    color: transparent;
+    padding-bottom: 20px;
+}
+#shareTerritorial a span{
+    padding-left: 40px;
+    padding-bottom: 30px;
+    color: transparent;
+    text-decoration: none;
+}
+
+#contactBar{
+    font-size: 16px;
+    text-decoration: none;
+}
+
+#labelUbicacion{
+    font-family: hregular;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.tituloTablas{
+
+    font-size: 17px;
+    font-family: hlight;
+    text-align: left;
+    font-weight: bold;
+    /*margin-left: 30px;*/
+    /*sin margin left*/
+    
+}
+
+.infoTerritorial table {
+    width: 100%;
+    margin-left: 2s0px;
+    /*margin-left: 20px;
+    width: 100%;*/
+}
+
+.infoTerritorial table thead tr{
+    font-size: 15px;
+    color:#fff;
+    background-color:  #A6A5A5 !important;
+    border-bottom:1px #494949 solid;
+    text-align: center;
+    
+}
+
+.infoTerritorial table td{
+    
+    text-align: right;
+    vertical-align: middle;
+    
+}
+
+
+
+.infoTerritorial table tr:nth-child(2n) {
+    background: #d1d1d1;
+
+}
+
+.infoTerritorial table tr:nth-child(2n+1){
+    background: #e6e6e5;
+}
+.infoTerritorial{
+    font-size: 14px;
+
+}
+
+.infoTerritorial img{
+    width: 97% !important;
+    height: 8px;
+    margin-left: 20px;
+        
+
+}
+
+
