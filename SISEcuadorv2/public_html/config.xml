@@ -65,7 +65,7 @@
     -->
 
     <!-- Define app icon for each platform. -->
-    <icon src="launchiPhone5-568h@2x.png"/>
+    <icon src="launchiPhone5-568h@2x.png" />
     
     <!-- iPhone / iPod Touch -->
     <icon src="res/icon/ios/icon-57.png"      gap:platform="ios"   width="57" height="57" />
