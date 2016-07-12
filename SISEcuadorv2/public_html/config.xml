@@ -4,8 +4,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "ec.gob.desarrollosocial.rips.sisecuadormovil"
-        version   = "2.0.0"
-        ios-CFBundleVersion="2.0.0">
+        version   = "2.0.0">
 
     <name>SISEcuador </name>
 
@@ -70,12 +69,10 @@
     <platform name="ios">
         <icon src="res/icon/ios/icon-57.png"/>
         <icon src="res/icon/ios/icon-57-2x.png"/>
-        <icon src="res/icon/ios/icon-60.png"/>
-        <icon src="res/icon/ios/icon-60-2x.png"/>
+    </platform>
+    <platform name="ios">
         <icon src="res/icon/ios/icon-72.png"/>
         <icon src="res/icon/ios/icon-72-2x.png"/>
-        <icon src="res/icon/ios/icon-76.png"/>
-        <icon src="res/icon/ios/icon-76-2x.png"/>
     </platform>
     
    
