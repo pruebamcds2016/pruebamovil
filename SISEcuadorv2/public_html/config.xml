@@ -73,6 +73,8 @@
     <icon src="res/icon/ios/icon-60.png"      gap:platform="ios"   width="60" height="60" />
     <icon src="res/icon/ios/icon-60-2x.png"   gap:platform="ios"   width="120" height="120" />    
     
+    <icon src="res/icon/ios/icon-568h@2x.png"      gap:platform="ios"   width="640" height="1136" />
+
     <!-- iPad -->
     <icon src="res/icon/ios/icon-72.png"      gap:platform="ios"   width="72" height="72" />
     <icon src="res/icon/ios/icon-72-2x.png"   gap:platform="ios"   width="144" height="144" />   
