@@ -77,6 +77,7 @@
         <icon src="res/icon/ios/icon-60.png"/>
         <icon src="res/icon/ios/icon-60-2x.png"/>
     </platform>
+    
    
    <icon src="res/drawable-ldpi/icon.png"   gap:platform="android"    gap:qualifier="ldpi" />
     <icon src="res/drawable-mdpi/icon.png"   gap:platform="android"    gap:qualifier="mdpi" />
