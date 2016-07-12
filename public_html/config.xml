@@ -80,7 +80,7 @@
     <icon src="res/icon/ios/icon-76-2x.png"   gap:platform="ios"   width="152" height="152" />
     
     <!--<gap:splash src="res/icon/ios/icon-568h@2x.png" gap:platform="ios" width="640" height="1136" />  -->
-    <gap:splash src="res/icon/ios/Default-568h@2x.png" gap:platform="ios" width="640" height="1136"/>   
+    <gap:splash src="res/icon/ios/Default-568h-2x.png" gap:platform="ios" width="640" height="1136"/>   
     
     <icon src="res/drawable-ldpi/icon.png"   gap:platform="android"    gap:qualifier="ldpi" />
     <icon src="res/drawable-mdpi/icon.png"   gap:platform="android"    gap:qualifier="mdpi" />
